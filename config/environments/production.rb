@@ -28,9 +28,9 @@ Rails.application.configure do
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
   # ******* !!!!!!!!!! *******
-  config.assets.precompile[0] =  Proc.new { |path| !File.extname(path).in?(['.js', '.css', '.map']) }
+  #config.assets.precompile[0] =  Proc.new { |path| !File.extname(path).in?(['.js', '.css', '.map']) }
 
-  config.assets.js_compressor = Uglifier.new(harmony: true)
+  #config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
