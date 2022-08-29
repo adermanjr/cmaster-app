@@ -1,0 +1,15 @@
+<% if @ordem == 'MODALIDADE' %>
+  $("#velocidade").html("<%= j render partial: 'result_esquadrao', locals: { tipo_prova: VELOCIDADE, lista_result: @campeoes_veloc} %>");
+  $("#meio-fundo").html("<%= j render partial: 'result_esquadrao', locals: { tipo_prova: MEIO_FUNDO, lista_result: @campeoes_meio} %>");
+  $("#fundo").html("<%= j render partial: 'result_esquadrao', locals: { tipo_prova: FUNDO, lista_result: @campeoes_fundo} %>");
+  $("#geral").empty();
+<% else %>
+  $("#velocidade").empty();
+  $("#meio-fundo").empty();
+  $("#fundo").empty();
+  <% if @ordem == 'GERAL' %>
+    $("#geral").html("<%= j render partial: 'result_esquadrao', locals: { lista_result: @campeoes} %>");
+  <% else %>
+    $("#geral").html("<%= j render partial: 'result_regularidade', locals: { lista_result: @campeoes} %>");
+  <% end %>
+<% end %>

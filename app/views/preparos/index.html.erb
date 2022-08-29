@@ -1,0 +1,37 @@
+<% provide(:title, t(:label_preparo)) %>
+
+<div id="index_msg"></div>
+<h4><strong><%= t :label_preparo %></strong></h4>
+<%= link_to new_preparo_path, class: botao_link do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_preparo}" %>
+<% end %>
+
+<div id="lista_preparo" class="list-group mb-3">
+  <% @preparos.each do |preparo| %>
+    <div id='<%= "preparo_#{preparo.id}" %>' class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-6">
+          <strong><%= t(:label_nome) %></strong>: <%= preparo.nome %>
+        </div>
+        <div class="col-sm-6">
+          <strong><%= t(:label_tipo) %></strong>: <%= t("label_tipo_prova_#{preparo.tipo_prova}").upcase %>
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <%= link_to edit_preparo_path(preparo), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-pencil-alt"></span>
+          <% end %>
+
+          <button type="button" onclick="excluir_item('<%= preparo.id %>','/preparos', '<%= t(:msg_quest_apagar_padrao) %>')" 
+                  class="<%= botao_link %>" 
+                  title="<%= t :label_excluir %>">
+            <span class="fa fa-trash"></span>
+          </button>
+         
+        </div>
+      </div>
+      
+    </div>
+  <% end %>
+</div>

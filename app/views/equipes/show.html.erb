@@ -1,0 +1,32 @@
+<% provide(:title, @equipe.nome) %>
+
+<p>
+  <h4>
+    <strong><%= t :label_time %></strong>: <%= @equipe.nome %>
+  </h4>
+</p>
+
+<h4><%= "#{t :label_pombo}s" %></h4>
+
+<div id="lista_time">
+  <%= render 'lista' %>
+</div>
+
+<%= link_to edit_equipe_path(@equipe), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+  <span class="fa fa-pencil-alt"></span>
+<% end %>
+
+<button type="button" 
+        onclick="exec_ajax_with_parms({id: '<%= @equipe.id %>'},'/equipes/<%= @equipe.id %>/show_modal')" 
+        class="<%= botao_link %>"
+        title="<%= t(:label_adicionar_compl, compl: t(:label_pombo)) %>">
+  <span class="fa fa-plus-circle"></span>
+</button>
+
+<%= link_to equipes_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+
+<div id="modal">
+</div>
+

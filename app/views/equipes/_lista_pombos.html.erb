@@ -1,0 +1,25 @@
+<table class="table table-hover" id="tabpombos" >
+  <thead>
+    <tr>
+      <th><%= t(:label_anilha) %></th>
+      <th><%= t(:label_sexo) %></th>
+     </tr>
+  </thead>
+      
+  <tbody>
+    <% @equipe.pombos.order('anilha').each do |pombo| %>
+      <tr>
+        <td>
+          <button type="button"
+                  onclick="excluir_item_parm({ pombo_id: '<%= pombo.id %>',  tela: 'modal'},'/equipes/<%= @equipe.id %>/desassoc_pombo', '<%= t(:msg_quest_apagar_padrao) %>')"
+                  class="<%= botao_link %>"
+                  title="<%= t :label_remover %>">
+            <span class="fa fa-trash"></span>
+          </button>
+          <%= pombo.anilha %>
+        </td>
+        <td><%= pombo.sexo == "F" ? t(:label_sexo_F) : t(:label_sexo_M) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

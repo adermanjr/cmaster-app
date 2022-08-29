@@ -1,0 +1,51 @@
+<% provide(:title, t(:label_lista_pombais)) %>
+<h4><strong><%= t :label_lista_pombais %></strong></h4>
+
+<%= link_to new_pombal_path, class: botao_link do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_pombal}" %>
+<% end %>
+<br /><br />
+
+<div id="lista_pombal" class="list-group">
+  <% @pombals.each do |pombal| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-6">
+          <strong><%= t(:label_nome) %></strong>: <%= link_to pombal do %><%= pombal.nome %><% end %>
+        </div>
+        <div class="col-sm-4">
+          <% if pombal.dtdesativ? %>
+            <strong><%= t :label_desativado_em %>:</strong> <%= pombal.dtdesativ.strftime(mask_data_ruby) %>
+          <% end %>
+        </div>
+        <div class="col-sm-2">
+          <strong><%= t(:label_qtde) %></strong>: <%= pombal.pombos.count %>
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <%= link_to edit_pombal_path(pombal), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-pencil-alt"></span>
+          <% end %>
+
+          <button type="button" onclick="excluir_item('<%= pombal.id %>','/pombals', '<%= t(:msg_quest_apagar_padrao) %>')"
+                  class="<%= botao_link %>" 
+                  title="<%= t :label_excluir %>">
+            <span class="fa fa-trash"></span>
+          </button>
+
+          <button type="button" 
+                  onclick="exec_ajax_with_parms({id: '<%= pombal.id %>'},'/pombals/<%= pombal.id %>/show_modal_aplicacao')"
+                  class="<%= botao_link %>"
+                  title="<%= t(:label_adicionar_compl, compl: t(:label_tratamento)) %>">
+            <span class="fa fa-flask"></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="modal_gerar_tratamento">
+</div>

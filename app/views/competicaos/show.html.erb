@@ -1,0 +1,73 @@
+<% provide(:title, @competicao.nome) %>
+
+<div class="container p-0">
+  <div class="row mb-2">
+    <div class="col-12">
+      <strong><%= @competicao.nome %> - <%= @competicao.ano %></strong>
+      <% if autor_info(@competicao.usuario) %>
+        <%= link_to edit_competicao_path(@competicao), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+          <span class="fa fa-pencil-alt"></span>
+        <% end %>
+      <% end %>
+      </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-12">
+      <strong><%= t(:label_clube) %></strong>: <%= Clube.find(@competicao.clb_id).nome %>
+    </div>
+  </div>
+</div>
+
+<%= link_to new_prova_path(competicao_id: @competicao.id), class: botao_link, :title => "#{t :label_cadastrar} #{t :label_prova}", :rel => 'tooltip', "data-placement" => "bottom" do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_prova}" %>
+<% end %>
+<%= link_to esquadrao_competicao_path(usr: current_user), class: botao_link, :title => t(:label_esquadrao), :rel => 'tooltip', "data-placement" => "bottom" do %>
+  <span class="fa fa-trophy"></span> <%= t :label_esquadrao %>
+<% end %>
+
+<br /><br />
+<strong><%= t :label_lista_provas %></strong>
+
+<div class="list-group mb-3">
+  <% @competicao.provas.sort_by{|p| p.dtsolta}.reverse.each do |prova| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-4">
+          <%= link_to prova do %><%= prova.nome %> - <%= t("label_tipo_prova_#{prova.tipo}") %><% end %>
+        </div>
+        <div class="col-sm-8">
+          <strong><%= t :label_horario_solta %></strong>: <%= prova.dtsolta.strftime(mask_datahora_sem_segundos) %>
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <% if autor_info(prova.usuario) %>
+            <%= link_to edit_prova_path(prova), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+              <span class="fa fa-pencil-alt"></span>
+            <% end %>
+            
+            <button type="button" onclick="excluir_item('<%= prova.id %>','/provas', '<%= t(:msg_quest_apagar_padrao) %>')" 
+                    class="<%= botao_link %>" 
+                    title="<%= t :label_excluir %>">
+              <span class="fa fa-trash"></span>
+            </button>
+
+          <% end %>
+          
+          <button type="button" 
+                  onclick="exec_ajax_with_parms({ id: '<%= prova.id %>', acao: '<%= MODAL_PRV_RESUL %>', opcao_result: 'P'},'/provas/show_modal_result')"
+                  class="<%= botao_link %>">
+            <span class="fa fa-flag"></span> <%= t :label_informar_chegada %>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to competicaos_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+
+<div id="modal_result"></div>

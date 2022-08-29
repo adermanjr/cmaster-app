@@ -1,0 +1,48 @@
+<% if pombo !=nil %>
+  <div class="card absolute">
+    <div class="<%= class_pombo_pais(estilo) %>">
+      <%= icon_pombo(pombo.sexo) %><%= "  #{pombo.anilha} #{pombo.nome.upcase if !pombo.nome.blank?} " %>
+      <% if !pombo.vivo %>
+        <span class="font-weight-bold">&#10015;</span>
+      <% else %>
+        <%= "- #{pombo.dtnasc.year} " if pombo.dtnasc %>
+      <% end %>
+    </div>
+    <div class="card-body small">
+      <% if true %>
+        <%= "#{t :label_cor}: #{pombo.desc_cor} - " if !pombo.desc_cor.blank? %><%= "#{t :label_linhagem}: #{pombo.linhagem}" if !pombo.linhagem.blank? and !caixa_resumo %> 
+        <% if logged_in? && !visivel_correct_user(pombo.id.to_s) %>
+          <br />
+          <%= link_to edit_pombo_path(pombo), class: "#{botao_link} noneImprime", :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-pencil-alt"></span>
+          <% end %>
+
+          <button type="button" 
+                  onclick="exec_ajax_with_parms({id: '<%= pombo.id %>', tela:'M'},'/pombos/show_modal')"
+                  class='<%= "#{botao_link} noneImprime" %>'
+                  title="<%= t :label_mais_info %>">
+            <span class="fa fa-info-circle"></span>
+          </button>
+
+        <% end %>
+        
+        <button type="button" 
+                onclick="exec_ajax_with_parms({id: '<%= pombo.id %>', tela:'T'},'/pombos/show_modal')"
+                class='<%= "#{botao_link} noneImprime" %>'
+                title="<%= t :label_premio %>">
+          <span class="far fa-star"></span>
+        </button>
+
+      <% end %>
+    </div>
+  </div>
+<% elsif mostra_vazio.present? %>
+  <div class="card">
+    <div class="<%= class_pombo_pais(estilo) %>">
+      <br /><br />
+    </div>
+    <div class="card-body small">
+      <br /><br /><br /><br />
+    </div>
+  </div>
+<% end %>

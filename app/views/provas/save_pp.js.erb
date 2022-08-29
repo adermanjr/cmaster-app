@@ -1,0 +1,7 @@
+<% if @pp.valid? %>
+  $("#modal_msg").addClass("alert alert-success");
+  $("#modal_msg").html("<%= flash[:success] %>");
+<% else %>
+  $("#modal_msg").addClass("alert alert-danger");
+  $("#modal_msg").html("<%= flash[:danger] %>");
+<% end %>

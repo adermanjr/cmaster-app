@@ -1,0 +1,29 @@
+<% provide(:title, t(:label_signup)) %>
+<% provide(:button_text, t(:label_criar_conta)) %>
+<br />
+
+<div class="mt-2">
+  <span class="d-flex flex-row-reverse  text-muted" ><small>
+      <%= link_to  "https://www.youtube.com/watch?v=QAmNsgDNezo", target: "_blank", rel: "nofollow", class: "text-reset" do %>
+        <%= t :msg_info_duvida_criar_conta %><span class="p-1"></span><%= image_tag("youtube427x300.png", alt: "", size: "25x18") %>
+      <% end %>
+    </small>
+  </span>
+  
+  <h4>
+    <strong><%= t(:label_signup) %></strong>
+    <span class="p-1"></span>
+    <a href="<%= request.path %>?locale=pt-BR"><span class="flag-icon flag-icon-br fs-6"></span></a>
+    <a href="<%= request.path %>?locale=en"><span class="flag-icon flag-icon-gb fs-6"></span></a>
+  </h4>
+</div>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <%= render 'form' %>
+  </div>
+</div>
+
+<script>
+  document.querySelector("#usuario_lingua").value="<%= I18n.locale %>";
+</script>

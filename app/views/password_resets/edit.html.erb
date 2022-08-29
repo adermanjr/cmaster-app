@@ -1,0 +1,27 @@
+<% provide(:title, t(:label_reiniciar_senha)) %>
+
+<h4><strong><%= t :label_reiniciar_senha %></strong></h4>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <%= form_for(@usuario, url: password_reset_path(params[:id])) do |f| %>
+      <%= render 'shared/error_messages', obj: @usuario %>
+
+      <%= hidden_field_tag :email, @usuario.email %>
+      
+      <div class="form-group mb-3">
+        <%= f.label t(:label_senha) %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group mb-3">
+        <%= f.label t(:label_confirmacao) %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      
+      <div class="d-grid mb-3">
+        <%= f.submit t(:label_atualizar), class: botao_estilo %>
+      </div>
+    <% end %>
+  </div>
+</div>

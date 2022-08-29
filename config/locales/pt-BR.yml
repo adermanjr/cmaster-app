@@ -1,0 +1,633 @@
+pt-BR:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    -
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda-feira
+    - Terça-feira
+    - Quarta-feira
+    - Quinta-feira
+    - Sexta-feira
+    - Sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente 1 ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase 1 ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: mais de 1 ano
+        other: mais de %{count} anos
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_years:
+        one: 1 ano
+        other: "%{count} anos"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundo
+      year: Ano
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: deve ser aceito
+      blank: não pode ficar em branco
+      present: deve ficar em branco
+      confirmation: não é igual a %{attribute}
+      empty: não pode ficar vazio
+      equal_to: deve ser igual a %{count}
+      even: deve ser par
+      exclusion: não está disponível
+      greater_than: deve ser maior que %{count}
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      inclusion: não está incluído na lista
+      invalid: não é válido
+      less_than: deve ser menor que %{count}
+      less_than_or_equal_to: deve ser menor ou igual a %{count}
+      model_invalid: 'A validação falhou: %{errors}'
+      not_a_number: não é um número
+      not_an_integer: não é um número inteiro
+      odd: deve ser ímpar
+      required: é obrigatório(a)
+      taken: já está em uso
+      too_long:
+        one: 'é muito longo (máximo: 1 caracter)'
+        other: 'é muito longo (máximo: %{count} caracteres)'
+      too_short:
+        one: 'é muito curto (mínimo: 1 caracter)'
+        other: 'é muito curto (mínimo: %{count} caracteres)'
+      wrong_length:
+        one: não possui o tamanho esperado (1 caracter)
+        other: não possui o tamanho esperado (%{count} caracteres)
+      other_than: deve ser diferente de %{count}
+    template:
+      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      header:
+        one: 'Não foi possível gravar %{model}: 1 erro'
+        other: 'Não foi possível gravar %{model}: %{count} erros'
+  helpers:
+    select:
+      prompt: Por favor selecione
+    submit:
+      create: Criar %{model}
+      submit: Salvar %{model}
+      update: Atualizar %{model}
+  message_mailer:
+    contact_me:
+      subject: "[ColumbaMaster]Mensagem via Fale Conosco"
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: ''
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Próxima &#8594;"
+    
+  columba_master: Columba Master
+  
+  home_bem_vindo: Bem vindo!
+  home_msg_1: Gestão do pombal, pedigree e divulgação de resultados
+  home_msg_2: Informação online para o columbófilo de forma prática.
+  home_msg_3: Em qualquer lugar, a qualquer momento, a informação que você precisa disponível a suas mãos!
+  home_msg_4: VANTAGENS
+  home_msg_5: Gestão do pombal
+  home_msg_6: Montagem do pedigree
+  home_msg_7: Informações do treino
+  home_msg_8: Acompanhamento de medicação
+  home_msg_social_net: Siga-nos nas redes sociais!
+  
+  label_a_cancelar: Em cancelamento
+  label_aceitar_contrato: Aceitar contrato
+  label_acoes: Ações
+  label_adicionar: Adicionar
+  label_adicionar_compl: Adicionar %{compl}
+  label_anilha: Anilha
+  label_anilha_ou_nome: Anilha ou nome
+  label_ano: Ano
+  label_alterar: Alterar
+  label_alterar_compl: Alterar dados de %{compl}
+  label_apagar_conta: Apagar a conta?
+  label_apagar_coordenadas: Apagar coordenadas
+  label_aplicacao: Aplicação
+  label_aplicar: Aplicar
+  label_aplicar_compl: Aplicar no %{compl}
+  label_arquivo: Arquivo
+  label_assinatura: Assinatura
+  label_assinar: Assinar
+  label_ativar: Ativar
+  label_ativo: Ativo
+  label_atualizar: Atualizar
+  label_atualize_seu_perfil: Atualize seu perfil
+  label_ausentes: Ausentes
+  label_bairro: Bairro
+  label_bandeira: Bandeira
+  label_cadastrar: Cadastrar
+  label_cancelado: Cancelado
+  label_cancelar: Cancelar
+  label_cep: CEP
+  label_chegada: Chegada
+  label_cidade: Cidade
+  label_ciclico: Cíclico
+  label_columbofilo: Columbófilo
+  label_contrato: Contrato
+  label_coordenadas: Coordenadas
+  label_coordenadas_graus: Coordenadas em Graus
+  label_coordenadas_decimal: Coordenadas em Decimal
+  label_obter_coordenadas: Obter Coordenadas
+  label_classificacao_oficial: Classificação oficial
+  label_clube: Clube
+  label_compartilhe: Compartilhe
+  label_competicao: Competição
+  label_complemento: Complemento
+  label_confirmacao: Confirmação
+  label_confirme_a_senha: Confirme a Senha
+  label_contato: Contato
+  label_cor: Cor
+  label_cor_nao_informada: Campo não informado
+  label_cor_azul: Azul
+  label_cor_branco: Branco
+  label_cor_escama: Escama
+  label_cor_preto: Preto
+  label_cor_bronze: Bronze
+  label_cor_vermelho: Vermelho
+  label_cor_macotado: Macotado
+  label_cor_fulvo: Fulvo
+  label_cor_camurca: Camurça
+  label_cor_pardo: Pardo
+  label_criar_conta: Criar minha conta
+  label_cvc: Codigo de Seguranca
+  label_data: Data
+  label_data_aplic: Data Aplicação
+  label_data_desativ: Data desativação
+  label_data_inicio: Data início
+  label_data_inicio_ass: Data de início assinatura
+  label_data_canc_ass: Data de cancelamento assinatura
+  label_data_fim: Data fim
+  label_data_nasc: Data Nascimento
+  label_data_nasc_a_partir: Nascimento a partir de
+  label_de: De
+  label_desativado_em: Desativado em
+  label_descricao: Descrição
+  label_distancia: Distância
+  label_distancia_aerea: Distância áerea em %{medida} pelo Google
+  label_distancia_aerea_aprox: Distância áerea aproximada em %{medida}
+  label_distancia_percorrida: Distância percorrida
+  label_dosagem: Dosagem
+  label_dosagem_por_pombal: Dosagem por Pombal
+  label_editar: Editar
+  label_email: E-mail
+  label_endereco: Endereço
+  label_entrar: Entrar
+  label_enviar: Enviar
+  label_esquadrao: Esquadrão
+  label_estado: Estado
+  label_excluir: Excluir
+  label_export_pdf: Gerar PDF
+  label_esqueceu_senha: Esqueceu a senha?
+  label_fale_conosco: Fale Conosco
+  label_familia: Família
+  label_fechar: Fechar
+  label_filho: Filho
+  label_filtrar: Filtrar
+  label_filtrar_por: Filtrar por
+  label_financeiro: Financeiro
+  label_fuso: Fuso Horário
+  label_geral: Geral TOP 25
+  label_gerar: Gerar
+  label_gratuito: Gratuito
+  label_horario_solta: Data hora da solta
+  label_hora_estimada: Hora chegada
+  label_hora_oficial: Hora chegada oficial
+  label_id_usuario_planilha: Código do usuário na planilha
+  label_id_usuario_cmaster: Código do usuário no Columba Master
+  label_idade: Idade
+  label_importar: Importar
+  label_incluir: Incluir
+  label_indicacao: Indicação
+  label_informar_chegada: Informar chegada
+  label_intervalo: Intervalo
+  label_intervalo_S: Semana(s)
+  label_intervalo_Q: Quinzena(s)
+  label_intervalo_M: Mês(es)
+  label_intervalo_A: Ano(s)
+  label_lat_grau: Latitude em graus
+  label_latitude: Latitude
+  label_lingua: Idioma
+  label_linhagem: Linhagem
+  label_lista_clubes: Lista de clubes
+  label_lista_competicoes: Lista de competições
+  label_lista_pombais: Lista de pombais
+  label_lista_pombos: Lista de pombos
+  label_lista_premios: Lista de prêmiações
+  label_lista_provas: Lista de provas
+  label_lista_tratamentos: Lista de tratamentos
+  label_lista_usuarios: Lista de usuários
+  label_lng_grau: Longitude em graus
+  label_longitude: Longitude
+  label_mae: Mãe
+  label_mais_info: Mais informações
+  label_manter_conectado: Manter conectado
+  label_marcacao: Marcação
+  label_medida: Medida
+  label_medida_GR: Grama(s) - Gr
+  label_medida_LT: Litro(s) - Lt
+  label_medida_ML: Mililitro(s) - Ml
+  label_medida_KG: Quilograma(s) - Kg
+  label_medida_CO: Comprimido(s)
+  label_medida_KM: Km
+  label_medida_M: Metros
+  label_medida_KM_Hora: Km/H
+  label_medida_Metros_Min: M/min
+  label_mensagem: Mensagem
+  label_mensalidade: Mensalidade
+  label_por_modalidade: Por Modalidade
+  label_moeda: Moeda
+  label_moeda_BRL: Real
+  label_moeda_EUR: Euro
+  label_moeda_USD: Dólar
+  label_nacao: País
+  label_nao: Não
+  label_nao_inscrito: Ainda não é cadastrado?
+  label_nome: Nome
+  label_nome_completo: Nome Completo
+  label_nome_competicao: Nome para competição
+  label_nome_cartao: Nome (como impresso no cartão)
+  label_notificar_cada: Notificar a cada
+  label_novo: Novo
+  label_numero: Número
+  label_numero_cartao: Cartão de Crédito
+  label_oficial: Oficial
+  label_pagamento: Pagamento
+  label_pagar: Efetuar Pagamento
+  label_pai: Pai
+  label_para: Para
+  label_parcial: Parcial
+  label_partida: Saída
+  label_perfil: Perfil
+  label_pedigree: Pedigree
+  label_plano_B: Plano Básico
+  label_plano_M: Plano Master
+  label_plano_A: Plano Master de Avaliação
+  label_plano_I: Plano Ilimitado
+  label_plano_vigente: Dados do Plano
+  label_pombal: Pombal
+  label_pombo: Pombo
+  label_pontos: Pontos
+  label_posicao: Posição
+  label_premio: Prêmio(s)
+  label_preparo: Preparo
+  label_proximo: Próximo
+  label_prova: Prova
+  label_qtde: Quantidade
+  label_qtde_provas: 'Nº de provas disputadas'
+  label_reativar: Reativar
+  label_recuperar_senha: Recuperar a senha
+  label_recusar_contrato: Recusar contrato
+  label_regularidade: Regularidade
+  label_reiniciar_senha: Redefinir a senha
+  label_remover: Remover
+  label_reside: Reside
+  label_residentes: Residentes
+  label_rota_voo: Rota de voo
+  label_salvar: Salvar
+  label_senha: Senha
+  label_sexo: Sexo
+  label_sexo_M: Macho
+  label_sexo_F: Fêmea
+  label_signup: Inscreva-se
+  label_signup_now: Inscreva-se agora!
+  label_sim: Sim
+  label_show: Ver
+  label_so_vivo: Somente vivos
+  label_status: Status
+  label_telefone: Telefone
+  label_tempo: Tempo
+  label_time: Time
+  label_tipo: Tipo
+  label_tipo_prova_1: Velocidade
+  label_tipo_prova_2: Meio Fundo
+  label_tipo_prova_3: Fundo
+  label_tipo_usuario_1: Comum
+  label_tipo_usuario_2: Moderador
+  label_total: Total
+  label_total_pontos: Pontuação somada
+  label_tratamento: Tratamento
+  label_uf: UF
+  label_ultimo: Último
+  label_valor_anos_seguintes: 2º ano por %{valor}/Mês
+  label_valor_ano1: Por %{valor}/Mês
+  label_velocidade: Velocidade
+  label_velocidade_media: Velocidade média
+  label_vencimento: Vencimento
+  label_ver_mapa: Ver o mapa
+  label_vivo: Vivo
+  label_voltar: Voltar
+  
+  link_clube: CLUBE
+  link_competicoes: COMPETIÇÕES
+  link_conta: CONTA
+  link_contato: CONTATO
+  link_editar_conta: EDITAR CONTA
+  link_entrar: ENTRAR
+  link_gerir: CONTROLE
+  link_endereco: ENDEREÇO
+  link_inicio: INÍCIO
+  link_inscrever: INSCREVA-SE
+  link_pombal: POMBAL
+  link_pombos: POMBOS
+  link_assinatura: PLANO
+  link_preparo: PREPARO
+  link_provas: PROVAS
+  link_sair: SAIR
+  link_time: TIME
+  link_tratamento: TRATAMENTO
+  link_perfil: PERFIL
+  link_admin: ADMIN
+  
+  msg_erro_acao_nao_permitida: Ação não permitida.
+  msg_erro_arquivo_invalido: Arquivo inválido!
+  msg_erro_complemento_nao_esta_preenchido: não está preenchido.
+  msg_erro_campo_nao_numerico: O valor do campo não é numérico
+  msg_erro_conta_nao_ativada: Conta não ativada. Ative pelo link enviado para seu e-mail.
+  msg_erro_desconectado: Favor acessar sua conta.
+  msg_erro_email_nao_encontrado: Endereço de e-mail não encontrado.
+  msg_erro_link_expirou: O link de ativação expirou.
+  msg_erro_link_ativacao_invalido: Link de ativação inválido.
+  msg_erro_link_invalido: URL inválido.
+  msg_erro_login: E-mail/Senha inválido(s).
+  msg_erro_pai_femea: Pai não pode ser fêmea.
+  msg_erro_mae_macho: Mãe não pode ser macho.
+  msg_erro_padrao_formulario: Este formulário contém
+  msg_erro_email_nao_enviado: E-mail não enviado. Verifique se todos os campos foram preenchidos.
+  msg_erro_email_nao_enviado_recaptcha: E-mail não enviado. Recaptcha inválido.
+  msg_erro_anilha_cadastrada: Já existe outro pombo com a anilha informada.
+  msg_erro_cancelamento_ass: Não foi possível cancelar a assinatura. Mensagem operadora
+  msg_erro_assinatura: Não foi possível criar a assinatura. Mensagem operadora
+  msg_erro_reativar: Não foi possível reativar a assinatura. Mensagem operadora
+  msg_erro_pombo_nao_encontrado: Pombo não encontrado!
+  msg_erro_limite_plano: Você passou do limite da quantidade de pombos permitidos no seu plano. %{go}
+  msg_erro_rever_assinatura: Favor rever sua assinatura.
+  msg_erro_plano_cancelado: O seu plano está cancelado. Favor rever sua assinatura.
+  msg_erro_pagamento_cancelado: O pagamento não foi confirmado.
+  msg_erro_pagmento_nao_confirmado: O pagamento não foi confirmado pela instituição financeira. Favor informar um novo cartão.
+  msg_erro_anilha_nao_encontrada: Não foi encontrado pombo com a anilha informada.
+  msg_erro_quantidade_incompativel_plano: A quantidade de pombos já cadastrada %{qtde} é incompativel com o plano escolhido.
+  msg_erro_informar_endereco_prova: Favor informar as coordenadas da solta da prova.
+  msg_erro_informar_endereco_usuario: Favor informar as coordenadas.
+  msg_erro_usuario_nao_encontrado_planilha: O código do usuario não foi encontrado na planilha.
+  msg_erro_usuario_nao_encontrado_sistema: O código do usuario não foi encontrado no sistema.
+  msg_erro_banco: "Erro do banco de dados:"
+  msg_erro_campo_nao_informado: "Campo não informado: %{campo}"
+  
+  msg_info_ativacao_conta_email: Bem vindo(a) ao Columba Master! Acesse o link abaixo para ativar sua conta.
+  msg_info_conta_apagada: Conta apagada.
+  msg_info_conta_ativada: Conta ativada!
+  msg_info_ignorar_reiniciar_senha: Se você não quis redefinir sua senha, favor ignorar este e-mail.
+  msg_info_link_expiracao: Este link irá expirar em 2 horas.
+  msg_info_para_reiniciar_senha: Para redefinir a senha, acesse o link abaixo
+  msg_info_perfil_atualizado: Perfil atualizado!
+  msg_info_senha_atualizada: A senha foi atualizada!
+  msg_info_verifique_email: Verifique seu e-mail para ativar a sua conta. Pode ser que tenha ido para a caixa de spam.
+  msg_info_verifique_email_resetar_senha: Verifique seu e-mail para criar uma nova senha. Pode ser que tenha ido para a caixa de spam.
+  msg_info_criado_com_sucesso: criado(a) com sucesso!
+  msg_info_atualizado_com_sucesso: atualizado(a) com sucesso!
+  msg_info_excluido_com_sucesso: excluído(a) com sucesso!
+  msg_info_adiciado_com_sucesso: adicionado(a) com sucesso!
+  msg_info_removido_com_sucesso: removido(a) com sucesso!
+  msg_info_email_enviado: E-mail enviado com sucesso.
+  msg_info_email_enviado_contato: E-mail enviado com sucesso, em breve entraremos em contato.
+  msg_info_endereco: Rua Jose Augusto, 85, Divinopolis, MG/Brasil
+  msg_info_nome_time: Esquadrão Campeão
+  msg_info_form_contato_html: Sua opinião é muito importante para nós.
+  msg_info_pombos_que_receberam_aplicacao_de_em: Pombos que receberam a aplicação de %{nome} em %{data}
+  msg_info_escolha_o_plano: Escolha o plano que mais combina com você!
+  msg_info_assinatura_cancelada: Assinatura cancelada com sucesso!
+  msg_info_assinatura_sucesso: A assinatura foi realizada com sucesso! 
+  msg_info_plano_basico: O Plano Básico permite o cadastro de até %{qtde} pombos e não custa nada.
+  msg_info_plano_master: Cadastro ilimitado de pombos.
+  msg_info_plano_ilimitado: Cadastro de pombos ilimitado!
+  msg_info_primeiro_mes_gratis_html: O primeiro mês é grátis!
+  msg_info_assine_ja: Assine já!
+  msg_info_presente_time: Este pombo já faz parte do time.
+  msg_info_pombos_ausentes: Pombos que ainda não chegaram
+  msg_info_qtde_pombos: Total de %{qtde} pombos cadastrados.
+  msg_info_qtde_pombos_permitido: Quantidade de pombos permitidos no seu plano %{qtde}.
+  msg_info_arraste_marcador: Arraste o marcador vermelho para definir a localização mais aproximada do pombal.
+  msg_info_arraste_marcador_prova: Arraste o marcador vermelho para definir a localização mais aproximada do local da solta.
+  msg_info_email_ativacao: E-mail para ativação da conta.
+  msg_info_tornar_moderador: Tornar moderador.
+  msg_info_tornar_avaliacao: Tornar avaliação.
+  msg_info_importacao_resultado_prova: 'A planilha precisa conter as seguintes colunas: "classif", "ring", "idcriador", "date", "time", "distance", "veloc", "points".'
+  msg_info_planilha_exemplo: 'Download da planilha de exemplo'
+  msg_info_top_10: Esquadrão TOP 25 por Pontos
+  msg_info_duvida_criar_conta: Veja como criar sua conta!
+  msg_info_duvida_criar_pombo: Veja como cadastrar os pombos!
+  msg_info_promocao_por_tempo_limitado: Promoção por tempo limitado!
+  msg_info_pagto_paypal: A assinatura é realizada em ambiente seguro via PayPal
+  msg_info_importacao_relogio: Importamos os pombos do seu terminal Tauris a parte. Entre em contato.
+  
+  msg_quest_enviar_notificacao: Enviar notificação para lembrar de nova aplicação
+  msg_quest_apagar_conta: Confirma que deseja apagar a conta? Todos os seus dados serão deletados.
+  msg_quest_apagar_padrao: Confirma exclusão?
+  msg_quest_apagar_resultado: Ao apagar um resultado, ambos, parcial e oficial serão excluídos. Confirma exclusão?
+  msg_quest_recusar_contrato: Ao recusar o contrato, todos os seus dados serão apagados. Deseja continuar?
+  
+  msg_subject_ativacao_conta: Ativação da conta
+  msg_subject_recuperacao_senha: Recuperação da senha
+
+  msg_contrato_titulo: 'COLUMBA MASTER - CONTRATO DE PRESTAÇÃO DE SERVIÇOS'
+  msg_contrato_1: '1. PARTES'
+  msg_contrato_1_desc_html: 'Pelo presente instrumento particular, de um lado a COLUMBA MASTER, site e aplicativo, sob o registro MEI pelo CNPJ: 32.009.129/0001-57, doravante designado "Sistema" e, de outro, o(a) contratante, doravante designado(a) "Assinante", portador(a) das informações e devidamente cadastrado no banco de dados do site, identificado pelo seus códigos de acesso, doravante denominados "login" e "senha", resolvem, de comum acordo, celebrar o presente Contrato de Prestação de Serviços via Internet, que será regido pelas seguintes cláusulas e condições:'
+  msg_contrato_1_1: '1.1 Os Termos e Condições Gerais deste contrato dizem respeito às partes citadas acima e aplicam-se ao uso dos produtos e serviços oferecidos pela COLUMBA MASTER. Todo assinante que pretenda utilizar os serviços da COLUMBA MASTER deverá aceitar os Termos e Condições Gerais, e todas as demais políticas e princípios que o regem.'
+  msg_contrato_1_2: '1.2 Na impossibilidade de o Assinante ser caracterizado como responsável, as obrigações apresentadas neste contrato serão transferidas para os responsáveis legais.'
+  msg_contrato_1_3: '1.3. As Partes reconhecem o correio eletrônico, e-mail, enviado para sua caixa-postal cadastrada, como uma forma válida e eficaz de comunicação e aceita o site e aplicativo da COLUMBA MASTER como suficiente para a prestação dos serviços que se refiram a este Contrato, assim como, as condições de sua prestação ou a qualquer outro assunto nele abordado.'
+  
+  msg_contrato_2: '2. OBJETO'
+  msg_contrato_2_1_html: '2.1. A COLUMBA MASTER disponibiliza os seguintes serviços via Internet: Acesso ao aplicativo e site para gestão online de columbófilos que conta recursos de inclusão, visualização, alteração e remoção de pombos, pedigree, treinos, provas, recursos de comunicação e demais cadastros a serem preenchidos pelo próprio Assinante ou por pessoas autorizadas pelo mesmo mediante cadastro no banco de dados do sistema.'
+  msg_contrato_2_2: '2.2. O Sistema requisitará ao Assinante o login e senha (devidamente cadastrados no momento da criação da conta) para o acesso ao sistema.'
+  
+  msg_contrato_3: '3. DEVERES E DIREITOS DA COLUMBA MASTER'
+  msg_contrato_3_1: '3.1. A COLUMBA MASTER permitirá acesso 24 (vinte e quatro) horas por dia, 07 (sete) dias por semana aos Assinantes, salvo nos casos descritos nos itens 3.2.'
+  msg_contrato_3_2: '3.2. A COLUMBA MASTER se obriga a disponibilizar o serviço de acesso contratado pelo Assinante de acordo com o plano escolhido, podendo, eventualmente, o acesso sofrer interrupções devido a: (a) indisponibilidade gerada por problemas de conexão do assinante à rede da Internet; (b) casos fortuitos que impeçam a prestação dos serviços; e (c) problemas técnicos e/ou operacionais que exijam o desligamento temporário do sistema, ajustes que previnam ocorrências de falhas no sistema de transmissão e/ou roteamento no acesso à Internet.'
+  msg_contrato_3_3: '3.3. A COLUMBA MASTER se reserva o direito de efetuar eventuais manutenções em seus sistemas, visando melhorias na qualidade dos serviços prestados aos seus Assinantes, o que poderá afetar o acesso aos seus serviços temporariamente.'
+  msg_contrato_3_4: '3.4. A COLUMBA MASTER se reserva o direito de efetuar alterações na cláusula 2. do presente Contrato, para ampliação dos serviços contratados, dispensando prévio aviso. Se desejar, o Assinante poderá requerer informações sobre as mudanças ocorridas, por escrito, através de email ou no próprio site.'
+  msg_contrato_3_5: '3.5. A COLUMBA MASTER não se responsabiliza pelas informações contidas nos cadastros feitos através do site e aplicativo, sendo certo que, os dados constantes dos cadastros são de total responsabilidade dos respectivos assinantes, os quais serão os únicos responsáveis pelas sanções civis e penais que eventualmente resultarem de incorreção nesses dados.'
+  msg_contrato_3_6: '3.6. A COLUMBA MASTER se reserva o direito de excluir qualquer cadastro que apresente inverdades ou que não esteja dentro dos Termos e Condições Gerais deste contrato.'
+  msg_contrato_3_7: '3.7. O Assinante entende e concorda que os serviços abrangidos por este contrato, os quais estão previstos na cláusula 2.1.'
+  msg_contrato_3_8: '3.8. A COLUMBA MASTER não participa de negociações dos Assinantes com terceiros, de cadastros no site, não podendo ser responsabilizada por qualquer dano, seja material ou moral, decorrente dessas negociações, as quais são conduzidas sob completa responsabilidade e autonomia do Assinante.'
+  msg_contrato_3_9: '3.9. O Assinante entende e concorda que em casos de acesso efetuado por terceiros ao site ou aplicativo, valendo-se do login e senha do Assinante, a COLUMBA MASTER não poderá ser responsabilizada por eventuais danos decorrentes desse ato.'
+  msg_contrato_3_10: '3.10. Dada a dinâmica da prestação de serviços, o Assinante concorda que a COLUMBA MASTER poderá manter o cadastro do Assinante em seu banco de dados por um período superior ao contratado.'
+    
+  msg_contrato_4: '4. DEVERES E DIREITOS DO ASSINANTE'
+  msg_contrato_4_1: '4.1. O Assinante será responsável pela correta utilização do seu login e senha, que são de seu uso exclusivo, não podendo ser divulgados a terceiros.'
+  msg_contrato_4_2: '4.2. O Assinante deverá providenciar, por conta própria, o acesso à rede mundial de computadores (Internet).'
+  msg_contrato_4_3: '4.3. Os dados pessoais do Assinante, entre esses, o “login” e “senha”, o conteúdo do cadastro da conta e os dados de cobrança informados são de sua total responsabilidade. Caso tais dados sejam informados de maneira incorreta ou incompleta, o Assinante será responsável pelas sanções civis e penais que eventualmente forem aplicáveis.'
+  msg_contrato_4_4: '4.4. Ao se cadastrar, o Assinante compromete-se a fornecer informações verdadeiras, atualizadas e completas, conforme solicitado nas páginas de registro.'
+  msg_contrato_4_5: '4.5. O Assinante ficará responsável pelos cadastros e pela utilização do sistema, sendo que, o não cadastro de novas informações não implicará na desistência do serviço, posto que, os dados permanecem disponíveis até o cancelamento da conta.'
+  msg_contrato_4_6: '4.6. O Assinante assume todos os ônus e responsabilidades decorrentes de seus atos e desvio de conduta como Assinante do Sistema, respondendo ainda por atos que terceiros praticarem em seu nome, por meio de uso de seu login e senha de acesso.'
+  msg_contrato_4_7: '4.7. Como contraprestação pelos serviços deste Contrato, o Assinante deverá pagar à COLUMBA MASTER a quantia constante na Confirmação do cadastro da conta, nas datas e/ou periodicidade referida, correspondente ao plano contratado.'
+  
+  msg_contrato_5: '5. PLANOS E FORMAS DE PAGAMENTO'
+  msg_contrato_5_1: '5.1. Os Planos estão descritos na sessão Planos do site e a Forma de Pagamento é feita através de pagamento recorrente pelo cartão de crédito.'
+  msg_contrato_5_2: '5.2. O Plano Gratuito permite o uso de todas as funcionalidades do sistema limitando apenas a quantidade de pombos a ser cadastrada. A COLUMBA MASTER se reserva o direito de estabecer e alterar a quantidade de pombos no Plano Gratuito em qualquer momento.'
+  msg_contrato_5_3: '5.3. Para os Planos Pagos, o Assinante autoriza a COLUMBA MASTER a efetuar as cobranças na forma e meio escolhido, ficando a COLUMBA MASTER e / ou eventual empresa autorizada do débito isentas de qualquer responsabilidade em virtude dessa cobrança. O nome apresentado na fatura de cobrança do cartão de crédito é ADERMAN JOSE DE ARAUJO*'
+  msg_contrato_5_4: '5.4. Havendo quaisquer impedimentos ao pagamento da assinatura por motivo de responsabilidade do Assinante, a COLUMBA MASTER reserva-se o direito de suspender por tempo indeterminado os serviços previstos neste Contrato, podendo esta, comunicar o Assinante para que este proceda com a regularização da pendência, ficando suspensa a assinatura até o momento da regularização do pagamento.'
+  
+  
+  msg_contrato_6: '6. DA PROMOÇÃO DOS 1º MÊS GRATIS'
+  msg_contrato_6_1: '6.1. O Assinante fica ciente de que só será possível participar uma vez da promoção. Em vista disso, caso haja uma nova contratação após a utilização dos dias gratuitos, o Assinante não fará jus a um novo período de 30 (trinta) dias gratuitos.'
+  msg_contrato_6_2: '6.2. Após a aceitação deste Contrato, o Assinante passa a fazer jus a um período promocional de 30 (trinta) dias gratuitos.'
+  msg_contrato_6_3: '6.3. O período promocional de 30 dias gratuitos terá início no dia em que o Assinante celebrar o presente Contrato, sendo contados os 30 dias corridos subsequentes à data de aceitação do Contrato.'
+  msg_contrato_6_4: '6.4. Ao término do período gratuito, será gerada uma cobrança no cartão de crédito no valor contratado para o plano escolhido pelo assinante.'
+  msg_contrato_6_5: '6.5. Caso, no entanto, o Assinante opte por continuar contratado, não manifestando sua opção pela rescisão do contrato até o trigésimo dia após a contratação, a COLUMBA MASTER bloqueará o acesso ao Sistema.'
+  
+  msg_contrato_7: '7. DO CANCELAMENTO'
+  msg_contrato_7_1: '7.1. O cancelamento da assinatura ocorrerá por meio da opção disponível em PERFIL\Dados do Plano\Cancelar Assinatura.'
+  msg_contrato_7_2: '7.2. O Assinante reconhece e aceita que, ao cancelar a assinatura, perderá o acesso ao sistema e consequentemente às informações cadastradas anteriormente.'
+  msg_contrato_7_3: '7.3. Em nenhuma hipótese a COLUMBA MASTER devolverá o pagamento realizado, uma vez que foram realizados investimentos desde criação da conta para que o acesso esteja disponível durante todo o período contratado.'
+  
+  msg_contrato_8: '8. DO REAJUSTE DO PREÇO'
+  msg_contrato_8_1: '8.1 O preço estipulado da assinatura do plano poderá ser reajustado a cada período de um ano, contado a partir da data de sua vigência, após comunicação previa ao Assinante.'
+  

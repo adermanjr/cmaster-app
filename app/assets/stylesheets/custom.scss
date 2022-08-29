@@ -1,0 +1,372 @@
+@mixin box_sizing {
+  -moz-box-sizing:    cover;
+  -webkit-box-sizing: cover;
+  box-sizing:         cover; /* border-box */
+}
+
+/*
+  This css will only works when you print
+  https://stackoverflow.com/questions/2255291/print-the-contents-of-a-div?page=1&tab=scoredesc#tab-top
+*/
+@media print {
+  
+  footer{
+    display: none !important;
+  }
+
+  .navbar{
+    display: none !important;
+  }
+  
+  .noneImprime{
+    display: none !important;
+  }
+  
+  .absolutePos {
+    position: absolute;
+  }
+  
+}
+
+$cor-fonte-padrao: #5bc0de; /* Laranja F4A460*/
+
+/* typography */
+
+.linkshare { 
+    a {
+      color: transparent!important;
+      background-color: transparent!important;
+    }
+    
+    a:hover {
+      color: transparent!important;
+      background-color: transparent!important;
+    }
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+}
+
+.caixa_familia {
+  width: 100%!important;
+}
+
+.caixa {
+  width: 18%!important;
+  /* background-color: #474e5d!important; */
+}
+
+.caixa_pai {
+  background-color: #8FBC8F!important;
+}
+
+.caixa_pai_escuro {
+  background-color: #9BCD9B!important;
+}
+
+.caixa_pai_claro {
+  background-color: #C1FFC1!important;
+}
+
+.caixa_mae {
+  background-color: #FFD700!important;
+}
+
+.caixa_mae_escuro {
+  background-color: #EEC900!important;
+}
+
+.caixa_mae_claro {
+  background-color: #FFEC8B!important;
+}
+
+.caixa_padding_1 {
+  padding-top: 5%!important;
+}
+.caixa_padding_2 {
+  padding-top: 20%!important;
+}
+.caixa_padding_3 {
+  padding-top: 50%!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1!important;
+}
+
+.linha-1-4 {
+  line-height: 1.4!important;
+}
+
+.linha-2-0 {
+  line-height: 2.0!important;
+}
+
+.vertical_middle {
+  vertical-align:middle!important;
+}
+
+.caixa_plano_gg {
+  min-height: 260px!important;
+  vertical-align:middle!important;
+}
+
+.caixa_plano_g {
+  min-height: 180px!important;
+  vertical-align: text-bottom!important;
+  color: black!important;
+}
+
+.caixa_plano_150 {
+  min-height: 150px!important;
+  vertical-align: text-bottom!important;
+  color: black!important;
+}
+
+.caixa_plano_105 {
+  min-height: 105px!important;
+  vertical-align: text-bottom!important;
+}
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* universal */
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.bg-1 {
+    color: #474e5d;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.fundo {
+  background: asset-url('fundo_cm.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.fundo_logo {
+  background: asset-url('cm_logo_circular_perfil.png') no-repeat;
+  background-size: 80%;
+}
+
+.bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    padding: 30px;
+    text-align: center;
+}
+.bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+    padding: 30px;
+    text-align: center;
+}
+
+.bg-4 { 
+    background-color: #2f2f2f;
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    
+    a {
+      background-color: transparent;
+    }
+    
+    a:hover {
+       background-color: transparent;
+    }
+}
+
+.espaco-duplo {
+  letter-spacing: 2px;
+}
+.navbar {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    
+    li a {
+        color: #ffffff !important;
+    }
+    
+    li a:hover {
+        color: $cor-fonte-padrao !important;
+    }
+}
+
+.margem_forms {
+  margin: 35px !important;
+}
+
+.myRad {
+	border:0px;
+	border-collapse: separate;
+	border-style:none;
+	border-bottom:none;
+}
+.myRad input {
+	float:left;
+	width:20px;
+}
+.myRad label {
+	text-align:left;
+}
+.myRad tr td {
+	border: 0px;
+	border-style:none;
+	border-bottom:none;
+	padding: 1px 1px 1px 1px;
+}
+
+.data_input_altura {
+    line-height: 1.42857143 !important;
+}
+
+.dropdown-menu, .dropdown, .dropdown-toggle {
+    li a {
+        color: #ffffff !important;
+    }
+    li a:hover {
+        color: $cor-fonte-padrao !important;
+    }
+}
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+/* sidebar */
+
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+/* forms */
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 5px 5px;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error !optional;
+  .form-control {
+    color: red;
+  }
+}
+
+.alert {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+/* Index listas */
+
+.listas {
+  
+  margin: 0;
+  li {
+    overflow: auto;
+    margin-top: 5px;
+    margin-left: -25px;
+    border-bottom: 1px solid gray;
+  }
+}

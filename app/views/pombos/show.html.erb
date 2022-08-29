@@ -1,0 +1,95 @@
+<% provide(:title, "Pedigre #{@pombo.anilha}") %>
+<div class="pedigreePrint">
+<div class="absolutePos">
+  <div class="noneImprime">
+    <%= link_to pombos_path, class: botao_link do %>
+      <span class="fa fa-caret-left"></span> <%= t(:label_lista_pombos) %>
+    <% end %>
+    <br /><br />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1 fundo_logo" ></div>
+      <div class="col-sm-11">
+        <h5><strong><%= "#{t :label_pedigree}: #{@pombo.anilha} #{@pombo.nome}" %></strong></h5>
+        <h5><%= @pombo.usuario.nome_time.upcase if !@pombo.usuario.nome_time.blank? %></h5>
+        <h5><%= @pombo.usuario.nome.upcase if !@pombo.usuario.nome.blank? %></h5>
+        <h5><%= "#{@pombo.usuario.tel1} #{@pombo.usuario.tel2}" %></h5>
+        <sup><%= link_to "columbamaster.com", "https://www.columbamaster.com", class: "small", target: "_blank", rel: "nofollow" %></sup>
+      </div>
+    </div>
+  </div>
+</div>
+<table style="height: 100%;">
+  <tbody>
+    <tr>
+      
+      <td class="align-middle caixa">
+        <!-- pombo -->
+        <%= render 'caixa', pombo: @pombo, estilo: '1', caixa_resumo: false %>
+      </td>
+      
+      <td class="align-middle caixa">
+        <!-- pais -->
+        <%= render 'caixa', pombo: @pombo.pai, estilo: '2', mostra_vazio: true, caixa_resumo: false %>
+        
+        <div class="caixa_padding_3"></div>
+        
+        <%= render 'caixa', pombo: @pombo.mae, estilo: '3', mostra_vazio: true, caixa_resumo: false %>
+      </td>
+      
+      <td class="align-middle caixa">
+        <!-- avos -->
+        <%= render 'caixa', pombo: @pombo.avo_paterno('M'), estilo: '4', mostra_vazio: true, caixa_resumo: false %>
+        <div class="caixa_padding_2"></div>
+        <%= render 'caixa', pombo: @pombo.avo_paterno('F'), estilo: '5', mostra_vazio: true, caixa_resumo: false %>
+        
+        <div class="caixa_padding_2"></div>
+        
+        <%= render 'caixa', pombo: @pombo.avo_materno('M'), estilo: '6', mostra_vazio: true, caixa_resumo: false %>
+        <div class="caixa_padding_2"></div>
+        <%= render 'caixa', pombo: @pombo.avo_materno('F'), estilo: '7', mostra_vazio: true, caixa_resumo: false %>
+        
+      </td>
+      
+      <td class="align-middle caixa"> 
+      
+        <!-- bisavos paternos-->
+        <%= render 'caixa', pombo: @pombo.bisavo_paterno('M','M'), estilo: '4', mostra_vazio: true, caixa_resumo: true %>
+        <%= render 'caixa', pombo: @pombo.bisavo_paterno('M','F'), estilo: '4', mostra_vazio: true, caixa_resumo: true %>
+        
+        <%= render 'caixa', pombo: @pombo.bisavo_paterno('F','M'), estilo: '5', mostra_vazio: true, caixa_resumo: true %>
+        <%= render 'caixa', pombo: @pombo.bisavo_paterno('F','F'), estilo: '5', mostra_vazio: true, caixa_resumo: true %>
+        
+        <!-- bisavos maternos-->
+        <%= render 'caixa', pombo: @pombo.bisavo_materno('M','M'), estilo: '6', mostra_vazio: true, caixa_resumo: true %>
+        <%= render 'caixa', pombo: @pombo.bisavo_materno('M','F'), estilo: '6', mostra_vazio: true, caixa_resumo: true %>
+        
+        <%= render 'caixa', pombo: @pombo.bisavo_materno('F','M'), estilo: '7', mostra_vazio: true, caixa_resumo: true %>
+        <%= render 'caixa', pombo: @pombo.bisavo_materno('F','F'), estilo: '7', mostra_vazio: true, caixa_resumo: true %>
+        
+      </td>
+      
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="noneImprime">
+  <%= render 'shared/share' %>
+  
+  <% if logged_in? %>
+    <%= link_to :back, class: botao_link do %>
+      <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+    <% end %>
+      
+    <%= link_to pombos_path, class: botao_link do %>
+      <span class="fa fa-caret-left"></span> <%= t(:label_lista_pombos) %>
+    <% end %>
+
+    <button class="<%= botao_link %>" onclick="window.print();return false;" >
+      <span class="fa fa-file-pdf-o"></span> <%= t(:label_export_pdf) %>
+    </button>
+  <% end %>
+</div>
+<div id="modal_pombo"></div>

@@ -1,0 +1,43 @@
+<% provide(:title, t(:label_assinatura)) %>
+
+<h4>
+  <strong>
+      <%= "#{t(:label_assinatura)}: #{nome_plano @plano}" %>
+  </strong>
+</h4>
+
+<strong><%= t :label_data_inicio_ass %>:</strong> <%= @plano.dtinicio_pagto.strftime(mask_data_ruby) if @plano.dtinicio_pagto.present? %>
+<br />
+<strong><%= t :label_status %>:</strong> <span class="<%= class_status_assinatura(@plano) %>"><%= t status_assinatura(@plano) %></span>
+<% if @plano.dtcancelamento.present? %>
+  <br />
+  <strong><%= t :label_data_canc_ass %>:</strong> <%= @plano.dtcancelamento.strftime(mask_data_ruby)  %>
+<% end %>
+<br />
+<% if  @plano.tipo != PLANO_BASICO %>
+  <strong><%= t :label_mensalidade %>:</strong> <%= number_to_currency @plano.valor_mensal %><br />
+<% end %>
+<%= t :msg_info_qtde_pombos, qtde: @usuario.pombos.count %><br />
+<br />
+
+<% if  @plano.tipo != PLANO_MASTER || !@plano.dtcancelamento.blank? %>
+  <%= link_to editar_assinatura_usuario_path(@usuario), class: botao_link do %>
+    <span class="fa fa-pencil-alt"></span>  <%= "#{t :label_atualizar} #{t :label_assinatura}" %>
+  <% end %>
+<% end %>
+<% if  @plano.tipo == PLANO_MASTER && !@plano.dtcancelamento.blank? && 1==0 %>
+  <%= link_to reativar_paypal_usuario_path(@usuario), class: botao_link, method: :post do %>
+    <span class="fa fa-pencil-alt"></span>  <%= "#{t :label_reativar} #{t :label_assinatura}" %>
+  <% end %>
+<% end %>
+<% if @plano.dtcancelamento.blank? %>
+  <%= link_to cancel_paypal_usuario_path(@usuario), class: botao_link, method: :post do %>
+    <span class="fa fa-trash"></span>  <%= "#{t :label_cancelar} #{t :label_assinatura}" %>
+  <% end %>
+<% end %>
+    
+<% if @usuario.activated? %>
+  <%= link_to @usuario, class: botao_link do %>
+    <span class="fa fa-caret-left"></span> <%= t :label_voltar %>
+  <% end %>
+<% end %>

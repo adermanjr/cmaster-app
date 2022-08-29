@@ -1,0 +1,19 @@
+<% provide(:title, @preparo.nome) %>
+
+<p>
+  <h4>
+    <strong><%= t :label_preparo %></strong>: <%= @preparo.nome + " " + t("label_tipo_prova_#{@preparo.tipo_prova}").upcase %>
+  </h4>
+  <h5><strong><%= t :label_descricao %></strong>: <%= @preparo.descricao %></h5>
+</p>
+
+<%= link_to edit_preparo_path(@preparo), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+  <span class="fa fa-pencil-alt"></span>
+<% end %>
+<%= link_to preparos_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+
+<div id="modal">
+</div>
+

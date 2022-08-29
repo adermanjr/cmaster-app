@@ -1,0 +1,20 @@
+{"MerchantOrderId":"123",
+ "Payment":{
+    "Type": "CreditCard",
+    "Amount": 990,
+    "Installments":1,
+    "SoftDescriptor": "columbamaster",
+    "RecurrentPayment":{
+       "AuthorizeNow":"False",
+       "StartDate":null,
+       "Interval":"Monthly"
+    },
+    "CreditCard":{
+      "CardNumber": "0000000000000001",
+      "Holder": "Fulano de Tal",
+      "ExpirationDate":"12/2020",
+      "SecurityCode": "123",
+      "Brand": "Visa"
+    }
+  }
+}

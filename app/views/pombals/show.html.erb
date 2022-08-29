@@ -1,0 +1,47 @@
+<% provide(:title, @pombal.nome) %>
+
+<p>
+  <h4>
+    <strong><%= @pombal.nome %></strong>
+    <% if @pombal.dtdesativ? %>
+      <br />
+      <strong><%= t :label_desativado_em %>:</strong> <%= @pombal.dtdesativ.strftime(mask_data_ruby) %>
+    <% end %>
+  </h4>
+  
+  <button type="button" 
+          onclick="exec_ajax_with_parms({id: '<%= @pombal.id %>'},'/pombals/<%= @pombal.id %>/show_modal_aplicacao')"
+          class="<%= botao_link %>">
+    <span class="fa fa-flask"></span> <%= "#{t :label_gerar} #{t :label_aplicacao}" %>
+  </button>
+
+  <%= link_to edit_pombal_path(@pombal), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+    <span class="fa fa-pencil-alt"></span>
+  <% end %>
+</p>
+<h4><%= "#{t :label_pombo}s #{t :label_residentes}" %></h4>
+
+<div id="lista_pombos_por_pombal" class="list-group mb-3">
+  <% @pombal.pombos.each do |pombo| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-4">
+          <strong><%= t(:label_anilha) %></strong>: <%= link_to pombo.anilha, pombo %>
+        </div>
+        <div class="col-sm-6">
+          <strong><%= t(:label_pombo) %></strong>: <%= "#{pombo.nome}" %>
+        </div>
+        <div class="col-sm-2">
+          <strong><%= t(:label_sexo) %></strong>: <%= pombo.sexo == "F" ? t(:label_sexo_F) : t(:label_sexo_M) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to pombals_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+
+<div id="modal_gerar_tratamento">
+</div>

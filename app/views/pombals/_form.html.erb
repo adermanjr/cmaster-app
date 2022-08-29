@@ -1,0 +1,44 @@
+<%= form_for(pombal) do |f| %>
+  <%= render 'shared/error_messages', obj: pombal %>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_nome %>
+    <%= f.text_field :nome, class: 'form-control', required: true %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_data_desativ %>
+    <%= f.date_field :dtdesativ, as: :date, value: f.object.try(:strftime, mask_data_ruby), class: 'data_input_altura form-control' %>
+  </div>
+  
+  <div class="d-grid mb-3">
+    <%= f.submit yield(:button_text), class: botao_estilo %>
+  </div>
+  
+  <% if pombal.id !=nil %>
+    <!-- Alterado -->
+    <div id="lista_pombos_por_pombal" class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><%= t(:label_reside) %>?</th>
+            <th><%= t(:label_pombo) %></th>
+           </tr>
+        </thead>
+            
+        <tbody>
+          <% pombos.each do |pombo| %>
+            <tr>
+              <td>
+                <%= check_box "pombo" , pombo['pombo_id'],  { checked: pombo['pombal_id'] != nil} %>
+              </td>
+              <td>
+                <%= "#{pombo['nome']} #{pombo['anilha']} - #{pombo['sexo'] == 'F' ? t(:label_sexo_F) : t(:label_sexo_M)}" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>

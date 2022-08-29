@@ -1,0 +1,45 @@
+<% provide(:title, t(:label_lista_tratamentos)) %>
+<h4><strong><%= t :label_lista_tratamentos %></strong></h4>
+
+<%= link_to new_tratamento_path, class: botao_link do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_tratamento}" %>
+<% end %>
+<br /><br />
+
+<div id="lista_pombal" class="list-group">
+  <% @tratamentos.each do |tratamento| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-3">
+          <strong><%= t(:label_nome) %></strong>: <%= link_to tratamento do %><%= tratamento.nome %><% end %>
+        </div>
+        <div class="col-sm-9">
+          <strong><%= t(:label_indicacao) %></strong>: <%= tratamento.indicacao %>
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <%= link_to edit_tratamento_path(tratamento), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-pencil-alt"></span>
+          <% end %>
+          <button type="button" onclick="excluir_item('<%= tratamento.id %>','/tratamentos', '<%= t(:msg_quest_apagar_padrao) %>')"
+                  class="<%= botao_link %>"
+                  title="<%= t :label_excluir %>">
+            <span class="fa fa-trash"></span>
+          </button>
+          
+          <button type="button" 
+                  onclick="exec_ajax_with_parms({id: '<%= tratamento.id %>'},'/tratamentos/<%= tratamento.id %>/show_modal_aplicacao')" 
+                  class="<%= botao_link %>"
+                  title="<%= t(:label_aplicar_compl, compl: t(:label_pombal)) %>">
+            <span class="fa fa-flask"></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="modal_gerar_tratamento">
+</div>

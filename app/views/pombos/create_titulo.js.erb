@@ -1,0 +1,14 @@
+$('#tabtitulo').empty()
+  .append("<%= j render partial: 'lista_titulos' %>");
+
+<% if @titulo.valid? %>
+  $("#titulo_nome").val('');
+  $("#titulo_ano").val('');
+  $("#collapseForm").removeClass("collapse show");
+  $("#collapseForm").addClass("collapse");
+  $("#modal_msg").addClass("alert alert-success");
+  $("#modal_msg").html("<%= flash[:success] %>");
+<% else %>
+  $("#modal_msg").addClass("alert alert-danger");
+  $("#modal_msg").html("<%= flash[:danger] %>");
+<% end %>

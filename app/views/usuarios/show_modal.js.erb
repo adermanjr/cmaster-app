@@ -1,0 +1,24 @@
+<% if @modal == MODAL_USU_PAGTO %>
+  $("#modal").html("<%= j render 'modal' %>");
+  $('#modal_usuario').modal('show');
+  <% if @msg %>
+    $("#modal_msg").addClass("alert alert-danger");
+    $("#modal_msg").html("<%= flash[:danger] %>");
+  <% end %>  
+  
+<% elsif @modal == MODAL_USU_COORD %>
+
+  if (!valida_coodenadas_diretor('usuario')){
+    alert("<%= t :msg_erro_informar_endereco_usuario %>");
+  } 
+  else {
+
+    $("#modal").html("<%= j render "shared/modal_mapa"%>");
+    $('#modal_mapa').modal('show');
+    
+    converterCoordParaDecimal('usuario', 18);
+  }
+    
+<% elsif @modal == GET_USU_COORD %>
+  getCoords('usuario');
+<% end %>

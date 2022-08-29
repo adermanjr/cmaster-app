@@ -1,0 +1,48 @@
+dtnasc_filter
+
+    if !params[:dtnasc_filter].blank?
+      filtro += " and dtnasc >= '#{params[:dtnasc_filter]}'"
+    end
+
+    <div class="form-group">
+      <%= label_tag(:dtnasc_filter, t(:label_data_nasc_a_partir)) %>
+      <%= date_field_tag :dtnasc_filter, params[:dtnasc_filter], placeholder: 'dd/mm/aaaa', class: 'data_input_altura form-control' %>
+    </div>
+    
+###############################
+
+<div class="form-group myRad">
+      <label><%= check_box_tag :vivo_filter, value = params[:vivo_filter], checked: true %><strong><%= t(:label_so_vivo)%></strong></label>
+    </div>
+    
+###############################
+//= require jquery_ujs
+
+<%= link_to "#",  class: botao_link, data: {toggle: "modal", target: "#modal_pombo"} do %>
+              <span class="fa fa-info-circle"></span>
+            <% end %>
+            
+##############################
+
+<script>
+ $("input[type=checkbox][name=<%= tipo.downcase + '_incluir' %>]").on('change', function() {
+  
+    var habilitar = !$(this).is(":checked");
+    
+    $("<%="#" + tipo.downcase + "_anilha"%>").prop('readonly', habilitar);
+    $("<%="#" + tipo.downcase + "_nome"%>").prop('readonly', habilitar);
+    $("<%="#" + tipo.downcase + "_dtnasc"%>").prop('readonly', habilitar);
+    $("<%="#" + tipo.downcase + "_vivo"%>").prop('disabled', habilitar);
+    $("<%="#" + tipo.downcase + "_cor_id"%>").prop('disabled', habilitar);
+    
+    <% if tipo != 'PAI' && tipo != 'MAE' %>
+    $('div.menuitem').addClass("menuitemshow");
+      $("<%="#" + tipo.downcase + "_sexo_M"%>").prop('disabled', habilitar);
+      $("<%="#" + tipo.downcase + "_sexo_F"%>").prop('disabled', habilitar);
+    <% else %>
+      $("<%="#" + tipo.downcase + "_pai_id"%>").prop('disabled', habilitar);
+      $("<%="#" + tipo.downcase + "_mae_id"%>").prop('disabled', habilitar);
+    <% end %>
+    
+  });
+</script>

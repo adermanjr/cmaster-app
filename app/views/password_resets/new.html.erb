@@ -1,0 +1,20 @@
+<% provide(:title, t(:label_recuperar_senha)) %>
+
+<h4><strong><%= t :label_recuperar_senha %></strong></h4>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+    
+      <div class="form-group mb-3">
+        <%= f.label t(:label_email) %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+      
+      <div class="d-grid mb-3">
+        <%= f.submit t(:label_enviar), class: botao_estilo %>
+      </div>
+      
+    <% end %>
+  </div>
+</div>

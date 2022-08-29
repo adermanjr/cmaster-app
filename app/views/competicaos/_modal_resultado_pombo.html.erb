@@ -1,0 +1,78 @@
+<div id="modal_result" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <span class="modal-title">
+          <strong><%= "#{@competicao.nome.upcase} - #{@competicao.ano}" %></strong><br />
+          <strong><%= "#{Clube.find(@competicao.clb_id).nome.upcase if @competicao.clb_id }" %></strong><br />
+          <% if @pombo %>
+            <strong><%= "#{t :label_pombo}: #{@pombo.anilha}" %></strong>
+          <% else %>
+            <strong><%= "#{t :label_prova}: #{@prova.nome}" %></strong>
+            <span class="badge bg-<%= fundo_tipo_prova(@prova.tipo) %>"><%= t("label_tipo_prova_#{@prova.tipo}").upcase %></span>
+          <% end %>
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+            
+        <div class="list-group">
+          <% @resultados_pombo.each_with_index do |r, index| %>
+          
+            <div class="list-group-item">
+              <div class="row linha-1-4">
+                <div class="col-sm-12">
+                  <small class="form-text">
+                    <span class="badge rounded-pill bg-danger"><%= "#{r['posicao']}º" %></span>
+                    <% if @pombo %>
+                      <span class="badge bg-<%= fundo_tipo_prova(r['tipo']) %>"><%= t("label_tipo_prova_#{r['tipo']}").upcase %></span>
+                      <%= link_to r['nome'].upcase, prova_path(r['prova_id']) %>&nbsp;
+                    <% else %>
+                      <strong><%= "#{r['anilha']}" %></strong>&nbsp;
+                    <% end %>
+                    <strong><%= "#{number_with_precision(r['pontos'], precision: 2)} #{t :label_pontos }" %></strong>
+                  </small>
+                </div>
+              </div>
+              
+              <div class="row linha-1-4">
+                <div class="col-sm-7">
+                  <small class="form-text">
+                    <strong><%= t :label_velocidade %></strong>: <%= "#{number_with_precision(r['veloc_oficial'], precision: 2)}M/min" %>
+                  </small>
+                </div>
+                <div class="col-sm-5">
+                  <small class="form-text">
+                    <strong><%= t :label_distancia %></strong>: <%= "#{number_with_precision(r['dist_oficial'], precision: 1)}M" %>
+                  </small>
+                </div>
+              </div>
+              
+              <div class="row linha-1-4">
+                <div class="col-sm-6">
+                  <small class="form-text">
+                    <strong><%= t :label_partida %>:</strong> <%= Time.parse(r['dtsolta']).in_time_zone(r['fuso']).strftime(mask_datahora_sem_segundos) if !r['dtsolta'] %>
+                  </small>
+                </div>
+                <div class="col-sm-6">
+                  <small class="form-text">
+                    <strong><%= t :label_chegada %></strong>: <%= Time.parse(r['dhroficial']).in_time_zone(r['fuso']).strftime("%H:%M:%S") if !r['dhroficial'] %>
+                  </small>
+                </div>
+              </div>
+              
+            </div>
+          <% end %>
+        </div>
+        
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_result').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+      
+    </div>
+  </div>
+</div>

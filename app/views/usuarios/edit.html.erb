@@ -1,0 +1,25 @@
+<% provide(:title, t(:label_atualize_seu_perfil)) %>
+<% provide(:button_text, t(:label_salvar)) %>
+
+<h4><strong><%= t(:label_atualize_seu_perfil) %></strong></h4>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <%= render 'form' %>
+    <div class="gravatar_edit">
+      <%= gravatar_for @usuario %>
+      <a href="http://gravatar.com/emails" target="_blank" rel="noopener" ><%= t :label_alterar %></a>
+    </div>
+    <br />
+    <% if @usuario.admin? %>
+      <%= link_to t(:label_apagar_conta), @usuario, method: :delete,
+                                  data: { confirm: t(:msg_quest_apagar_conta)} %>
+    <% end %>
+  </div>
+</div>
+<br />
+<% if @usuario.activated? %>
+  <%= link_to :back, class: botao_link do %>
+    <span class="fa fa-caret-left"></span> <%= t :label_cancelar %>
+  <% end %>
+<% end %>

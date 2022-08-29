@@ -1,0 +1,21 @@
+<% provide(:title, t(:label_assinatura)) %>
+
+<h4><strong><%= t(:label_assinatura) %></strong></h4>
+<br />
+<div class="text-center">
+  <h4><%= t :msg_info_escolha_o_plano %></h4>
+</div>
+<br />
+<%= form_for @usuario, url: assinar_usuario_path, method: "post" do |f| %>
+  <%= render 'shared/error_messages', obj: @usuario %>
+  
+  <div id="pricing" class="container-fluid">
+    <%= render 'shared/planos', tela: ASS_PAGE, f: f, plano_moeda: @plano_moeda  %>
+  </div>
+  
+<% end %>
+
+<br />
+<%= link_to (@usuario.planos.count > 0 ? detalhar_assinatura_usuario_path : :back), class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>

@@ -1,0 +1,8 @@
+<% if !obj.blank? %>
+  <div class="alert alert-danger">
+      <% obj.each do |message| %>
+        <li><%= message.html_safe %></li>
+      <% end %>
+  </div>
+  <br />
+<% end %>

@@ -1,0 +1,15 @@
+<% provide(:title, "#{t :label_cadastrar} #{t :label_clube}") %>
+<% provide(:button_text, t(:label_salvar)) %>
+
+<h4><strong><%= "#{t :label_cadastrar} #{t :label_clube}" %></strong></h4>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <%= render 'form', clube: @clube %>
+  </div>
+</div>
+
+<%= link_to clubes_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t :label_cancelar %>
+<% end %>
+

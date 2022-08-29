@@ -1,0 +1,20 @@
+{
+  "sandbox":
+  {
+    "envio": "https://apisandbox.cieloecommerce.cielo.com.br",
+    "consulta":"https://apiquerysandbox.cieloecommerce.cielo.com.br"
+  },
+  "producao":
+  {
+    "envio": "https://api.cieloecommerce.cielo.com.br/",
+    "consulta":"https://apiquery.cieloecommerce.cielo.com.br/"
+  },
+  "headers":
+  {
+    /*"User-Agent":"CieloEcommerce/3.0 Ruby SDK", */
+    "RequestId":null,
+    "MerchantId":null,
+    "MerchantKey":null,
+    "Content-Type":"application/json"
+  }
+}

@@ -1,0 +1,18 @@
+<%= form_for(tratamento) do |f| %>
+  <%= render 'shared/error_messages', obj: tratamento %>
+  
+  <div class="form-group mt-3 mb-3">
+    <%= f.label t :label_nome %>
+    <%= f.text_field :nome, class: 'form-control', required: true %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_indicacao %>
+    <%= f.text_area :indicacao, class: 'form-control' %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit yield(:button_text), class: botao_estilo %>
+  </div>
+  
+<% end %>

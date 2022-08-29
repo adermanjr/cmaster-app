@@ -1,0 +1,56 @@
+<% if @ordem == 'MODALIDADE' %>
+  <br />
+  <span class="badge bg-<%= fundo_tipo_prova(tipo_prova) %>">
+    <%= t("label_tipo_prova_#{tipo_prova}").upcase %>
+  </span>
+<% end %>
+
+<br />
+<div class="list-group">
+  <% lista_result.each_with_index do |r, index| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-1">
+          <small class="form-text">
+            <span class="badge rounded-pill bg-danger"><%= "#{index+1}º" %></span></strong>
+          </small>
+        </div>
+        <div class="col-sm-2">
+          <small class="form-text">
+            <strong><%= t :label_anilha %></strong>: 
+            <button type="button"
+                  onclick="exec_ajax_with_parms({pombo_id: '<%= r['pombo_id'] %>', competicao_id: '<%= @competicao.id %>', usuario_id: '<%= @usuario.id %>'},'/competicaos/modal_result')"
+                  class="<%= botao_link %>">
+              <%= r['anilha'] %>
+            </button>
+          </small>
+        </div>
+        <div class="col-sm-3">
+          <small class="form-text">
+            <strong><%= t :label_total_pontos %></strong>: <%= number_with_precision(r['soma_pontos'], precision: 2) %>
+          </small>
+        </div>
+        <div class="col-sm-3">
+          <small class="form-text">
+            <strong><%= t :label_velocidade_media %></strong>: <%= "#{number_with_precision(r['media_veloc'], precision: 2)}M/min" %>
+          </small>
+        </div>
+        <div class="col-sm-3">
+          <small class="form-text">
+            <strong><%= t :label_distancia_percorrida %></strong>: <%= "#{number_with_precision(r['total_km']/1000, precision: 2)}Km" %>
+          </small>
+        </div>
+      </div>
+      
+      <% if @ordem == 'GERAL' %>
+        <div class="row linha-1-4">
+          <div class="col-sm-12">
+            <small class="form-text">
+              <strong><%= t :label_qtde_provas %></strong>: <%= number_with_precision(r['qtde'], precision: 0) %>
+            </small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

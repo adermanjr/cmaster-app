@@ -1,0 +1,91 @@
+<% provide(:title, t(:label_endereco)) %>
+<% provide :head_tags %>
+
+<h4><strong><%= t(:label_endereco) %></strong></h4>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+  
+    <%= form_for @usuario, url: salvar_endereco_usuario_path, method: "post" do |f| %>
+      <%= render 'shared/error_messages', obj: @usuario %>
+    
+      <div class="form-group mt-3 mb-3">
+        <%= f.label t(:label_endereco) %>
+        <%= f.text_field :logradouro, class: 'form-control validar', required: true, size: 100, autofocus: true, placeholder: (t :msg_info_endereco) %>
+      </div>
+      
+      <%= f.hidden_field :lat %>
+      <%= f.hidden_field :lng %>
+  
+      <div class="form-group mb-3">
+        <%= f.label t :label_latitude %>
+        <div class="row linha-1-4">
+          <div class="form-group col-sm-3">
+            <%= f.select(:lat_card, options_for_select(["S", "N"], f.object.lat_card), {include_blank: false}, {class: 'form-select'}) %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= f.number_field :lat_deg, value: number_with_precision(f.object.lat_deg, precision: 0), class: 'form-control', required: true, min: -90, max: 90, step: 1 %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= f.number_field :lat_min, value: number_with_precision(f.object.lat_min, precision: 0), class: 'form-control', required: true, min: 0, max: 99, step: 1 %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= f.number_field :lat_seg, class: 'form-control', required: true, min: 0, max: 999, step: 0.01 %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <%= f.label t :label_longitude %>
+        <div class="row linha-1-4">
+          <div class="form-group col-sm-3">
+            <%= f.select(:lng_card, options_for_select(["W", "E"], f.object.lng_card), {include_blank: false}, {class: 'form-select'}) %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= f.number_field :lng_deg, value: number_with_precision(f.object.lng_deg, precision: 0), class: 'form-control', required: true, min: -180, max: 180, step: 1 %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= f.number_field :lng_min, value: number_with_precision(f.object.lng_min, precision: 0), class: 'form-control', required: true, min: 0, max: 99, step: 1 %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= f.number_field :lng_seg, class: 'form-control', required: true, min: 0, max: 999, step: 0.01 %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row g-2 mb-3">
+        <div class="form-group col-sm-6 d-grid">
+          <button id="link_obter_coords"
+                  type="button"
+                  onclick="exec_ajax_with_parms({id: '<%= @usuario.id %>', acao: '<%= GET_USU_COORD %>'},'/usuarios/show_modal')" 
+                  class="<%= botao_link %>"
+                  title="<%= t :label_obter_coordenadas %>">
+            <span class="fa fa-map-marker"></span> <%= t :label_obter_coordenadas %>
+          </button>
+        </div>
+        <div class="form-group col-sm-6 d-grid">
+          <button id="link_obter_coords"
+                  type="button"
+                  onclick="exec_ajax_with_parms({id: '<%= @usuario.id %>', acao: '<%= MODAL_USU_COORD %>'},'/usuarios/show_modal')" 
+                  class="<%= botao_link %>"
+                  title="<%= t :label_ver_mapa %>">
+            <span class="fa fa-globe"></span> <%= t :label_ver_mapa %>
+          </button>
+        </div>
+      <div>  
+
+      <div class="d-grid">
+        <%= f.submit t(@botao), class: botao_estilo %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @usuario.activated? %>
+  <%= link_to @usuario, class: botao_link do %>
+    <span class="fa fa-caret-left"></span> <%= t :label_cancelar %>
+  <% end %>
+<% end %>
+
+<div id="modal">
+</div>

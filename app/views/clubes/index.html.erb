@@ -1,0 +1,38 @@
+<% provide(:title, t(:label_lista_clubes)) %>
+<h4><strong><%= t :label_lista_clubes %></strong></h4>
+
+<%= link_to new_clube_path, class: botao_link do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_clube}" %>
+<% end %>
+<br /><br />
+
+<div id="lista_clube" class="list-group">
+  <% @clubes.each do |clube| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-6">
+          <strong><%= t(:label_nome) %></strong>: <%= link_to clube do %><%= clube.nome %><% end %>
+        </div>
+        <div class="col-sm-6">
+          <strong><%= t(:label_uf) %></strong>: <%= clube.estado.sigla %>
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <%= link_to edit_clube_path(clube), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-pencil-alt"></span>
+          <% end %>
+          
+          <button type="button" 
+                  onclick="excluir_item('<%= clube.id %>','/clubes', '<%= t(:msg_quest_apagar_padrao) %>')" 
+                  class="<%= botao_link %>"
+                  title="<%= t :label_excluir %>">
+            <span class="fa fa-trash"></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,165 @@
+<div id="modal_result_partial" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= "#{t :label_prova} #{@prova_modal.nome} - #{t("label_tipo_prova_#{@prova_modal.tipo}")}"  %></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_msg"></div>
+        <div>
+          <%= form_for(@result, url: create_result_provas_path, method: "post", remote: true, authenticity_token: true) do |f| %>
+            <%= render 'shared/error_messages', obj: @result %>
+            
+            <%= f.hidden_field :prova_id, value: @prova_modal.id %>
+            <%= f.hidden_field :id %>
+            
+            <div class="form-group mb-3">
+              <%= f.label t :label_pombo %>
+              <%= f.select(:pombo_id, pombo_for_select, {include_blank: true} , {class: 'form-select', required: true }) %>
+            </div>
+            
+            <div class="form-group mb-3">
+              <div id="opcoes">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <%= radio_button_tag 'opcao_result', 'P', params[:opcao_result] == 'P', class: "form-check-input" %><%= t(:label_parcial)%>
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <%= radio_button_tag 'opcao_result', 'O', params[:opcao_result] == 'O', class: "form-check-input" %><%= t(:label_oficial)%>
+                  </label>
+                </div>
+                <br />
+              </div>
+            </div>
+            
+            <div class="form-group mb-3" id="parcial">
+              <%= f.label t :label_hora_estimada %>
+              <div class="form-group">
+                <%= f.datetime_select :dhrestimada, 
+                  { include_seconds: true, use_short_month: true, with_css_classes: true}, 
+                  {class: "form-control-sm" } %>
+              </div>
+            </div>
+            
+            <div id="oficial">
+              <div class="form-group mb-3">
+                <%= f.label t :label_hora_oficial %>
+                <div class="form-group">
+                  <%= f.datetime_select :dhroficial, 
+                    { include_seconds: true, use_short_month: true, with_css_classes: true}, 
+                    {class: "form-control-sm" } %>
+                </div>
+              </div>
+              
+              <div class="form-group mb-3">
+                <%= f.label t :label_posicao %>
+                <%= f.number_field :posicao, min: 1, max: 9999, step: 1, class: 'form-control' %>
+              </div>
+              
+              <div class="form-group mb-3">
+                <%= f.label t :label_pontos %>
+                <%= f.number_field :pontos, class: 'form-control', min: 1, max: 9999, step: 0.1 %>
+              </div>
+              
+              <div class="form-group mb-3">
+                <%= f.label t :label_distancia %>
+                <%= f.number_field :dist_oficial, class: 'form-control', min: 1, max: 99999999, step: 0.001 %>
+              </div>
+              
+              <div class="form-group mb-3">
+                <%= f.label t :label_velocidade %>
+                <%= f.number_field :veloc_oficial, class: 'form-control', min: 1, max: 99999999, step: 0.001 %>
+              </div>
+              
+            </div>
+            
+            <button type="button"
+                    onclick="prepara_submit('/provas/create_result')"
+                    class="<%= botao_estilo %>"
+                    title="<%= t :label_adicionar %>">
+              <%= @result.id ? t(:label_alterar) : t(:label_adicionar) %>
+            </button>
+    
+          <% end %>
+        </div>
+        
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_result_partial').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+
+    $( "<div id='quebrou-linha'><br />" ).insertBefore( ".hour" );
+
+    $('input[name=opcao_result]').click(function(){
+      if ($('input[name=opcao_result]:checked', '#opcoes').val() == 'P') {
+        $("#parcial").show();
+        $("#oficial").hide();
+      }
+      else {
+        $("#oficial").show();
+        $("#parcial").hide();
+      }
+    });
+  });
+
+  function prepara_submit(url) {
+    let json_data;
+    let radio_checked = $('input[name=opcao_result]:checked', '#opcoes').val();
+    
+    if ( radio_checked == 'O') {
+      json_data = data_oficial(radio_checked);
+    }
+    else {
+      json_data = data_parcial(radio_checked);
+    }
+
+    submit_modal(json_data, url, true);
+  }
+
+  function data_oficial(radio_checked) {
+    return { resultado: { opcao_result: radio_checked,
+                          id: $('#resultado_id').val(),
+                          pombo_id: $('#resultado_pombo_id').val(),
+                          prova_id: $('#resultado_prova_id').val(),
+                          posicao: $('#resultado_posicao').val(),
+                          pontos: $('#resultado_pontos').val(),
+                          dist_oficial: $('#resultado_dist_oficial').val(),
+                          veloc_oficial: $('#resultado_veloc_oficial').val(),
+                          dhroficial: date_transform('#resultado_dhroficial_')
+              }
+            };
+  }
+
+  function data_parcial(radio_checked) {
+    return { resultado: { opcao_result: radio_checked,
+                          id: $('#resultado_id').val(),
+                          pombo_id: $('#resultado_pombo_id').val(),
+                          prova_id: $('#resultado_prova_id').val(),
+                          dhrestimada: date_transform('#resultado_dhrestimada_')
+              }
+            };
+  }
+
+  function date_transform(nome){
+    return $(nome + "1i").val() + '-' +
+           $(nome + "2i").val() + '-' +
+           $(nome + "3i").val() + ' ' +
+           $(nome + "4i").val() + ':' +
+           $(nome + "5i").val() + ':' +
+           $(nome + "6i").val();
+  }
+
+</script>

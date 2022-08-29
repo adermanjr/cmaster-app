@@ -1,0 +1,68 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_mapa" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= @modal == MODAL_PRV_ROTA ? t(:label_rota_voo) : t(:label_coordenadas) %></h4>
+        <button type="button" 
+                class="btn-close" 
+                data-bs-dismiss="modal" 
+                aria-label="Close" 
+                onclick="setar_lat_lng('<%= @modal %>');$('#modal_mapa').modal('hide');" >
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_msg"></div>
+          <% if @modal == MODAL_PRV_ROTA %>
+            <strong><%= t(:label_distancia_aerea, medida: t(:label_medida_M))%>:</strong> <%= number_with_precision(calcula_distancia_metros(@prova.lat.to_f, @prova.lng.to_f, @usuario.lat.to_f, @usuario.lng.to_f),precision: 1) %>
+          <% end %>
+          <p>
+            <div id="map"></div>
+          </p>
+          <% if @modal != MODAL_PRV_ROTA %>
+          
+            <%= hidden_field_tag :lat %>
+            <%= hidden_field_tag :lng %>
+            
+            <%= label_tag t :label_latitude %>
+            <div class="row g-4 mb-3">
+              <div class="form-group col-sm-3">
+                <%= select_tag :latdirection, options_for_select(["S", "N"], "S"), readonly: true, class: 'form-select' %>
+              </div>
+              <div class="form-group col-sm-3">
+                <%= text_field_tag :latdd, :d, class: 'form-control', readonly: true %>
+              </div>
+              <div class="form-group col-sm-3">
+                <%= text_field_tag :latdm, :m, class: 'form-control', readonly: true %>
+              </div>
+              <div class="form-group col-sm-3">
+                <%= text_field_tag :latds, :s, class: 'form-control', readonly: true %>
+              </div>
+            </div>
+            
+            <%= label_tag t :label_longitude %>
+            <div class="row g-4 mb-3">
+              <div class="form-group col-sm-3">
+                <%= select_tag :lngdirection, options_for_select([ "W", "E" ], "W"), readonly: true, class: 'form-select' %>
+              </div>
+              <div class="form-group col-sm-3">
+                <%= text_field_tag :lngdd, :d, class: 'form-control', readonly: true %>
+              </div>
+              <div class="form-group col-sm-3">
+                <%= text_field_tag :lngdm, :m, class: 'form-control', readonly: true %>
+              </div>
+              <div class="form-group col-sm-3">
+                <%= text_field_tag :lngds, :s, class: 'form-control', readonly: true %>
+              </div>
+            </div>
+          <% end %>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" onclick="setar_lat_lng('<%= @modal %>');$('#modal_mapa').modal('hide');" class="btn btn-outline-dark" data-dismiss="modal"><%= t(:label_fechar) %></button>
+      </div>
+    </div>
+  </div>
+</div>

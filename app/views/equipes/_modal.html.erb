@@ -1,0 +1,48 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_equipe_partial" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= "#{t :label_time} #{@equipe.nome} "%></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_msg"></div>
+                            
+        <%= form_for(@pombo, url: assoc_pombo_equipe_path, method: "post", remote: true, authenticity_token: true) do |f| %>
+          <%= render 'shared/error_messages', obj: @pombo %>
+          
+          <div class="form-group">
+            <%= f.label t :label_anilha %>
+            <%= f.text_field :anilha, size: 12, class: 'form-control', required: true, autofocus: true %>
+          </div>
+          
+          <button type="button"
+                  onclick="submit_modal({pombo: {anilha: $('#pombo_anilha').val()}},'/equipes/<%= @equipe.id %>/assoc_pombo')"
+                  class="<%= botao_estilo %>"
+                  title="<%= t :label_adicionar %>">
+            <%= t :label_adicionar %>
+          </button>
+          
+        <% end %>
+        
+        <br />
+        <h5><%= t :label_lista_pombos %></a></h5>
+      
+        <div class="card-body">
+          <%= render 'lista_pombos' %>
+        </div>
+          
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_equipe_partial').modal('hide');" ><%= t(:label_fechar) %></button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

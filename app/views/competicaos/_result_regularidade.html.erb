@@ -1,0 +1,43 @@
+<br />
+<div class="list-group">
+  <% lista_result.each_with_index do |r, index| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-2">
+          <small class="form-text">
+            <span class="badge rounded-pill bg-danger"><%= "#{index+1}º" %></span></strong>
+            <span class="badge bg-<%= fundo_tipo_prova(r['tipo']) %>">
+              <%= t("label_tipo_prova_#{r['tipo']}").upcase %>
+            </span>
+          </small>
+        </div>
+
+        <div class="col-sm-3">
+          <small class="form-text">
+            <button type="button"
+                    onclick="exec_ajax_with_parms({prova_id: '<%= r['prova_id'] %>', competicao_id: '<%= @competicao.id %>', usuario_id: '<%= @usuario.id %>'},'/competicaos/modal_result')"
+                    class="<%= botao_link %>">
+              <%= r['nome'] %>
+            </button>
+          </small>
+        </div>
+
+        <div class="col-sm-3">
+          <small class="form-text">
+            <strong><%= "#{t(:label_horario_solta)}:" %></strong>&nbsp;<%= Time.parse(r['dtsolta']).in_time_zone(r['fuso']).strftime(mask_datahora_sem_segundos) if !r['dtsolta']%>
+          </small>
+        </div>
+        <div class="col-sm-2">
+          <small class="form-text">
+            <strong><%= t :label_total %></strong>: <%= "#{number_with_precision(r['qtde'], precision: 0)}" %>
+          </small>
+        </div>
+        <div class="col-sm-2">
+          <small class="form-text">
+            <strong><%= t :label_total_pontos %></strong>: <%= number_with_precision(r['soma_pontos'], precision: 2) %>
+          </small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

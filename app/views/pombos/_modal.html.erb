@@ -1,0 +1,62 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_pombo_partial" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= "#{t :label_pombo} #{@pombo_modal.anilha} #{@pombo_modal.nome} "%></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <strong><%= t :label_lista_pombais %></strong>
+        <br /><br />
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><%= t(:label_pombal) %></th>
+            <th><%= t(:label_data_desativ) %></th>
+           </tr>
+        </thead>
+            
+        <tbody>
+          <% @pombo_modal.pombals.each do |pombal| %>
+            <tr>
+              <td><%= pombal.nome %></td>
+              <td><%= pombal.dtdesativ.strftime(mask_data_ruby) if pombal.dtdesativ? %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br />
+
+      <strong><%= "#{t :label_ultimo}s #{t :label_tratamento}s" %></strong>
+      <br /><br />
+      <table class="table table-hover">
+      <thead>
+        <tr>
+          <th><%= t(:label_tratamento) %></th>
+          <th><%= t(:label_data_aplic) %></th>
+          <th><%= t(:label_dosagem) %></th>
+         </tr>
+      </thead>
+          
+      <tbody>
+        <% @pombo_modal.aplicacaos.order('created_at DESC').limit(10).each do |apl| %>
+          <tr>
+            <td><%= apl.tratamento.nome %></td>
+            <td><%= apl.dtaplicacao.strftime(mask_data_ruby) if !apl.dtaplicacao.blank? %></td>
+            <td><%= "#{number_with_precision(apl.dosagem, precision: 3) } " + ' ' + t('label_medida_'+ apl.medida) if !apl.medida.blank? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_pombo_partial').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<%= form_for(competicao) do |f| %>
+  <%= render 'shared/error_messages', obj: competicao %>
+  
+  <div class="form-group mb-3">
+    <%= label_tag t :label_estado %>
+    <%= f.select(:est_id, uf_for_select(true), {include_blank: true} , {class: 'form-select', required: true }) %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_clube %>
+    <%= f.select(:clb_id, clube_for_select(competicao.est_id), { include_blank: true} , {class: 'form-select', required: true }) %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_nome %>
+    <%= f.text_field :nome, class: 'form-control', required: true %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_ano %>
+    <%= f.number_field :ano, min: 2000, max: 2050, step: 1, class: 'form-control', required: true %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit yield(:button_text), class: botao_estilo %>
+  </div>
+  
+<% end %>

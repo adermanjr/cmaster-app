@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <% if logged_in? %>
+    <%= link_to image_tag("logo_branco_cm.png", alt: "", size: "124x40"), current_user, class: "navbar-brand" %>
+  <% else %>
+    <%= link_to image_tag("logo_branco_cm.png", alt: "", size: "124x40"), root_path, class: "navbar-brand" %>
+  <% end %>
+  
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+    
+      <% if logged_in? %>
+        <li class="nav-item"><%= link_to t(:link_inicio),  current_user, class: "nav-link" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to t(:link_inicio),  root_path, class: "nav-link" %></li>
+      <% end %>
+
+      <li class="nav-item"><%= link_to t(:link_contato), faleconosco_path, class: "nav-link" %></li>
+      
+      <% if logged_in? %>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" id="gerirDropdown">
+              <%= t(:link_gerir) %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu bg-dark" aria-labelledby="gerirDropdown">
+              <li class="dropdown-item"><%= link_to t(:link_pombos), pombos_path, class: "nav-link" %></li>
+              <li class="dropdown-item"><%= link_to t(:link_pombal), pombals_path, class: "nav-link" %>
+              <li class="dropdown-item"><%= link_to t(:link_tratamento), tratamentos_path, class: "nav-link" %></li>
+              <li class="dropdown-item"><%= link_to t(:link_time), equipes_path, class: "nav-link" %></li>
+              <!-- div class="dropdown-divider"></div -->
+              <li class="dropdown-item"><%= link_to t(:link_competicoes), competicaos_path, class: "nav-link" %></li>
+              <li class="dropdown-item"><%= link_to t(:link_provas), provas_path, class: "nav-link" %></li>
+              <li class="dropdown-item"><%= link_to t(:link_preparo), preparos_path, class: "nav-link" %></li>
+              <% if usuario_degas(current_user)  %>
+                <li class="dropdown-item"><%= link_to t(:link_clube), clubes_path, class: "nav-link" %></li>
+              <% end %>
+            </ul>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" id="contaDropdown">
+              <%= t(:link_conta) %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu bg-dark" aria-labelledby="contaDropdown">
+              <% if current_user.admin %>
+                <li class="dropdown-item"><%= link_to t(:link_admin), usuarios_path, class: "nav-link" %></li>
+              <% end %>
+              <li class="dropdown-item"><%= link_to t(:link_perfil), current_user, class: "nav-link" %></li>
+              <!-- li class="dropdown-item" %= link_to t(:link_editar_conta), edit_usuario_path(current_user), class: "nav-link" % /li><-->
+              <li class="dropdown-item"><%= link_to t(:link_endereco), endereco_usuario_path(current_user, chamada:'menu'), class: "nav-link" %></li>
+              <li class="dropdown-item"><%= link_to t(:link_assinatura), detalhar_assinatura_usuario_path(current_user, chamada:'menu'), class: "nav-link" %></li>
+              <li class="dropdown-item"><%= button_to t(:link_sair), logout_path, method: :delete, class: "btn btn-dark" %></li>
+            </ul>
+          </li>
+          
+        <% else %>
+          <li class="nav-item"><%= link_to t(:link_entrar), login_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to t(:link_inscrever), inscrever_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+      <span class="p-2"></span>
+  </div>  
+</nav>
+
+<% if logged_in? %>
+  <br />
+<% end %>

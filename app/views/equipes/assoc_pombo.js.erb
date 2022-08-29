@@ -1,0 +1,14 @@
+$('#tabpombos').empty()
+  .append("<%= j render partial: 'lista_pombos' %>");
+
+$('#tabpombosindex').empty()
+  .append("<%= j render partial: 'lista' %>");
+
+<% if @ok %>
+  $("#pombo_anilha").val('');
+  $("#modal_msg").addClass("alert alert-success");
+  $("#modal_msg").html("<%= flash[:success] %>");
+<% else %>
+  $("#modal_msg").addClass("alert alert-danger");
+  $("#modal_msg").html("<%= flash[:danger] %>");
+<% end %>

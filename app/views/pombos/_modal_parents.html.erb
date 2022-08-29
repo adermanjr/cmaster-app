@@ -1,0 +1,92 @@
+<div id="modal_parents" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title">
+            <%= @tipo == 'PAI' ? "#{t :label_pai}" : "#{t :label_mae}" %>
+        </h4>
+        <button type="button" 
+                class="btn-close" 
+                data-bs-dismiss="modal" 
+                onclick="setar_select()" 
+                aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_msg">
+          <%= render 'shared/error_messages_flash', obj: @msgs %>
+        </div>
+        <%= form_tag(save_parents_pombos_path, method: "post", remote: true) do %>
+          <%= hidden_field_tag :parent_id, @pombo_parent.id %>
+          <%= hidden_field_tag :tipo_parente, @tipo %>
+            
+          <div class="form-group">
+            <%= label_tag t :label_anilha %>
+            <%= text_field_tag @tipo.downcase + '[anilha]', @pombo_parent[:anilha], size: 12, class: 'form-control', autofocus: true %>
+          </div>
+            
+          <div class="form-group">
+            <%= label_tag t :label_nome %>
+            <%= text_field_tag @tipo.downcase + '[nome]', @pombo_parent[:nome], class: 'form-control' %>
+          </div>
+            
+          <div class="form-group">
+            <%= label_tag t :label_data_nasc %>
+            <%= date_field_tag @tipo.downcase + '[dtnasc]', (@pombo_parent[:dtnasc].blank? ? nil : @pombo_parent[:dtnasc].strftime("%Y-%m-%d")),as: :date, class: 'data_input_altura form-control' %>
+          </div>
+            
+          <div class="form-group">
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <%= check_box_tag @tipo.downcase + '[vivo]', @pombo_parent[:vivo], checked: (@pombo_parent[:vivo] == '1'), class: "form-check-input" %><%= t(:label_vivo)%>
+              </label>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <%= label_tag t :label_linhagem %>
+            <%= text_field_tag @tipo.downcase + '[linhagem]', @pombo_parent[:linhagem], class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= label_tag t :label_cor %>
+            <%= text_field_tag @tipo.downcase + '[desc_cor]', @pombo_parent[:desc_cor], class: 'form-control' %>
+          </div>
+  
+          <div class="form-group">
+            <%= label_tag t :label_pai %>
+            <%= select_tag @tipo.downcase + '[pai_id]', options_for_select(pais_for_select('M', @pombo_parent.id), @pombo_parent[:pai_id]), include_blank: true, class: 'form-select' %>
+          </div>
+            
+          <div class="form-group">
+            <%= label_tag t :label_mae %>
+            <%= select_tag @tipo.downcase + '[mae_id]', options_for_select(pais_for_select('F', @pombo_parent.id), @pombo_parent[:mae_id]), include_blank: true, class: 'form-select' %>
+          </div>
+  
+          <%= submit_tag (t :label_salvar), class: botao_estilo %>
+        <% end %>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="setar_select()"><%= t(:label_fechar) %></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    
+  function setar_select(){
+    if (document.querySelector("#parent_id").value !== '') {
+      let tipo = document.querySelector("#tipo_parente").value.toLowerCase();
+      let textPart = document.querySelector("#"+ tipo + "_anilha").value + " " + document.querySelector("#"+ tipo+ "_nome").value;
+      let opt = document.createElement("option");
+      opt.setAttribute ("value", document.querySelector("#parent_id").value);
+      let opt_txt = document.createTextNode(textPart);
+      opt.appendChild(opt_txt);
+      opt.selected = true;
+      document.getElementById("pombo_" + tipo +"_id").appendChild(opt);
+    }
+  }
+</script>

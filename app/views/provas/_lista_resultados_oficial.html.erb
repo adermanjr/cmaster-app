@@ -1,0 +1,92 @@
+<div id="lista_result" class="list-group panel-group">
+  
+  <% @resultados.oficial.sort_by{|r| r.posicao}.each_with_index do |r, index| %>
+    <% duracao_min =  r.dhroficial.blank? ? 0 : (r.dhroficial - @prova.dtsolta) / 1.minutes  %>
+    <% usuario_nome = (r.usuario.nome_time.blank? ? r.usuario.nome : r.usuario.nome_time) if r.usuario != nil %>
+    
+    <div class="list-group-item card">
+      <div class="card-header row linha-1-4">
+        <div class="col-sm-12">
+          <small class="form-text">
+            <a data-bs-toggle="collapse" href="#collapse<%= "#{r.id}" %>">
+              <strong><span class="badge rounded-pill bg-<%= class_pill(visivel(r.usuario_id), 'success') %>"><%= "#{r.posicao}º" %></span></strong>
+            </a>
+            <a data-bs-toggle="collapse" href="#collapse<%= "#{r.id}" %>">
+              <strong><%= "#{r.pombo.anilha}" %></strong> 
+            </a>
+            <%= "#{number_with_precision(r.veloc_oficial, precision: 2)}M/m" %>
+            <%= "- #{usuario_nome}" %>
+          </small>
+        </div>
+      </div>
+      
+      <div class="collapse" id="collapse<%= "#{r.id}" %>">
+        <div class="card-body">
+          <div class="row linha-1-4">
+            <div class="col-sm-3">
+              <small class="form-text">
+                <strong><%= t :label_hora_oficial %></strong>: <%= r.dhroficial.strftime("%H:%M:%S") if r.dhroficial.present? %>
+              </small>
+            </div>
+            <div class="col-sm-3">
+              <small class="form-text">
+                <strong><%= t :label_distancia %></strong>: <%= "#{number_with_precision(r.dist_oficial, precision: 1)}M" %>
+              </small>
+            </div>
+            <div class="col-sm-3">
+              <small class="form-text">
+                <strong><%= t :label_velocidade %></strong>: <%= "#{number_with_precision(r.veloc_oficial, precision: 3)}M/m" %>
+              </small>
+            </div>
+            <div class="col-sm-3">
+              <small class="form-text">
+                <strong><%= t :label_pontos %></strong>: <%= "#{number_with_precision(r.pontos, precision: 2)}" %>
+              </small>
+            </div>
+          </div>
+          <div class="row linha-1-4">
+            <div class="col-sm-2">
+              <small class="form-text">
+                <strong><%= t :label_tempo %></strong>: <%= "#{(duracao_min/1.minutes).to_i}h#{(duracao_min%1.minutes).to_i}min"  %>
+              </small>
+            </div>
+            <div class="col-sm-3">
+              <small class="form-text">
+                <strong><%= t :label_velocidade_media %></strong>: 
+                <%= "#{number_with_precision(calcula_distancia_km_por_usr(@prova, r.usuario_id)/ duracao_min * 1.minutes, precision: 2)}Km/h"  %>
+              </small>
+            </div>
+            <div class="col-sm-6">
+              <small class="form-text">
+                <strong><%= t :label_columbofilo %></strong>: <%= usuario_nome %>
+              </small>
+            </div>
+            <div class="col-sm-1">
+              <strong><% t :label_pedigree %></strong>
+            </div>
+          </div>
+          <div class="row linha-1-4">
+            <div class="col-sm-12">
+              <% if logged_in? && visivel(r.usuario_id) %>
+              
+                <button type="button" 
+                        onclick="exec_ajax_with_parms({ id: '<%= @prova.id %>', r_id: '<%= r.id %>', acao: '<%= MODAL_PRV_RESUL %>', opcao_result: 'O'},'/provas/show_modal_result')"
+                        class="<%= botao_link %>">
+                  <span class="fa fa-flag"></span>
+                </button>
+                
+                <button type="button" 
+                        onclick="excluir_item_parm({id: '<%= r.id %>'},'/provas/destroy_result', '<%= t(:msg_quest_apagar_padrao) %>')"
+                        class="<%= botao_link %>"
+                        title="<%= t :label_excluir %>">
+                  <span class="fa fa-trash"></span>
+                </button>
+                
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

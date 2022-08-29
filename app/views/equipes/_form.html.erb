@@ -1,0 +1,15 @@
+<%= form_for(equipe) do |f| %>
+
+  <%= render 'shared/error_messages', obj: equipe %>
+  
+  <div class="form-group mb-3">
+    <%= f.label t :label_nome %>
+    <%= f.text_field :nome, class: 'form-control', required: true, size: 50 %>
+  </div>
+  
+  <div class="d-grid mb-3">
+    <%= f.submit yield(:button_text), class: botao_estilo %>
+  </div>
+  
+  
+<% end %>

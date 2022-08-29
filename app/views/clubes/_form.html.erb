@@ -1,0 +1,71 @@
+<%= form_for(clube) do |f| %>
+  <%= render 'shared/error_messages', obj: clube %>
+  
+  <div class="form-group">
+    <%= f.label t :label_nome %>
+    <%= f.text_field :nome, class: 'form-control', required: true %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t(:label_email) %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t(:label_endereco) %>
+    <%= f.text_field :logradouro, class: 'form-control validar', required: true, size: 100, autofocus: true, placeholder: 'Rua / Avenida / Praça ...' %>
+  </div>
+  
+  <% if current_user.lingua == LOCALE_BRASIL %>
+    <div class="form-group">
+      <%= f.label t(:label_complemento) %>
+      <%= f.text_field :complemento, class: 'form-control', size: 60 %>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label t(:label_bairro) %>
+    <%= f.text_field :bairro, class: 'form-control', required: true, size: 80 %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t(:label_cidade) %>
+    <%= f.text_field :cidade, class: 'form-control validar', required: true, size: 80 %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t :label_estado %>
+    <%= f.select(:estado_id, uf_for_select(false), {include_blank: true} , {class: 'form-select validar', required: true }) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t :label_nacao %>
+    <%= f.select(:nacao_id, nacao_for_select(current_user.lingua), {include_blank: true} , {class: 'form-select validar', required: true }) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t(:label_cep).upcase %>
+    <%= f.text_field :cep, class: 'form-control validar', required: true, 'data-inputmask': mask_cep %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label t(:label_contato) %>
+    <%= f.text_field :contato, class: 'form-control', required: true, size: 80 %>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group col-sm-6">
+      <%= f.label "#{t :label_telefone } 1" %>
+      <%= f.phone_field :tel1, class: 'form-control', required: true, size: 15 %>
+    </div>
+    
+    <div class="form-group col-sm-6">
+      <%= f.label "#{t :label_telefone } 2" %>
+      <%= f.phone_field :tel2, class: 'form-control validar', size: 15 %>
+    </div>
+  </div>
+      
+  <%= f.submit yield(:button_text), class: botao_estilo %>
+  <br /><br />
+  
+<% end %>

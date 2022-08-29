@@ -1,0 +1,61 @@
+<% provide(:title, @pombo.anilha) %>
+
+<p>
+<h4><strong>Pedigree <%= "#{@pombo.anilha} #{@pombo.nome}"  %></strong></h4>
+</p>
+
+<div class="row">
+  <div class="col-sm-3">
+    <%= render 'caixa', pombo: @pombo %>
+  </div>
+  
+  <div class="col-sm-3">
+    <% if @pombo.pai != nil %>
+        <%= render 'caixa', pombo: @pombo.pai %>
+    <% end %>
+
+    <% if @pombo.mae != nil %>
+      <%= render 'caixa', pombo: @pombo.mae %>
+    <% end %>
+  </div>
+</div>
+<p>
+<strong><%= t :label_data_nasc %>: </strong><%= @pombo.dtnasc.strftime(mask_data_ruby) %> 
+<strong><%= t :label_idade %>: </strong><%= pluralize(age(@pombo.dtnasc), t(:label_ano)) %><br />
+<strong><%= t :label_sexo %>:</strong> <%= @pombo.sexo == "F" ? t(:label_sexo_F) : t(:label_sexo_M) %>
+<strong><%= t :label_cor %>:</strong> <%= t(@pombo.cor.nome) %>
+<span class='<%= botao_link %>' data-bs-toggle="modal" data-bs-target="#myModal" >
+  <span class="	fa fa-th"></span>
+</span>
+</p>
+
+<%= link_to edit_pombo_path(@pombo), class: botao_link do %>
+  <span class="fa fa-pencil-alt"></span> <%= t(:label_editar) %>
+<% end %>
+<%= link_to pombos_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+
+ <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h4 class="modal-title">Filiação</h4>
+      </div>
+      <div class="modal-body">
+        
+        
+        <p>Some text in the modal.</p>
+        
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#myModal').modal('hide');">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

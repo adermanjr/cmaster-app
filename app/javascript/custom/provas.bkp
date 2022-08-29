@@ -1,0 +1,17 @@
+
+
+$('input[type=radio][name=plano]').on('change', function() {
+  switch ($(this).val()) {
+    case 'P':
+      $("#parcial").show();
+      $("#oficial").hide();
+      break;
+    default:
+      $("#oficial").show()
+      $("#parcial").hide()
+  }
+});
+
+    
+  
+    

@@ -1,0 +1,69 @@
+<% provide(:title, t(:label_lista_usuarios)) %>
+<h4><strong><%= t :label_lista_usuarios %></strong></h4>
+
+<div id="lista_usu" class="list-group">
+  <% Usuario.all.sort_by{|usu| usu.nome}.each do |u| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-1">
+          <strong>ID</strong>: <%= u.id %>
+        </div>
+        <div class="col-sm-3">
+          <strong><%= t(:label_nome) %></strong>: <%= u.nome %>
+        </div>
+        <% if u.planos.count > 0 %>
+          <% plano = u.planos.last %>
+          <div class="col-sm-3">
+            <strong><%= t :label_assinatura %></strong>: <%= nome_plano plano %>
+          </div>
+          <div class="col-sm-3">
+            <span class="<%= class_status_assinatura(plano) %>"><%= t status_assinatura(plano) %></span>
+          </div>
+          <div class="col-sm-2">
+            <strong><%= t(:label_tipo) %></strong>: <%= t ("label_tipo_usuario_#{u.tipo_usuario}") %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row linha-1-4">
+        <div class="col-sm-4">
+          <strong><%= t(:label_telefone) %></strong>: <%= "#{u.tel1} #{u.tel2}" %>
+        </div>
+        <div class="col-sm-4">
+            <strong><%= t :label_email %></strong>: <%= u.email %>
+        </div>
+        <div class="col-sm-4"><%= t(:msg_info_qtde_pombos, qtde: u.pombos.count ) %></div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <%= link_to edit_usuario_path(u), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-pencil-alt"></span>
+          <% end %>
+          <button type="button" onclick="excluir_item('<%= u.id %>','/usuarios', '<%= t(:msg_quest_apagar_padrao) %>')"
+                  class="<%= botao_link %>"
+                  title="<%= t :label_excluir %>">
+            <span class="fa fa-trash"></span>
+          </button>
+          <button id="link_obter_coords"
+                  type="button"
+                  onclick="exec_ajax_with_parms({id: '<%= u.id %>', acao: '<%= MODAL_USU_PAGTO %>'},'/usuarios/show_modal')" 
+                  class="<%= botao_link %>"
+                  title="<%= t :label_financeiro %>">
+            <span class="fa fa-usd"></span>
+          </button>
+          <%= link_to reenviar_email_ativacao_usuario_path(u),  class: botao_link, method: :post, :title => t(:msg_info_email_ativacao), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <span class="fa fa-envelope"></span>
+          <% end %>
+          <%= link_to alterar_tipo_usuario_path(u),  class: botao_link, :title => t(:msg_info_tornar_moderador), :rel => 'tooltip', "data-placement" => "bottom", method: :post do %>
+            <span class="fa fa-random"></span>
+          <% end %>
+          <%= link_to plano_avaliacao_usuario_path(u),  class: botao_link, :title => t(:msg_info_tornar_avaliacao), :rel => 'tooltip', "data-placement" => "bottom", method: :post do %>
+            <span class="fa fa-recycle"></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="modal">
+</div>

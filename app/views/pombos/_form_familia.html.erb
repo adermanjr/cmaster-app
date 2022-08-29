@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="<%= class_pombo_famila(tipo) %>">
+    <div class="myRad">
+      <label><%= check_box_tag tipo.downcase + '_incluir', value = params[tipo.downcase + '_incluir'], checked: true %><strong><%= t :label_incluir %></strong></label>
+    </div>
+    <h5><strong><%= icon_pombo(tipo) %> <%= titulo_panel(tipo) %></strong></h5>  
+  </div>
+  <div class="card-body small">
+    <div class="form-group mb-3">
+      <%= label_tag t :label_anilha %>
+      <%= text_field_tag tipo.downcase + '[anilha]', pombo[:anilha], size: 12, class: 'form-control', autofocus: true %>
+    </div>
+    
+    <div class="form-group mb-3">
+      <%= label_tag t :label_nome %>
+      <%= text_field_tag tipo.downcase + '[nome]', pombo[:nome], class: 'form-control' %>
+    </div>
+    
+    <div class="form-group mb-3">
+      <%= label_tag t :label_data_nasc %>
+      <%= date_field_tag tipo.downcase + '[dtnasc]', (pombo[:dtnasc].blank? ? nil : pombo[:dtnasc].strftime("%Y-%m-%d")),as: :date, class: 'data_input_altura form-control' %>
+    </div>
+    
+    <% if tipo != 'PAI' && tipo != 'MAE' %>
+      <div class="form-group mb-3">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <%= radio_button_tag tipo.downcase + '[sexo]', "M", pombo[:sexo] == 'M',  class: "form-check-input" %><%= t(:label_sexo_M)%>
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <%= radio_button_tag tipo.downcase + '[sexo]', "F", pombo[:sexo] == 'F',  class: "form-check-input" %><%= t(:label_sexo_F)%>
+          </label>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="form-group mb-3">
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <%= check_box_tag tipo.downcase + '[vivo]', pombo[:vivo], checked: (pombo[:vivo] == '1'), class: "form-check-input" %><%= t(:label_vivo)%>
+        </label>
+      </div>
+    </div>
+    
+    <div class="form-group mb-3">
+      <%= label_tag t :label_linhagem %>
+      <%= text_field_tag tipo.downcase + '[linhagem]', pombo[:linhagem], class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= label_tag t :label_cor %>
+      <%= text_field_tag tipo.downcase + '[desc_cor]', pombo[:desc_cor], class: 'form-control' %>
+    </div>
+  
+    <!--  
+    <div class="form-group mb-3">
+      %= label_tag t :label_cor %>
+      %= select_tag tipo.downcase + '[cor_id]', options_for_select(cores_for_select, pombo[:cor_id]), include_blank: true, class: 'form-select' %>
+    </div>
+    -->
+    <% if tipo == 'PAI' || tipo == 'MAE' %>
+    
+      <div class="form-group mb-3">
+        <%= label_tag t :label_pai %>
+        <%= select_tag tipo.downcase + '[pai_id]', options_for_select(pais_for_select('M', pombo.id), pombo[:pai_id]), include_blank: true, class: 'form-select' %>
+      </div>
+      
+      <div class="form-group mb-3">
+        <%= label_tag t :label_mae %>
+        <%= select_tag tipo.downcase + '[mae_id]', options_for_select(pais_for_select('F', pombo.id), pombo[:mae_id]), include_blank: true, class: 'form-select' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

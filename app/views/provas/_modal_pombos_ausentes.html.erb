@@ -1,0 +1,40 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_pombos_ausentes" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= "#{t :msg_info_pombos_ausentes}: #{@pombos.count}"%></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        
+        <table class="table table-hover" id="tabpombos" >
+          <thead>
+            <tr>
+              <th><%= t(:label_anilha) %></th>
+              <th><%= t(:label_sexo) %></th>
+             </tr>
+          </thead>
+              
+          <tbody>
+            <% @pombos.order('anilha').each do |pombo| %>
+              <tr>
+                <td>
+                  <%= pombo.anilha %>
+                </td>
+                <td><%= pombo.sexo == "F" ? t(:label_sexo_F) : t(:label_sexo_M) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+          
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_pombos_ausentes').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+    </div>
+  </div>
+</div>

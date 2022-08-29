@@ -1,0 +1,35 @@
+<% provide(:title, "#{t :label_cadastrar} #{t :label_familia}") %>
+<% provide(:button_text, t(:label_salvar)) %>
+
+<%= render 'shared/error_messages_flash', obj: @msgs %>
+
+<h4><strong><%= "#{t :label_cadastrar} #{t :label_familia}" %></strong></h4>
+
+<%= form_tag(familia_create_path, method: "post") do %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <%= render 'form_familia', pombo: @pomboPai, tipo: 'PAI' %>
+    </div>
+    <div class="col-sm-6">
+      <%= render 'form_familia', pombo: @pomboMae, tipo: 'MAE' %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <%= render 'form_familia', pombo: @pomboFilho1, tipo: 'F1' %>
+    </div>
+    <div class="col-sm-6">
+      <%= render 'form_familia', pombo: @pomboFilho2, tipo: 'F2' %>
+    </div>
+  </div>
+  
+  <div class="d-grid mt-3 mb-3">
+    <%= submit_tag yield(:button_text), class: botao_estilo %>
+  </div>
+<% end %>
+
+<%= link_to pombos_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t :label_cancelar %>
+<% end %>

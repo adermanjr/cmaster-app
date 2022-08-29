@@ -1,0 +1,58 @@
+<% provide(:title, (t :label_importar)) %>
+
+<%= render 'shared/error_messages_flash', obj: @msgs %>
+
+<div class="container">
+  
+  <div class="row">
+    <strong><%= "#{Clube.find(@prova.competicao.clb_id).nome.upcase}" %></strong>
+  </div>
+  <div class="row">
+    <strong><%= "#{@prova.competicao.nome.upcase} - #{@prova.competicao.ano}" %></strong>
+  </div>
+  <div class="row">
+    <strong><%= "#{t(:label_prova).upcase} #{@prova.nome}" %> - <%= t("label_tipo_prova_#{@prova.tipo}").upcase %> </strong>
+  </div>
+  
+  <br /><br />
+  <div class="row">
+    <div class="col-md-6 ml-md-auto mr-md-auto">
+      <%= form_tag importados_prova_path, multipart: true do %>
+        
+        <div class="form-group">
+          <%= label_tag(:tipo_arquivo, t(:label_arquivo)) %>
+          <%= select_tag :tipo_arquivo, options_for_select(tipo_arquivo_for_select, params[:tipo_arquivo]), include_blank: true, class: 'form-select', required: true %>
+        </div>
+        
+        <% if params[:tipo_arquivo]=='XLS' %>
+          <div class="form-group">
+            <%= label_tag(:id_usuario_filter, t(:label_id_usuario_planilha)) %>
+            <%= number_field_tag :id_usuario_filter, params[:id_usuario_filter], class: 'form-control', max: 99999, required: true %>
+          </div>
+          <small class="form-text text-muted"><%= link_to (t :msg_info_planilha_exemplo), asset_path("race_example.xlsx", skip_pipeline: true) %></small>
+        <% end %>
+        
+        <% if @usuario.admin? %>
+          <div class="form-group">
+            <%= label_tag(:id_usuario_sistema, t(:label_id_usuario_cmaster)) %>
+            <%= select_tag :id_usuario_sistema, options_for_select(usuario_for_select, params[:id_usuario_sistema]), include_blank: true, class: 'form-select', required: true %>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= file_field_tag :file, accept: ".csv,.xls,.xlsx,.txt", class: 'form-control-file border', required: true %>
+          <small class="form-text text-muted">
+            <%= t :msg_info_importacao_resultado_prova %>
+          </small>
+          <!--  application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel -->
+        </div>
+        <input type="submit" name="commit" value="<%= t :label_importar %>" data-disable-with="<%= t :label_importar %>" class="<%= botao_estilo %>" />
+      <% end %>
+    </div>
+  </div>
+  
+  <br /><br /><br /><br />
+  <%= link_to @prova, class: botao_link do %>
+    <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+  <% end %>
+  
+</div>

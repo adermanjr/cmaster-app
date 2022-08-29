@@ -1,0 +1,5 @@
+$('#tabtitulo').empty()
+  .append("<%= j render partial: 'lista_titulos' %>");
+
+$("#modal_msg").addClass("alert alert-success");
+$("#modal_msg").html("<%= flash[:success] %>");

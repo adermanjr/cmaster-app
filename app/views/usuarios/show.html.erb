@@ -1,0 +1,66 @@
+<% provide(:title, @usuario.nome) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h4><strong>
+        <%= gravatar_for @usuario %>
+        <%= @usuario.nome %>
+        <%= link_to edit_usuario_path, class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+          <span class="fa fa-pencil-alt"></span>
+        <% end %>
+        <br />
+      </strong></h4>
+      <div class="position-sticky float-left">
+        <%= link_to update_language_usuario_path(@usuario, lingua: "pt-BR"), :rel => 'tooltip', "data-placement" => "bottom", method: :post do %>
+            <span class="flag-icon flag-icon-br"></span>
+        <% end %>
+        
+        <%= link_to update_language_usuario_path(@usuario, lingua: "en"),  :rel => 'tooltip', "data-placement" => "bottom", method: :post do %>
+            <span class="flag-icon flag-icon-gb"></span>
+        <% end %>
+        
+      </div>
+      <br /><br />
+      <% if @usuario.planos.count > 0 %>
+        <%= nome_plano @usuario.planos.last %>
+        <span class="<%= class_status_assinatura(@usuario.planos.last) %>"><%= t status_assinatura(@usuario.planos.last) %></span>
+      <% end %>
+    </section>
+  </aside>
+  <article class="col-md-8 text-right">
+    <p>
+      <div>
+        <small>
+          <%= link_to "https://www.youtube.com/watch?v=3RXOpDhHwnA", target: "_blank", rel: "nofollow", class: botao_link, :title => t(:msg_info_duvida_criar_pombo), :rel => 'tooltip', "data-placement" => "bottom" do %>
+            <%= " #{t :msg_info_duvida_criar_pombo} "%><span class="fab fa-youtube"></span>
+          <% end %>
+        </small>
+      </div>
+    </p>
+  </article>
+</div>
+<div class="row">
+  <div class="d-grid gap-3">
+    <%= link_to edit_usuario_path, class: botao_estilo, :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="far fa-address-card"></span><%= " #{t :label_editar} #{t(:label_perfil)}" %>
+    <% end %>
+    <%= link_to endereco_usuario_path, class: botao_estilo, :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="fa fa-map-signs"></span><%= " #{t :label_editar} #{t(:label_endereco)}" %>
+    <% end %>
+    <%= link_to detalhar_assinatura_usuario_path, class: botao_estilo, :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="fa fa-credit-card"></span><%= " #{t :label_plano_vigente}" %>
+    <% end %>
+    <%= link_to pombos_path, class: botao_estilo_menu, :title => t(:link_pombos), :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="fab fa-twitter"></span><%= " #{t :link_pombos} "%>
+    <% end %>
+    <%= link_to tratamentos_path, class: botao_estilo_menu, :title => t(:link_tratamento), :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="fa fa-medkit"></span><%= " #{t :link_tratamento} "%>
+    <% end %>
+    <%= link_to preparos_path, class: botao_estilo_menu, :title => t(:link_preparo), :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="fa fa-magic"></span><%= " #{t :link_preparo} "%>
+    <% end %>
+    <%= link_to competicaos_path, class: botao_estilo_menu, :title => t(:link_competicoes), :rel => 'tooltip', "data-placement" => "bottom" do %>
+      <span class="fa fa-trophy"></span><%= " #{t :link_competicoes} "%>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="row slideanim">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4><%= t :label_plano_B %></h4>
+      </div>
+      <div class="card-body caixa_plano_g">
+        <h5><%= t :msg_info_plano_basico, qtde: QTDE_POMBOS_BASICO %></h5>
+      </div>
+      <div class="<%= estilo_card_footer_plano(tela) %>">
+        <h4 class="text-success"><%= t :label_gratuito %></h4>
+        
+        <% if tela == ASS_PAGE %>
+          <br />  
+          <div class="d-grid">
+            <button type="button" id="botao_editar_assinatura" class="<%= botao_estilo %>" onclick="submit_plan_free('<%= PLANO_BASICO %>')"><%= t :label_assinar %></button>
+          </div>
+          
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4><%= t :label_plano_M %><h4>
+      </div>
+      <div class="card-body caixa_plano_g">
+        <h5><%= t :msg_info_plano_master %></h5>
+        
+        <% if tela == ASS_PAGE %>
+          
+          <% if !@reativacao %>
+            <h5><%= t :msg_info_primeiro_mes_gratis_html %></h5>
+          <% end %>
+          <br />
+          <%= label_tag "#{t(:label_moeda)}:", nil,  class: 'font-weight-light text-left' %>
+          <%= select_tag :plano_moeda, options_for_select(combo_moeda, @plano_moeda),  class: 'form-select' %>
+          
+          <%= hidden_field_tag :reativacao, @reativacao %>
+        <% else %>
+          <h5><%= t :msg_info_primeiro_mes_gratis_html %></h5>
+        <% end %>
+      </div>
+      <div class="<%= estilo_card_footer_plano(tela) %>">
+        <h4 class="text-success"><%= t(:label_valor_ano1, valor: "#{number_to_currency(PRECO_PROMO_MEDIO, precision:2)}") %></h4>
+        <h6 class="text-danger"><%= t :msg_info_promocao_por_tempo_limitado %></h6>
+        <% if tela == ASS_PAGE %>
+          <div id="paypal-button-container"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+
+<% if tela == ASS_PAGE %>
+  <script>
+  
+    paypal_sdk.Buttons({
+        style: {
+            shape: 'rect',
+            color: 'gold',
+            layout: 'horizontal',
+            label: 'paypal',
+            tagline: false,
+        },
+        createSubscription: function(data, actions) {
+          return actions.subscription.create({
+            'plan_id': paypal_plan_id(document.querySelector("#plano_moeda").value, document.querySelector("#reativacao").value)
+          });
+        },
+        onApprove: function(data, actions) {
+          console.log(data);
+          console.log(data.subscriptionID);
+          createHidden("plano", "<%= PLANO_MASTER %>", ".edit_usuario");
+          createHidden("data", JSON.stringify(data), ".edit_usuario");
+          createHidden("cancelado", false, ".edit_usuario");
+          document.querySelector(".edit_usuario").submit();
+        }, 
+        onCancel: function (data, actions) {
+          createHidden("cancelado", true, ".edit_usuario");
+          document.querySelector(".edit_usuario").submit();
+          
+        }
+    }).render('#paypal-button-container');
+    
+  </script>
+<% end %>

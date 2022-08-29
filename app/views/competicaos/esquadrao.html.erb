@@ -1,0 +1,72 @@
+<% provide(:title, t(:label_esquadrao)) %>
+<%= render 'shared/share' %>
+
+<div class="container p-0">
+  <div class="row">
+    <strong><%= "#{ t :label_esquadrao}".upcase %> </strong>
+  </div>
+  <div class="row">
+    <strong><%= "#{Clube.find(@competicao.clb_id).nome.upcase if @competicao.clb_id }" %></strong>
+  </div>
+  <div class="row">
+    <strong><%= "#{@competicao.nome.upcase} - #{@competicao.ano}" %></strong>
+  </div>
+  <div class="row">
+    <strong><%= "#{t(:label_columbofilo).upcase}: #{(@usuario.nome_time.blank? ? @usuario.nome.upcase : @usuario.nome_time.upcase) if @usuario != nil}" %></strong>
+  </div>
+</div>
+
+<button type="button" 
+        onclick="exec_ajax_with_parms({ usr: '<%= @usuario.id %>', ordem: 'MODALIDADE'},'/competicaos/<%= @competicao.id %>/esquadrao_order')"
+        class="<%= botao_link %>"
+        title="<%= t :label_por_modalidade %>">
+  <span class="fas fa-sort-amount-down"></span> <%= t :label_por_modalidade %>
+</button>
+
+<button type="button" 
+        onclick="exec_ajax_with_parms({ usr: '<%= @usuario.id %>', ordem: 'GERAL'},'/competicaos/<%= @competicao.id %>/esquadrao_order')"
+        class="<%= botao_link %>"
+        title="<%= t :label_geral %>">
+  <span class="fas fa-sort-amount-down"></span> <%= t :label_geral %>
+</button>
+
+<button type="button" 
+        onclick="exec_ajax_with_parms({ usr: '<%= @usuario.id %>', ordem: 'REGULARIDADE'},'/competicaos/<%= @competicao.id %>/esquadrao_order')"
+        class="<%= botao_link %>"
+        title="<%= t :label_regularidade %>">
+  <span class="fas fa-sort-amount-down"></span> <%= t :label_regularidade %>
+</button>
+
+<div id='resultados'>
+  <% if @ordem == 'MODALIDADE'%>
+    <div id='velocidade'>
+      <%= render 'result_esquadrao', tipo_prova: VELOCIDADE, lista_result: @campeoes_veloc, fundo: 'success' %>
+    </div>
+    
+    <div id='meio-fundo'>
+      <%= render 'result_esquadrao', tipo_prova: MEIO_FUNDO, lista_result: @campeoes_meio, fundo: 'primary' %>
+    </div>
+    
+    <div id='fundo'>
+      <%= render 'result_esquadrao', tipo_prova: FUNDO, lista_result: @campeoes_fundo, fundo: 'secondary' %>
+    </div>
+    <div id='geral'></div>
+  <% else %>
+    <div id='velocidade'></div>
+    <div id='meio-fundo'></div>
+    <div id='fundo'></div>
+    <div id='geral'>
+      <%= render 'result_esquadrao', tipo_prova: GERAL, lista_result: @campeoes, fundo: 'secondary' %>
+    </div>
+  <% end %>
+</div>
+
+<% if logged_in? %>
+  <br />
+  <%= link_to @competicao, class: botao_link do %>
+    <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+  <% end %>
+<% end %>
+
+<div id="modal">
+</div>

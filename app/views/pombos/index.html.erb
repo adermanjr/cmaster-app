@@ -1,0 +1,55 @@
+<% provide(:title, t(:label_lista_pombos)) %>
+
+<h6 class="text-right"><%= t(:msg_info_qtde_pombos, qtde: @qtde ) %></h6>
+<h4><strong><%= t :label_lista_pombos %></strong></h4>
+
+<%= link_to new_pombo_path, class: botao_link do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_pombo}" %>
+<% end %>
+<%= link_to familia_path, class: botao_link do %>
+  <span class="fa fa-home"></span> <%= "#{t :label_cadastrar} #{t :label_familia}" %>
+<% end %>
+<span class='<%= botao_link %>' data-bs-toggle="collapse" data-bs-target="#filtro" >
+  <span class="	fa fa-search"></span> <%= t(:label_filtrar_por) %>
+</span>
+
+<div id="filtro" class="collapse" >
+  <%= form_tag '/filter_by', class: 'form-inline', method: :get, remote: true do %>
+    <div class="row mt-3 mb-3 align-items-start">
+      <div class="col-3">
+        <div class="form-group">
+          <%= label_tag(:anilha_filter, t(:label_pombo)) %>
+          <%= text_field_tag :anilha_filter, params[:anilha_filter], placeholder: t(:label_anilha), class: 'form-control', size: 12, list: 'lista_dl' ,autofocus: true %>
+          <%= render 'shared/datalist', itens_dl: @pombos_dl, dl_id: 'lista_dl' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= label_tag(:pai_filter, t(:label_pai)) %>
+          <%= text_field_tag :pai_filter, params[:pai_filter], placeholder: t(:label_anilha), class: 'form-control', size: 12, list: 'lista_dl_m' %>
+          <%= render 'shared/datalist', itens_dl: @pombos_dl_machos, dl_id: 'lista_dl_m' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= label_tag(:mae_filter, t(:label_mae)) %>
+          <%= text_field_tag :mae_filter, params[:mae_filter], placeholder: t(:label_anilha), class: 'form-control', size: 12, list: 'lista_dl_f' %>
+          <%= render 'shared/datalist', itens_dl: @pombos_dl_femeas, dl_id: 'lista_dl_f' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group mt-3">
+          <%= submit_tag t(:label_filtrar), class: botao_estilo, id: "btn_filtro" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="result_lista">
+  <%= render 'lista' %>
+</div>
+
+<div id="paginacao">
+  <%= will_paginate %>
+</div>

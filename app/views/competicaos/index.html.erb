@@ -1,0 +1,51 @@
+<% provide(:title, t(:label_lista_competicoes)) %>
+<h4><strong><%= t :label_lista_competicoes %></strong></h4>
+
+<%= link_to new_competicao_path, class: botao_link do %>
+  <span class="fa fa-plus"></span> <%= "#{t :label_cadastrar} #{t :label_competicao}" %>
+<% end %>
+<br /><br />
+
+<div id="lista_pombal" class="list-group">
+  <% @competicaos.each do |competicao| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-5">
+          <small class="form-text">
+            <strong><%= t(:label_clube) %></strong>: <%= "#{Clube.find(competicao.clb_id).nome}-#{Estado.find(competicao.est_id).sigla}" %>
+          </small>
+        </div>
+        <div class="col-sm-5">
+          <small class="form-text">
+            <strong><%= t(:label_nome) %></strong>: <%= link_to competicao do %><%= competicao.nome %><% end %>
+          </small>
+        </div>
+        <div class="col-sm-2">
+          <small class="form-text">
+            <strong><%= t(:label_ano) %></strong>: <%= competicao.ano %>
+          </small>
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          <% if autor_info(competicao.usuario) %>
+            <%= link_to edit_competicao_path(competicao), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+              <span class="fa fa-pencil-alt"></span>
+            <% end %>
+            
+            <button type="button" 
+                    onclick="excluir_item('<%= competicao.id %>','/competicaos', '<%= t(:msg_quest_apagar_padrao) %>')" 
+                    class="<%= botao_link %>" 
+                    title="<%= t :label_excluir %>">
+              <span class="fa fa-trash"></span>
+            </button>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br>
+

@@ -1,0 +1,12 @@
+<% if !obj.blank? && obj.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= t(:msg_erro_padrao_formulario) + " " + pluralize(obj.errors.count, t(:erro)) %>.
+    </div>
+    <ul>
+    <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

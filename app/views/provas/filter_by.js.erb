@@ -1,0 +1,7 @@
+if ($("#lista_result_O").is(':checked')) {
+  $("#result_lista").html("<%= j render partial: 'lista_resultados_oficial' %>");
+}
+else {
+  $("#result_lista").html("<%= j render partial: 'lista_resultados' %>");
+}
+

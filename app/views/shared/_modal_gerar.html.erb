@@ -1,0 +1,96 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_gerar_tratamento_partial" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= @objeto.nome %></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_gerar_erro"></div>
+        <h4><strong><%= "#{t :label_gerar} #{t :label_aplicacao} #{@tipo == 'T'? t(:label_de) : t(:label_para)} #{@objeto.nome}" %></strong></h4>
+        
+        <div class="row justify-content-md-center">
+          <div class="col-md-10 ml-md-auto mr-md-auto">
+            
+            <%= form_tag(path_para_aplicacao(@tipo), method: "post", remote: true) do %>
+            
+              <%= hidden_field_tag :id, @objeto.id %>
+              
+              <div class="form-group mt-3 mb-3">
+                <% if @tipo == 'T' %>
+                  <%= label_tag t :label_pombal %>
+                  <%= select_tag :pombal_id, options_for_select(pombal_for_select, params[:pombal_id]), include_blank: true, class: 'form-select', required: true %>
+                <% else %>
+                  <%= label_tag t :label_tratamento %>
+                  <%= select_tag :tratamento_id, options_for_select(tratamento_for_select, params[:tratamento_id]), include_blank: true, class: 'form-select', required: true %>
+                <% end %>
+              </div>
+              
+              <div class="form-group mb-3">
+                <%= label_tag t(@tipo == 'T' || @tipo == 'B' ? :label_data_inicio : :label_data_aplic) %>
+                <%= date_field_tag :dtini_par, (params[:dtini_par].blank? ? nil : Date.strptime(params[:dtini_par], "%Y-%m-%d")),as: :date, class: 'data_input_altura form-control', required: true %>
+              </div>
+              
+              <% if @tipo == 'T' || @tipo == 'B' %>
+                <div class="form-group mb-3">
+                  <%= label_tag t :label_data_fim %>
+                  <%= date_field_tag :dtfim_par, (params[:dtfim_par].blank? ? nil : Date.strptime(params[:dtfim_par], "%Y-%m-%d")),as: :date, class: 'data_input_altura form-control' %>
+                </div>
+                
+                <div class="form-group mb-3">
+                  <%= label_tag t :label_dosagem_por_pombal %>
+                  <%= number_field_tag :dosagem_par, params[:dosagem_par], {class: 'form-control', step: 0.001, required: true} %>
+                </div>
+                
+              <% else %>
+                <div class="form-group mb-3">
+                  <%= label_tag t :label_dosagem %>
+                  <%= number_field_tag :dosagem_par, params[:dosagem_par], {class: 'form-control', step: 0.001, required: true} %>
+                </div>
+              <% end %>
+              
+              <div class="form-group mb-3">
+                <%= label_tag t :label_medida %>
+                <%= select_tag :medida_par, options_for_select(medidas_for_select, params[:medida_par]), include_blank: true, class: 'form-select', required: true %>
+              </div>
+              
+              <% if 1 == 0 #implementar o schedule %>
+                <% if @tipo == 'T' || @tipo == 'B' %>
+                  <div class="form-group mb-3">
+                    <div class="myRad">
+                      <label><%= check_box_tag :lembrar_par, params[:lembrar_par] %><strong><%= t(:msg_quest_enviar_notificacao)%></strong></label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group mb-3">
+                    <%= label_tag t :label_qtde %>
+                    <%= number_field_tag :qtde_par, params[:qtde_par], min: 1, class: 'form-control' %>
+                  </div>
+                  
+                  <div class="form-group mb-3">
+                    <%= label_tag t :label_intervalo %>
+                    <%= select_tag :intervalo_par, options_for_select(intervalos_for_select, params[:intervalo_par]), include_blank: true, class: 'form-select'  %>
+                  </div>
+                  
+                <% end %>
+              <% end %>
+              <div class="d-grid mb-3">
+                <%= submit_tag t(:label_aplicar), class: botao_estilo %>
+              </div>
+            <% end %>
+            
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_gerar_tratamento_partial').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+      
+    </div>
+  </div>
+</div>

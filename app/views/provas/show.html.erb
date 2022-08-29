@@ -1,0 +1,147 @@
+<% provide(:title, @prova.nome) %>
+<%= render 'shared/share' %>
+
+<div class="container p-0">
+  <div class="row mb-2">
+    <strong><%= "#{Clube.find(@prova.competicao.clb_id).nome.upcase}" %></strong>
+  </div>
+  <div class="row mb-2">
+    <strong><%= "#{@prova.competicao.nome.upcase} - #{@prova.competicao.ano}" %></strong>
+  </div>
+  <div class="row mb-2">
+    <strong><%= "#{t(:label_prova).upcase} #{@prova.nome}" %> - <%= t("label_tipo_prova_#{@prova.tipo}").upcase %> </strong>
+  </div>
+</div>
+
+<% if autor_info(@prova.usuario) %>
+  <%= link_to edit_prova_path(@prova), class: botao_link do %>
+    <span class="fa fa-pencil-alt"></span>  <%= t :label_editar %>
+  <% end %>
+  <br />
+<% end %>
+
+<div class="container mt-3 p-0">
+  <div class="row mb-2">
+    <div class="col-12">
+      <strong><%= "#{t(:label_horario_solta)}:" %></strong><span class="p-1"></span><%= @prova.dtsolta.strftime(mask_datahora_sem_segundos) %>
+    </div>  
+  </div>
+  
+  <div class="row mb-2">
+    <div class="col-12">
+      <%= "<strong>#{t :label_latitude}:</strong> #{@prova.lat_card} #{number_with_precision(@prova.lat_deg, precision: 0)}º#{number_with_precision(@prova.lat_min, precision: 0).rjust(2, '0')}'#{number_with_precision(@prova.lat_seg, precision: 1)}\"".html_safe %>
+      </div>  
+  </div>
+  
+  <div class="row mb-2">
+    <div class="col-12">
+      <%= "<strong>#{t :label_longitude}:</strong> #{@prova.lng_card} #{number_with_precision(@prova.lng_deg, precision: 0)}º#{number_with_precision(@prova.lng_min, precision: 0).rjust(2, '0')}'#{number_with_precision(@prova.lng_seg, precision: 1)}\"".html_safe %>
+    </div>
+  </div>
+  
+</div>
+
+<% if logged_in? %>
+  <button type="button" 
+          onclick="exec_ajax_with_parms({ id: '<%= @prova.id %>', acao: '<%= MODAL_PRV_RESUL %>', opcao_result: 'P'},'/provas/show_modal_result')"
+          class="<%= botao_link %>">
+    <span class="fa fa-flag"></span> <%= t :label_informar_chegada %>
+  </button>
+
+  <% if Equipe.por_usuario(current_user).count > 0 %>
+    <button type="button" 
+            onclick="exec_ajax_with_parms({ id: '<%= @prova.id %>'},'/provas/<%= @prova.id %>/modal_nao_chegaram')"
+            class="<%= botao_link %>">
+      <span class="fas fa-tachometer-alt"></span> <%= t :label_ausentes %>
+    </button>
+  <% end %>
+
+  <button type="button" 
+          onclick="exec_ajax_with_parms({ id: '<%= @prova.id %>', acao: '<%= MODAL_PRV_ROTA %>'},'/provas/show_modal_result')"
+          class="<%= botao_link %>">
+    <span class="fa fa-globe"></span> <%= t :label_rota_voo %>
+  </button>
+
+  <button type="button" 
+          onclick="exec_ajax_with_parms({ id: '<%= @prova.id %>'},'/provas/<%= @prova.id %>/preparar_importacao')"
+          class="<%= botao_link %>">
+    <span class="fa fa-upload"></span> <%= t :label_importar %>
+  </button>
+
+  <button type="button" 
+          onclick="exec_ajax_with_parms({ id: '<%= @prova.id %>'},'/provas/<%= @prova.id %>/modal_pp')"
+          class="<%= botao_link %>">
+    <span class="fas fa-utensils"></span>  <%= t :label_preparo %>
+  </button>
+
+<% end %>
+<span class='<%= botao_link %>' data-bs-toggle="collapse" data-bs-target="#filtro" >
+  <span class="fa fa-search"></span> <%= t(:label_filtrar_por) %>
+</span>
+
+<div id="filtro" class="collapse" >
+  <%= form_tag filter_by_prova_path, class: 'form-inline', method: :get, remote: true do %>
+    <div class="row mt-3 mb-3 align-items-start">
+      <div class="col-3">
+        <div class="form-group">
+          <%= label_tag(:anilha_filter, t(:label_anilha)) %>
+          <%= text_field_tag :anilha_filter, params[:anilha_filter], placeholder: (t :label_anilha), class: 'form-control', size: 12, list: 'lista_dl' %>
+          <%= render 'shared/datalist', itens_dl: @result_dl, dl_id: 'lista_dl' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group mt-3">
+          <%= submit_tag t(:label_filtrar), class: botao_estilo, id: "btn_filtro" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-3">
+  <div id="listas_resultados">
+    <div class="form-check form-check-inline">
+      <%= radio_button_tag 'lista_result', 'O', params[:lista_result] == 'O', class: "form-check-input" %>
+      <label class="form-check-label" for="lista_result_O"><%= t(:label_oficial) %></label>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= radio_button_tag 'lista_result', 'P', params[:lista_result] == 'P', class: "form-check-input" %>
+      <label class="form-check-label" for="lista_result_P"><%= t(:label_parcial) %></label>
+    </div>
+  </div>
+</div>
+
+<div id="result_lista">
+  <% if params[:lista_result] == 'O' %>
+    <%= render 'lista_resultados_oficial' %>
+  <% else %>
+    <%= render 'lista_resultados' %>
+  <% end %>
+</div>
+
+<% if logged_in? %>
+  <br />
+  <%= link_to @prova.competicao, class: botao_link do %>
+    <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+  <% end %>
+<% end %>
+
+<div id="modal_result"></div>
+
+<script>
+  $(document).ready(function(){
+    $('input[type=radio][name=lista_result]').on('change', function() {
+      $('#result_lista').html('');
+      switch ($(this).val()) {
+        case 'P':
+          $("#result_lista").html("<%= j render partial: 'lista_resultados' %>");
+          break;
+        case 'O':
+          $("#result_lista").html("<%= j render partial: 'lista_resultados_oficial' %>");
+          break;
+      }
+    });
+    
+  });
+
+</script>

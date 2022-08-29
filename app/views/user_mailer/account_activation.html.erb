@@ -1,0 +1,14 @@
+<%= "#{t :msg_info_ativacao_conta_email } -" %>
+
+<%= edit_account_activation_url(@usuario.activation_token, email: @usuario.email) %>
+
+<!--
+
+<h4><= t :columba_master %></h4>
+<strong><= @usuario.nome %>,</strong>
+
+<p><= t(:msg_info_ativacao_conta_email) %></p>
+
+<= link_to t(:label_ativar), edit_account_activation_url(@usuario.activation_token, email: @usuario.email) %>
+
+-->

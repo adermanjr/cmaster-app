@@ -1,0 +1,17 @@
+<% provide(:title, t(:label_atualizar)) %>
+<% provide(:button_text, t(:label_atualizar)) %>
+
+<h4><strong><%= "#{t :label_atualizar}  #{t :label_pombo}" %></strong></h4>
+
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <%= render 'form', pombo: @pombo %>
+  </div>
+</div>
+
+<%= link_to @pombo, class: botao_link do %>
+  <span class="fa fa-share-alt"></span> <%= t(:label_pedigree) %>
+<% end %>
+<%= link_to :back, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t :label_voltar %>
+<% end %>

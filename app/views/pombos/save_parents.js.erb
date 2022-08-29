@@ -1,0 +1,5 @@
+<% if @msgs.count == 1 %>
+    $("#modal_msg").addClass("alert alert-success");
+    $("#parent_id").val("<%= @pombo_parent.id %>");
+    $("#modal_msg").html("<%= flash.now[:success] = @msgs[0] %>");
+<% end %>

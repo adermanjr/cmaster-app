@@ -1,0 +1,41 @@
+<% provide(:title, @clube.nome) %>
+
+<p>
+  <h4>
+    <strong><%= t :label_nome %></strong>: <%= @clube.nome %>
+  </h4>
+  
+  <strong><%= t :label_email %></strong>: <%= @clube.email %>
+  <br />
+  <strong><%= t :label_endereco %></strong>: <%= @clube.logradouro %>
+  
+  <% if current_user.lingua == LOCALE_BRASIL %>
+    <br />
+    <strong><%= t :label_complemento %></strong>: <%= @clube.complemento %>
+  <% end %>
+  <br />
+  <strong><%= t :label_bairro %></strong>: <%= @clube.bairro %>
+  <br />
+  <strong><%= t :label_cidade %></strong>: <%= @clube.cidade %>
+  <br />
+  <strong><%= t :label_estado %></strong>: <%= @clube.estado.nome %>
+  <br />
+  <strong><%= t :label_nacao %></strong>: <%= Nacao.find(@clube.nacao_id).nome %>
+  <br />
+  <strong><%= t :label_cep %></strong>: <%= @clube.cep %>
+  <br />
+  <strong><%= t :label_contato %></strong>: <%= @clube.contato %>
+  <br />
+  <strong><%= "#{t :label_telefone } 1" %></strong>: <%= @clube.tel1 %>
+  <br />
+  <strong><%= "#{t :label_telefone } 2" %></strong>: <%= @clube.tel2 %>
+</p>
+
+<%= link_to edit_clube_path(@clube), class: botao_link, :title => t(:label_editar), :rel => 'tooltip', "data-placement" => "bottom" do %>
+  <span class="fa fa-pencil-alt"></span>
+<% end %>
+
+<%= link_to clubes_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+

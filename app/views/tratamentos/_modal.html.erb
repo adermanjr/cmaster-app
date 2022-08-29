@@ -1,0 +1,40 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_pombo_partial" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"><%= "#{t :label_tratamento}: #{@pt.tratamento.nome}" %></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <strong><%= t(:msg_info_pombos_que_receberam_aplicacao_de_em, nome: @pt.tratamento.nome, data: @pt.dtinicio.strftime(mask_data_ruby)) %></strong>
+        <br /><br />
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th><%= t(:label_pombo) %></th>
+              <th><%= t(:label_dosagem) %></th>
+             </tr>
+          </thead>
+              
+          <tbody>
+            <% @aps.each do |ap| %>
+              <tr>
+                <td><%= "#{ap.pombo.anilha} #{ap.pombo.nome}" %></td>
+                <td><%= "#{number_with_precision(ap.dosagem, precision: 3) } " + ' ' + t('label_medida_'+ ap.medida) if !ap.medida.blank? %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p class="text-right" ><%= "Dosagem total: #{number_with_precision(@aps.to_a.sum(&:dosagem), :precision => 3)} #{ t('label_medida_'+ @aps.first.medida)}" if @aps.to_a.sum(&:dosagem) > 0 %></p>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_pombo_partial').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+      
+    </div>
+  </div>
+</div>

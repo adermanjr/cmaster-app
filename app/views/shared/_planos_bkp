@@ -1,0 +1,76 @@
+  <div class="col-sm-4">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4><%= t(:label_plano_I)%><h4>
+      </div>
+      <div class="card-body caixa_plano_g">
+        <h5><%= t :msg_info_plano_ilimitado %></h5>
+        <h5><%= t :msg_info_primeiro_mes_gratis_html %></h5>
+      </div>
+      <div class="card-footer caixa_plano_105">
+        <h4 class="text-danger"><del><%= t(:label_valor_de, valor: "#{number_to_currency(PRECO_CHEIO_ILIMITADO, precision:2)}") %></del></h4>
+        <h3 class="text-info"><%= t(:label_valor_por, valor: "#{number_to_currency(PRECO_PROMO_ILIMITADO, precision:2)}") %></h3>
+      </div>
+    </div>
+  </div>
+
+<!-- 07/05/2020 -->
+
+<div class="row slideanim">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4><%= t :label_plano_B %></h4>
+      </div>
+      <div class="card-body caixa_plano_g">
+        <h5><%= t :msg_info_plano_basico, qtde: QTDE_POMBOS_BASICO %></h5>
+      </div>
+      <div class="<%= estilo_card_footer_plano(tela) %>">
+        <h4 class="text-success"><%= t :label_gratuito %></h4>
+        <% if tela == ASS_PAGE %>
+          <%= radio_button_tag 'plano', PLANO_BASICO, params[:plano] == PLANO_BASICO %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4><%= t :label_plano_M %><h4>
+      </div>
+      <div class="card-body caixa_plano_g">
+        <h5><%= t :msg_info_plano_master %></h5>
+        <h5><%= t :msg_info_primeiro_mes_gratis_html %></h5>
+      </div>
+      <div class="<%= estilo_card_footer_plano(tela) %>">
+        <h4 class="text-success"><%= t(:label_valor_ano1, valor: "#{number_to_currency(PRECO_PROMO_MEDIO, precision:2)}") %></h4>
+        <h6 class="text-danger"><%= t(:label_valor_anos_seguintes, valor: "#{number_to_currency(PRECO_CHEIO_MEDIO, precision:2)}") %></h6>
+        <% if tela == ASS_PAGE %>
+          <%= radio_button_tag 'plano', PLANO_MASTER, params[:plano] == PLANO_MASTER %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+
+<% if tela == ASS_PAGE %>
+  <br /><br />
+  <div id="cartao">
+  </div>
+
+  <script>
+    $('input[type=radio][name=plano]').on('change', function() {
+      switch ($(this).val()) {
+        case 'M':
+          $('#cartao').html('<%=j render partial: "dados_cartao" %>');
+          break;
+        case 'B':
+          $('#cartao').html('');
+          break;
+      }
+    });
+  
+  </script>
+<% end %>

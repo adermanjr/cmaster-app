@@ -1,0 +1,64 @@
+<div id="modal_prep_prova" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title"><%= "#{@prova.competicao.nome.upcase} - #{@prova.competicao.ano}" %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_msg"></div>
+        
+        <div class="form-group">
+          <small class="form-text">
+            <strong><%= "#{t(:label_prova).upcase} #{@prova.nome} " %><%= t("label_tipo_prova_#{@prova.tipo}").upcase %> </strong>
+          </small>
+        </div>
+        <%= form_for(@pp, url: save_pp_prova_path, method: "post", remote: true, authenticity_token: true) do |f| %>
+          <%= render 'shared/error_messages', obj: @titulo %>
+          
+          <div class="form-group">
+            <%= f.label :preparo_id, t(:label_preparo) %>
+            <%= f.select(:preparo_id, preparo_for_select, {include_blank: true}, {class: 'form-select', required: true }) %>
+          </div>
+          
+          <div id="textarea_desc">
+            <%= render 'desc_text_area' %>
+          </div>
+          
+          <%= f.hidden_field :prova_id, value: @pp.prova_id %>
+          
+          <button type="button"
+                  onclick="submit_modal({prova_preparo: {preparo_id: $('#prova_preparo_preparo_id').val(), prova_id: '<%= @prova.id %>'}},'/provas/<%= @prova.id %>/save_pp')"
+                  class="<%= botao_estilo %>"
+                  title="<%= t :label_adicionar %>">
+            <%= t :label_salvar %>
+          </button>
+          
+        <% end %>
+        
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_prep_prova').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('select').on('change', function() {
+    var val = this.value;
+    $.ajax({
+      url: "/provas/recupera_desc/",
+      type: "GET",
+      beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
+      data: {
+        id: val
+      }
+    });
+    
+  });
+  
+</script>

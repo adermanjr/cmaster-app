@@ -1,0 +1,56 @@
+<% provide(:title, t(:label_fale_conosco)) %>
+
+<h4 class="mt-3"><strong><%= t :label_fale_conosco %></strong></h4>
+
+<script type="text/javascript">
+  var onloadCallback = function() {
+    grecaptcha.render('recaptcha_div', {
+      'sitekey' : '<%= API_KEY_RECAPTCHA_V2 %>',
+      'callback': correctCaptcha
+    });
+  };
+  var correctCaptcha = function(response) {
+    document.querySelector('[type=submit]').disabled = false;
+    createHidden("recaptcha_validation", <%= DateTime.now.strftime('%Q') %>, ".new_mensagem");
+  };
+</script>
+  
+<div class="row justify-content-md-center">
+  <div class="col-md-6 ml-md-auto mr-md-auto">
+    <h5><%= t :msg_info_form_contato_html %></h5>
+    <br />
+    <%= form_for @mensagem, url: create_message_url do |f| %>
+      <%= render 'shared/error_messages', obj: @mensagem %>
+      
+      <div class="form-group mb-3">
+        <%= f.label t(:label_nome) %>
+        <%= f.text_field :nome, placeholder:  t(:label_nome), class: 'form-control', required: true %>
+      </div>
+      
+      <div class="form-group mb-3">
+        <%= f.label t(:label_email) %>
+        <%= f.email_field :email, placeholder: t(:label_email), class: 'form-control', required: true %>
+      </div>
+      
+      <div class="form-group mb-3">
+        <%= f.label t(:label_telefone) %>
+        <%= f.phone_field :telefone, class: 'form-control', required: true, size: 15 %>
+      </div>
+      
+      <div class="form-group mb-3">
+        <%= f.label t(:label_mensagem) %>
+        <%= f.text_area :body, placeholder: t(:label_mensagem), class: 'form-control', required: true %>
+      </div>
+      
+      <div id="recaptcha_div"></div>
+      
+      <div class="d-grid">
+        <%= f.submit t(:label_enviar), class: botao_estilo, disabled: true %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<!-- gem 'jquery_mask_rails' # more details at http://bit.ly/jquery-mask-gem -->
+

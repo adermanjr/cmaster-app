@@ -1,0 +1,53 @@
+<% if @modal == MODAL_PRV_RESUL %>
+  
+  $('#modal_result').html("<%= j render 'modal' %>");
+  $('#modal_result_partial').modal('show');
+  
+  /* if ($('input[type=radio][name=lista_result]:checked').val() == 'P') { */
+  <% if @opcao_result == 'P' %>
+    $("#parcial").show();
+    $("#oficial").hide();
+  <% else %>
+    $("#parcial").hide();
+    $("#oficial").show();
+  <% end %>
+  
+<% elsif @modal == MODAL_PRV_ROTA %>
+  $('#modal_result').html("<%= j render 'shared/modal_mapa' %>");
+  $('#modal_mapa').modal('show');
+  
+  initMapRota(<%= @usuario.lat %>, <%= @usuario.lng %>, <%= @prova.lat %>, <%= @prova.lng %>, '<%= t :label_pombal %>', '<%= @prova.nome %>', 8);
+
+<% elsif @modal == GET_PRV_COORD %>
+  getCoords('prova');
+  
+<% else %>
+
+    if (!valida_coodenadas_diretor('prova')){
+      alert("<%= t :msg_erro_informar_endereco_prova %>");
+    } 
+    else {
+      $("#modal").html("<%= j render "shared/modal_mapa"%>");
+      $('#modal_mapa').modal('show');
+    
+      converterCoordParaDecimal('prova', 14);
+    }
+    
+<% end %>
+
+/*
+
+  if (document.getElementById('prova_lat').value != '' && document.getElementById('prova_lng').value != '') {
+    $("#modal").html("<%= j render "shared/modal_mapa"%>");
+    $('#modal_mapa').modal('show');
+    
+    initMapLL(document.getElementById('prova_lat').value
+          , document.getElementById('prova_lng').value
+          , 10); //zoom_tela
+          
+    preencheValoresCoordenadas('prova', 'lat');
+    preencheValoresCoordenadas('prova', 'lng');
+  }
+  else {
+
+*/

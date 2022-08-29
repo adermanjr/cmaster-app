@@ -1,0 +1,27 @@
+<table class="table table-hover" id="tabtitulo" >
+  <thead>
+    <tr>
+      <th><%= t(:label_premio) %></th>
+      <th><%= t(:label_ano) %></th>
+     </tr>
+  </thead>
+      
+  <tbody>
+    <% @pombo_modal.titulos.order('ano DESC').each do |titulo| %>
+      <tr>
+        <td>
+          <% if logged_in? && !visivel_correct_user(@pombo_modal.id.to_s) %>
+            <button type="button" 
+                    onclick="excluir_item_parm({id: '<%= titulo.id %>''},'/pombos/destroy_titulo', '<%= t(:msg_quest_apagar_padrao) %>')"
+                    class="<%= botao_link %>"
+                    title="<%= t :label_remover %>">
+              <span class="fa fa-trash"></span>
+            </button>
+          <% end %>
+          <%= titulo.nome %>
+        </td>
+        <td><%= titulo.ano %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

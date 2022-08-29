@@ -1,0 +1,76 @@
+COR_NAO_INFORMADA = 11
+LOCALE_BRASIL = "pt-BR"
+
+BOOTSTRAP_VERSION="@5.2.0-beta1"
+
+PRECO_PROMO_MEDIO=10.99
+PRECO_CHEIO_MEDIO=49.90
+
+PRECO_PROMO_TOP=79.9
+PRECO_CHEIO_TOP=99.9
+
+PLANO_BASICO='B'
+PLANO_MASTER='M'
+PLANO_ILIMITADO='I'
+PLANO_AVALIACAO='A'
+
+QTDE_POMBOS_BASICO=50
+
+USUARIO_COMUM=1
+USUARIO_MODERADOR=2
+
+MODAL_PRV_COORD = "MPC"
+MODAL_PRV_RESUL = "MPR"
+MODAL_PRV_ROTA  = "MPO"
+MODAL_USU_PAGTO = "MUP"
+MODAL_USU_COORD = "MUC"
+GET_USU_COORD = "GUC"
+GET_PRV_COORD = "GPC"
+
+INI_PAGE = 1
+ASS_PAGE = 2
+
+PASSO_ENDERECO=1
+PASSO_CONTRATO=2
+PASSO_PLANO=3
+PASSO_EMAIL=4
+PASSOS_OK=5
+
+VELOCIDADE=1
+MEIO_FUNDO=2
+FUNDO=3
+GERAL=4
+
+CIELO_SUCESSO = ["200","201"]
+CIELO_ERROS = ["404","500","401"]
+
+BLOQUEIO_LIMITE_QTD = 1
+BLOQUEIO_PAGTO = 2
+BLOQUEIO_TODOS = 3
+
+# https://developercielo.github.io/manual/cielo-ecommerce#status-transacional
+CIELO_PAGTO_OK = ["1","2"]
+#0	NotFinished	ALL	Aguardando atualização de status
+#1	Authorized	ALL	Pagamento apto a ser capturado ou definido como pago
+#2	PaymentConfirmed	ALL	Pagamento confirmado e finalizado
+#3	Denied	CC + CD + TF	Pagamento negado por Autorizador
+#10	Voided	ALL	Pagamento cancelado
+#12	Pending	ALL	Aguardando Status de instituição financeira
+#13	Aborted	ALL	Pagamento cancelado por falha no processamento ou por ação do AF
+
+PAYPAL_CODE_BRL = 'P-76751176D5615502FL22BMSA'
+PAYPAL_CODE_USD = 'P-0C6261323E293452EL22BPQY'
+PAYPAL_CODE_EUR = 'P-5DB146754X7671158L22BR5Q'
+
+MOEDA_BRL = 'BRL'
+MOEDA_USD = 'USD'
+MOEDA_EUR = 'EUR'
+
+PAYPAL_SUCESSO = ['APPROVED', 'ACTIVE']
+
+PAYPAL_CODE_BRL_DIRECT = 'P-11H5024467050774CL3LF5HI'
+PAYPAL_CODE_USD_DIRECT = 'P-1YK76843RE9503109L3LF7WQ'
+PAYPAL_CODE_EUR_DIRECT = 'P-0FE92020SK922800ML3LGAVA'
+
+API_KEY_MAPS = ENV['RAILS_ENV'] == 'production' ? ENV['API_KEY_MAPS'] : JSON.load(File.read('config/secrets/google_keys.json'))['API_KEY_MAPS']
+API_KEY_RECAPTCHA_V2 = ENV['RAILS_ENV'] == 'production' ? ENV['API_KEY_RECAPTCHA_V2'] : JSON.load(File.read('config/secrets/google_keys.json'))['API_KEY_RECAPTCHA_V2']

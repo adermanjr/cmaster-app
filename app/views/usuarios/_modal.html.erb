@@ -1,0 +1,59 @@
+<!-- https://www.mirceasamuila.com/posts/bootstrap-modals-in-rails -->
+<div id="modal_usuario" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <% if @msg %>
+          <h4 class="modal-title"><%= "#{t :label_nome} #{@usuario.nome} - Erro"%></h4>
+        <% elsif @modal == MODAL_USU_PAGTO %>
+          <h4 class="modal-title"><%= "#{t :label_nome} #{@usuario.nome} - Status: #{@retorno[:body]["status"]}"%></h4>
+        <% else %>
+          <h4 class="modal-title"><%= t :label_coordenadas %></h4>
+        <% end %>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="modal_msg"></div>
+        <% if @msg %>
+          <%= @msg %>
+        <% elsif @modal == MODAL_USU_PAGTO %>
+          <div class="list-group">
+            <div class="list-group-item">
+              <div class="row linha-1-4">
+                <div class="col-sm-6">
+                  <strong>Início</strong>: <%= I18n.localize @retorno[:body]["start_time"].to_date %>
+                </div>
+                <div class="col-sm-6">
+                  <strong>Ultima atualização</strong>: <%= I18n.localize @retorno[:body]["status_update_time"].to_date %>
+                </div>
+              </div>
+              <div class="row linha-1-4">
+                <div class="col-sm-6">
+                  <strong>Qtde de pagtos</strong>: <%= @retorno[:body]["billing_info"]["cycle_executions"].size %>
+                </div>
+                <div class="col-sm-6">
+                  <strong>Moeda</strong>: <%= @retorno[:body]["shipping_amount"]["currency_code"] %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <p>
+            <div id="map"></div>
+          </p>
+          <%= label_tag 'latitude' %>
+          <%= text_field_tag :lat, @usuario[:lat], class: 'form-control' %>
+      
+          <%= label_tag 'longitude' %>
+          <%= text_field_tag :lng, @usuario[:lng], class: 'form-control' %>
+        <% end %>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="$('#modal_usuario').modal('hide');"><%= t(:label_fechar) %></button>
+      </div>
+    </div>
+  </div>
+</div>

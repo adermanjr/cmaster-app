@@ -1,0 +1,68 @@
+<% provide(:title, @tratamento.nome) %>
+
+<p>
+  <h4>
+    <strong><%= "#{t :label_tratamento}:  #{@tratamento.nome}" %></strong>
+  </h4>
+  <% if @tratamento.indicacao.present? %>
+    <strong><%= "#{t :label_indicacao}: " %></strong> <%= @tratamento.indicacao %>
+  <% end %>
+  <br />
+
+  <button type="button" onclick="exec_ajax_with_parms({id: '<%= @tratamento.id %>'},'/tratamentos/<%= @tratamento.id %>/show_modal_aplicacao')" class="<%= botao_link %>">
+    <span class="fa fa-flask"></span> <%= "#{t :label_gerar} #{t :label_aplicacao}" %>
+  </button>
+</p>
+
+<div id="lista_aplicacoes" class="list-group mt-3 mb-3">
+
+  <% @tratamento.pombal_tratamentos.order('dtinicio DESC').each do |pt| %>
+    <div class="list-group-item">
+      <div class="row linha-1-4">
+        <div class="col-sm-4">
+          <strong><%= t(:label_pombal) %></strong>: <%= pt.pombal.nome %>
+        </div>
+        <div class="col-sm-2">
+          <strong><%= t(:label_data_inicio) %></strong>: <%= pt.dtinicio.strftime(mask_data_ruby) if pt.dtinicio? %>
+        </div>
+        <div class="col-sm-2">
+          <strong><%= t(:label_data_fim) %></strong>: <%= pt.dtfim.strftime(mask_data_ruby) if pt.dtfim? %>
+        </div>
+        <div class="col-sm-4">
+          <strong><%= t(:label_dosagem_por_pombal) %></strong>: <%= "#{number_with_precision(Aplicacao.por_pombal_tratamento(pt.id).to_a.sum(&:dosagem), precision: 3) } "%>
+          <!--  + ' ' + t('label_medida_'+ pt.medida) if !pt.medida.blank? -->
+        </div>
+      </div>
+      <div class="row linha-2-0">
+        <div class="col-sm-12">
+          
+          <button type="button" 
+                  onclick="exec_ajax_with_parms({id: '<%= @tratamento.id %>',pt_id:'<%= pt.id %>'},'/tratamentos/show_modal')"
+                  class="<%= botao_link %>"
+                  title="<%= t :label_mais_info %>">
+            <span class="fa fa-info-circle"></span>
+          </button>
+          
+          <button type="button" 
+                  onclick="excluir_item_parm({id: '<%= @tratamento.id %>',pt_id:'<%= pt.id %>'},'/tratamentos/destroy_pombal_tratamento', '<%= t(:msg_quest_apagar_padrao) %>')"
+                  class="<%= botao_link %>"
+                  title="<%= t :label_excluir %>">
+            <span class="fa fa-trash"></span>
+          </button>
+          
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+<%= link_to tratamentos_path, class: botao_link do %>
+  <span class="fa fa-caret-left"></span> <%= t(:label_voltar) %>
+<% end %>
+
+<div id="modal_pombo">
+</div>
+
+<div id="modal_gerar_tratamento">
+</div>

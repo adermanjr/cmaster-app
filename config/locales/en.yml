@@ -1,0 +1,513 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  
+  message_mailer:
+  contact_me:
+    subject: "[ColumbaMaster]Message by Fale Conosco"
+  
+  date:
+   abbr_day_names:
+   - Sun
+   - Mon
+   - Tue
+   - Wed
+   - Thu
+   - Fri
+   - Sat
+   abbr_month_names:
+   -
+   - Jan
+   - Feb
+   - Mar
+   - Apr
+   - May
+   - Jun
+   - Jul
+   - Aug
+   - Sep
+   - Oct
+   - Nov
+   - Dec
+   day_names:
+   - Sunday
+   - Monday
+   - Tuesday
+   - Wednesday
+   - Thursday
+   - Friday
+   - Saturday
+   formats:
+     default: "%Y-%m-%d"
+     long: "%B %d, %Y"
+     short: "%b %d"
+   month_names:
+   -
+   - January
+   - February
+   - March
+   - April
+   - May
+   - June
+   - July
+   - August
+   - September
+   - October
+   - November
+   - December
+   order:
+   - :year
+   - :month
+   - :day
+  
+  actions:
+    show: Show
+    edit: Edit
+    destroy: Destroy
+    new: New
+    back: Back
+  
+  helpers:
+    submit:
+      create: "Create a %{model}"
+      update: "Update the %{model}"
+  
+  confirm: Are you sure?
+ 
+  columba_master: Columba Master
+  
+  home_bem_vindo: Welcome!
+  home_msg_1: Loft gest, pedigree and race results.
+  home_msg_2: Online information for the pigeon fancier in a practical mode.
+  home_msg_3: Anywhere, anytime, the information you need available to your hands!
+  home_msg_4: BENEFITS
+  home_msg_5: Loft gest
+  home_msg_6: Pedigree Mounting
+  home_msg_7: Racing information
+  home_msg_8: Medication Details
+  home_msg_social_net: Follow us on social networks!
+  
+  label_a_cancelar: On cancellation
+  label_aceitar_contrato: Accept contract
+  label_acoes: Actions
+  label_adicionar: Add
+  label_adicionar_compl: Add %{compl}
+  label_anilha: Ring
+  label_anilha_ou_nome: Ring or name
+  label_ano: Year
+  label_alterar: Change
+  label_alterar_compl: Change data from %{compl}
+  label_apagar_conta: Erase account?
+  label_apagar_coordenadas: Erase coordinates
+  label_aplicacao: Application
+  label_aplicar: Apply
+  label_aplicar_compl: Apply on %{compl}
+  label_arquivo: File
+  label_assinatura: Signature
+  label_assinar: Sign
+  label_ativar: Activate
+  label_ativo: Active
+  label_atualizar: Update
+  label_atualize_seu_perfil: Update your profile
+  label_ausentes: Absents
+  label_bairro: Address (2nd line)
+  label_bandeira: Card Flag
+  label_cadastrar: Register
+  label_cancelado: Canceled
+  label_cancelar: Cancel
+  label_cep: ZIP
+  label_chegada: Arrival
+  label_cidade: City
+  label_ciclico: Cyclic
+  label_columbofilo: Fancier
+  label_contrato: Contract
+  label_coordenadas: Coordinates
+  label_coordenadas_graus: Coordinates Degrees
+  label_coordenadas_decimal: Coordinates Decimal
+  label_classificacao_oficial: Official Rating
+  label_obter_coordenadas: Get Coordinates
+  label_clube: Club
+  label_compartilhe: Share
+  label_competicao: Race
+  label_complemento: Complement
+  label_confirmacao: Confirmation
+  label_confirme_a_senha: Confirm the Password
+  label_contato: Contact
+  label_cor: Color
+  label_cor_nao_informada: Not set field
+  label_cor_azul: Blue
+  label_cor_branco: White
+  label_cor_escama: Squama
+  label_cor_preto: Black
+  label_cor_bronze: Bronze
+  label_cor_vermelho: Red
+  label_cor_macotado: Stoned
+  label_cor_fulvo: Tawny
+  label_cor_camurca: Suede
+  label_cor_pardo: Brown
+  label_criar_conta: Create my account
+  label_cvc: Security code
+  label_data: Date
+  label_data_aplic: Date Application
+  label_data_desativ: Date deactivation
+  label_data_inicio: Start date
+  label_data_inicio_ass: Signature start date
+  label_data_canc_ass: Signature cancellation date
+  label_data_fim: End date
+  label_data_nasc: Birth date
+  label_data_nasc_a_partir: Birth from
+  label_de: From
+  label_desativado_em: Disabled in
+  label_descricao: Description
+  label_distancia: Distance
+  label_distancia_aerea: Air distance in %{medida} by Google
+  label_distancia_aerea_aprox: Approximate air distance in %{medida}
+  label_distancia_percorrida: Travelled distance
+  label_dosagem: Dosage
+  label_dosagem_por_pombal: Dosage for Loft
+  label_editar: Edit
+  label_email: E-mail
+  label_endereco: Address
+  label_entrar: Sign in
+  label_enviar: Send
+  label_esquadrao: Squad
+  label_estado: State
+  label_excluir: Erase
+  label_export_pdf: Export PDF
+  label_esqueceu_senha: Forgot the password?
+  label_fale_conosco: Contact us
+  label_familia: Family
+  label_fechar: Close
+  label_filho: Child
+  label_filtrar: Filter
+  label_filtrar_por: Filter by
+  label_financeiro: Charging
+  label_fuso: Time Zone
+  label_geral: All Top 25
+  label_gerar: Apply
+  label_gratuito: Free
+  label_horario_solta: Date release time
+  label_hora_estimada: Arrival time
+  label_hora_oficial: Official arrival time
+  label_id_usuario_planilha: User's id on the Sheet
+  label_id_usuario_cmaster: User's id on Columba Master
+  label_idade: Age
+  label_importar: Import
+  label_incluir: Add
+  label_indicacao: Indication
+  label_informar_chegada: Report arrival
+  label_intervalo: Interval
+  label_intervalo_S: Weekly
+  label_intervalo_Q: Biweekly
+  label_intervalo_M: Monthly
+  label_intervalo_A: Yearly
+  label_lat_grau: Latitude in degrees
+  label_latitude: Latitude
+  label_lingua: Language
+  label_linhagem: Breed
+  label_lista_clubes: List of clubs
+  label_lista_competicoes: List of competitions
+  label_lista_pombais: List of lofts
+  label_lista_pombos: List of pigeons
+  label_lista_premios: List of awards
+  label_lista_provas: List of races
+  label_lista_tratamentos: List of treatments
+  label_lista_usuarios: User list
+  label_lng_grau: Longitude in degrees
+  label_longitude: Longitude
+  label_mae: Mother
+  label_mais_info: More information
+  label_manter_conectado: Stay connected
+  label_marcacao: Marking
+  label_medida: Measure
+  label_medida_GR: Gram(s) - Gr
+  label_medida_LT: Liter(s) - Lt
+  label_medida_ML: Milliliter(s) - Ml
+  label_medida_KG: Kilogram(s) - Kg
+  label_medida_CO: Pill(s)
+  label_medida_KM: Km
+  label_medida_M: Meters
+  label_medida_KM_Hora: Km/H
+  label_medida_Metros_Min: M/min
+  label_mensagem: Message
+  label_mensalidade: Monthly payment
+  label_por_modalidade: By Modality
+  label_moeda: Currency
+  label_moeda_BRL: Brazilian Real
+  label_moeda_EUR: Euro
+  label_moeda_USD: Dollar
+  label_nacao: Country
+  label_nao: No
+  label_nao_inscrito: Not yet registered?
+  label_nome: Name
+  label_nome_completo: Name
+  label_nome_competicao: Competition name
+  label_nome_cartao: Name (as printed on card)
+  label_notificar_cada: Notify each
+  label_novo: New
+  label_numero: Number
+  label_numero_cartao: Credit Card
+  label_oficial: Official
+  label_pagamento: Payment
+  label_pagar: Make the payment
+  label_pai: Father
+  label_para: To
+  label_parcial: Partial
+  label_partida: Take off
+  label_perfil: Profile
+  label_pedigree: Pedigree
+  label_plano_B: Basic Plan
+  label_plano_M: Master Plan
+  label_plano_A: Trial Master Plan
+  label_plano_I: Unlimited Plan
+  label_plano_vigente: Plan Data
+  label_pombal: Loft
+  label_pombo: Pigeon
+  label_pontos: Points
+  label_posicao: Position
+  label_premio: Prize(s)
+  label_preparo: Prepare
+  label_proximo: Next
+  label_prova: Race
+  label_qtde: Amount
+  label_qtde_provas: 'Number of races played'
+  label_reativar: Reactivate
+  label_recuperar_senha: Recover password
+  label_recusar_contrato: Refuse contract
+  label_regularidade: Regularity
+  label_reiniciar_senha: Reset password
+  label_remover: Remove
+  label_reside: Lives
+  label_residentes: Residents
+  label_rota_voo: Flight Route
+  label_salvar: Save
+  label_senha: Password
+  label_sexo: Sex
+  label_sexo_M: Male
+  label_sexo_F: Female
+  label_signup: Sign up
+  label_signup_now: Subscribe now!
+  label_sim: Yes
+  label_show: Show
+  label_so_vivo: Only alive
+  label_status: Status
+  label_telefone: Phone
+  label_tempo: Time
+  label_time: Team
+  label_tipo: Type
+  label_tipo_prova_1: Velocity
+  label_tipo_prova_2: Half Fund
+  label_tipo_prova_3: Fund
+  label_tipo_usuario_1: Common
+  label_tipo_usuario_2: Moderator
+  label_total: Total
+  label_total_pontos: Sum of points
+  label_tratamento: Treatment
+  label_uf: State
+  label_ultimo: Last
+  label_valor_anos_seguintes: Second year at %{valor}/month
+  label_valor_ano1: To %{valor}/month
+  label_velocidade: Speed
+  label_velocidade_media: Average speed
+  label_vencimento: Expiration
+  label_ver_mapa: See the map
+  label_vivo: Live
+  label_voltar: Back
+  
+  link_clube: CLUB
+  link_competicoes: COMPETITIONS
+  link_conta: ACCOUNT
+  link_contato: CONTACT
+  link_editar_conta: EDIT ACCOUNT
+  link_entrar: SIGN IN
+  link_gerir: GEST
+  link_endereco: ADDRESS
+  link_inicio: HOME
+  link_inscrever: CREATE ACCOUNT
+  link_pombal: LOFT
+  link_pombos: PIGEON
+  link_preparo: PREPARE
+  link_assinatura: PLAN
+  link_provas: RACE
+  link_sair: SIGN OUT
+  link_time: TEAM
+  link_tratamento: TREATMENT
+  link_perfil: PROFILE
+  link_admin: ADMIN
+  
+  
+  msg_erro_acao_nao_permitida: Action not allowed.
+  msg_erro_arquivo_invalido: Invalid file!
+  msg_erro_complemento_nao_esta_preenchido: is empty.
+  msg_erro_campo_nao_numerico: Field value is not numeric
+  msg_erro_conta_nao_ativada: Account not activated. Activate the link sent to your e-mail.
+  msg_erro_desconectado: Please log in to your account.
+  msg_erro_email_nao_encontrado: E-mail not found.
+  msg_erro_link_expirou: The activation link has expired.
+  msg_erro_link_ativacao_invalido: Invalid activation link.
+  msg_erro_link_invalido: Invalid URL.
+  msg_erro_login: Invalid email/password.
+  msg_erro_pai_femea: Father can not be female.
+  msg_erro_mae_macho: Mother can not be male.
+  msg_erro_padrao_formulario: This form contains
+  msg_erro_email_nao_enviado: E-mail not sent. Verify that all fields have been filled out.
+  msg_erro_email_nao_enviado_recaptcha: E-mail not sent. Recaptcha validation.
+  msg_erro_anilha_cadastrada: There is already another pigeon with the ring informed.
+  msg_erro_cancelamento_ass: Could not unsubscribe. Carrier message
+  msg_erro_assinatura: Could not create signature. Carrier message
+  msg_erro_reativar: Could not reactivate signature. Carrier message
+  msg_erro_pombo_nao_encontrado: Pigeon not found!
+  msg_erro_limite_plano: You have exceeded the limit of pigeons allowed in your plan. %{go}
+  msg_erro_rever_assinatura: Please review your subscription.
+  msg_erro_plano_cancelado: Your plan is canceled. Please review your subscription.
+  msg_erro_pagamento_cancelado: The payment has not been confirmed.
+  msg_erro_pagmento_nao_confirmado: The payment has not been confirmed by the financial institution. Please inform us of a new card.
+  msg_erro_anilha_nao_encontrada: No pigeon was found with the ring informed.
+  msg_erro_quantidade_incompativel_plano: The number of pigeons already registered %{qtde} is incompatible with the chosen plan.
+  msg_erro_informar_endereco_prova: Please inform the coordinates of the release of the race.
+  msg_erro_informar_endereco_usuario: Please enter coordinates details.
+  msg_erro_usuario_nao_encontrado_planilha: User's code not found at the sheet.
+  msg_erro_usuario_nao_encontrado_sistema: User's code not found at system.
+  msg_erro_banco: "Database error:"
+  msg_erro_campo_nao_informado: "Field not set: %{campo}"
+  
+  msg_info_ativacao_conta_email: Welcome to Columba Master! Access the link below to activate your account.
+  msg_info_conta_apagada: Account removed!
+  msg_info_conta_ativada: Account activated!
+  msg_info_ignorar_reiniciar_senha: If you did not want to reset your password, please ignore this e-mail.
+  msg_info_link_expiracao: This link will expire in 2 hours.
+  msg_info_para_reiniciar_senha: To reset the password, go to the link below
+  msg_info_perfil_atualizado: Updated profile!
+  msg_info_senha_atualizada: The password has been updated!
+  msg_info_verifique_email: Check your e-mail to activate your account. It may have gone to the spam box.
+  msg_info_verifique_email_resetar_senha: Check your e-mail to create a new password. It may have gone to the spam box.
+  msg_info_criado_com_sucesso: created successfully!
+  msg_info_atualizado_com_sucesso: updated successfully!
+  msg_info_excluido_com_sucesso: deleted successfully!
+  msg_info_adiciado_com_sucesso: added successfully!
+  msg_info_removido_com_sucesso: removed successfully!
+  msg_info_endereco: '2103 SANDY ST SPRINGDALE, AR/US'
+  msg_info_nome_time: 'Champion Loft'
+  msg_info_email_enviado: E-mail successfully sent.
+  msg_info_email_enviado_contato: E-mail successfully sent, we will contact you soon.
+  msg_info_form_contato_html: Your opinion is very important to us.
+  msg_info_pombos_que_receberam_aplicacao_de_em: Pigeons that received the application of %{name} in %{date}
+  msg_info_escolha_o_plano: Choose the plan that suits you best!
+  msg_info_assinatura_cancelada: Signature canceled successfully!
+  msg_info_assinatura_sucesso: The subscription was successful!
+  msg_info_plano_basico: The Basic Plan allows the registration of up to %{qtde} pigeons and costs nothing.
+  msg_info_plano_master: Unlimited pigeon registration.
+  msg_info_plano_ilimitado: Unlimited pigeon registration!
+  msg_info_primeiro_mes_gratis_html: The first month is free!
+  msg_info_assine_ja: Subscribe now!
+  msg_info_presente_time: This pigeon is already part of the team.
+  msg_info_pombos_ausentes: Pigeons that have not yet arrived
+  msg_info_qtde_pombos: Registered pigeons %{qtde}.
+  msg_info_qtde_pombos_permitido: Number of pigeons allowed in your plan %{qtde}.
+  msg_info_arraste_marcador: Drag the red marker to set the closest location to the loft.
+  msg_info_arraste_marcador_prova: Drag red marker to define an approximate location of the release site.
+  msg_info_email_ativacao: Account activation email.
+  msg_info_tornar_moderador: Make Moderator.
+  msg_info_tornar_avaliacao: Make Trial.
+  msg_info_importacao_resultado_prova: 'The spreadsheet must contain the following columns: "classif", "ring", "idcriador", "date", "time", "distance", "veloc", "points"'
+  msg_info_planilha_exemplo: 'Download sample worksheet'
+  msg_info_top_10: Top 25 Squad by Points
+  msg_info_duvida_criar_conta: See how to create your account!
+  msg_info_duvida_criar_pombo: See how to create your pigeons!
+  msg_info_promocao_por_tempo_limitado: Limited time promotion!
+  msg_info_pagto_paypal: The subscription is made in a secure environment by PayPal
+  msg_info_importacao_relogio: We can import the pigeons from your Tauris terminal with separate payment. Contact us.
+  
+  msg_quest_enviar_notificacao: Send notification to remember new application
+  msg_quest_apagar_conta: Do you want to delete the account? All your data will be deleted.
+  msg_quest_apagar_padrao: Confirm exclusion?
+  msg_quest_apagar_resultado: When you erase one result, boths, parcial e official will be deleted. Confirm exclusion?
+  msg_quest_recusar_contrato: By refusing the agreement, all your data will be erased. Do you wish to continue?
+  
+  msg_subject_ativacao_conta: Account Activation
+  msg_subject_recuperacao_senha: Password Recovery
+  
+  msg_contrato_titulo: 'COLUMBA MASTER - CONTRACT FOR SERVICES'
+  msg_contrato_1: '1. PARTIES'
+  msg_contrato_1_desc_html: 'By this particular instrument, on the one hand, COLUMBA MASTER, site and application, under Brazilian MEI registration by CNPJ: 32.009.129/0001-57, hereinafter referred to as "System" and, on the other hand, the contractor, hereinafter referred to as "Subscriber", bearer of the information and duly registered in the database of the site, identified by its access codes, hereinafter referred to as "login" and "password", resolve, by mutual agreement, to execute this agreement for Provision of Services via Internet, which shall be governed by the following clauses and conditions:'
+  msg_contrato_1_1: '1.1 The General Terms and Conditions of this agreement relate to the parties named above and apply to the use of the products and services offered by COLUMBA MASTER. All subscribers who wish to use the services of COLUMBA MASTER shall accept the General Terms and Conditions, and all other policies and principles that govern it.'
+  msg_contrato_1_2: '1.2 If it is not possible for the Subscriber to be characterized as liable, the obligations set forth in this agreement will be transferred to the legal responsible parties.'
+  msg_contrato_1_3: '1.3. The Parties recognize the e-mail, sent to your registered-mail box, as a valid and effective form of communication and accepts the site and application of COLUMBA MASTER as sufficient for the provision of services which relate to this Agreement, as well as the conditions of its provision or any other matter addressed therein.'
+  
+  msg_contrato_2: '2. OBJECT'
+  msg_contrato_2_1_html: '2.1. COLUMBA MASTER offers the following services via the Internet: Access to the application and online site for fancier management that counts resources for inclusion, visualization, alteration and removal of pigeons, pedigrees, training, tests, communication resources and other registers to be filled by subscriber or by persons authorized by the same through registration in the system database.'
+  msg_contrato_2_2: '2.2. The System will require the Subscriber to login and password (duly registered at the moment of the creation of the account) for access to the system.'
+  
+  msg_contrato_3: '3. DUTIES AND RIGHTS OF THE COLUMBA MASTER'
+  msg_contrato_3_1: '3.1. COLUMBA MASTER will allow 24 (twenty four) hours a day, 07 (seven) days a week access to Subscribers, except in the cases described in items 3.2.'
+  msg_contrato_3_2: '3.2. COLUMBA MASTER undertakes to provide the access service contracted by the Subscriber in accordance with the chosen plan, and may eventually suffer interruptions due to: (a) unavailability caused by connection problems of the subscriber to the Internet network; (b) incidental cases that prevent the provision of services; and (c) technical and / or operational problems that require the temporary shutdown of the system, adjustments that prevent occurrences of failures in the transmission system and / or routing in the Internet access.'
+  msg_contrato_3_3: '3.3. COLUMBA MASTER reserves the right to carry out eventual maintenance in its systems, aiming at improvements in the quality of the services provided to its Subscribers, which may affect the access to its services temporarily.'
+  msg_contrato_3_4: '3.4. COLUMBA MASTER reserves the right to make changes in clause 2. of this Agreement, to extend the services contracted, without prior notice. If you wish, the Subscriber may request information about the changes made, in writing, via email or on the website itself.'
+  msg_contrato_3_5: '3.5. COLUMBA MASTER is not responsible for the information contained in the registrations made through the website and application, it being understood that the data contained in the registrations are the sole responsibility of the respective subscribers, who will be solely responsible for the civil and criminal sanctions that may result from these data.'
+  msg_contrato_3_6: '3.6. COLUMBA MASTER reserves the right to exclude any registration that shows untruths or that is not within the General Terms and Conditions of this agreement.'
+  msg_contrato_3_7: '3.7. The Subscriber understands and agrees that the services covered by this contract, which are provided in clause 2.1.'
+  msg_contrato_3_8: '3.8. COLUMBA MASTER does not participate in negotiations of the Subscribers with third parties, of registrations in the site, and can not be held liable for any damage, whether material or moral, resulting from these negotiations, which are conducted under full responsibility and autonomy of the Subscriber.'
+  msg_contrato_3_9: '3.9. The Subscriber understands and agrees that in cases of access made by third parties to the site or application, using the Subscriber login and password, COLUMBA MASTER can not be held liable for any damages resulting from this act.'
+  msg_contrato_3_10: "3.10. Given the dynamics of service provision, Subscriber agrees that COLUMBA MASTER may maintain the Subscriber's registration in its database for a period longer than that contracted."
+    
+  msg_contrato_4: '4. DUTIES AND RIGHTS OF THE SUBSCRIBER'
+  msg_contrato_4_1: '4.1. The Subscriber will be responsible for the correct use of his login and password, which are of his exclusive use, and can not be divulged to third parties.'
+  msg_contrato_4_2: '4.2. The Subscriber must provide, on his own account, access to the worldwide computer network (Internet).'
+  msg_contrato_4_3: '4.3. The Subscriber''s personal data, including the "login" and "password", the content of the account registration and the billing data informed are your responsibility. If such information is incorrectly or incompletely reported, the Subscriber will be liable for civil and criminal penalties that may be applicable.'
+  msg_contrato_4_4: '4.4. By registering, the Subscriber agrees to provide true, updated and complete information, as requested on the registration pages.'
+  msg_contrato_4_5: '4.5. The Subscriber will be responsible for the registrations and for the use of the system, and the non-registration of new information will not imply the withdrawal of the service, since the data remain available until the account is canceled.'
+  msg_contrato_4_6: '4.6. The Subscriber assumes all liabilities and liabilities arising from his acts and misconduct as Subscriber of the System, also responding to acts that third parties practice on his behalf, through the use of his login and password of access.'
+  msg_contrato_4_7: '4.7. As consideration for the services of this Agreement, the Subscriber shall pay to COLUMBA MASTER the amount stated in the Confirmation of the account registration, on the dates and / or referred periodicity, corresponding to the contracted plan.'
+  
+  msg_contrato_5: '5. PLANS AND FORMS OF PAYMENT'
+  msg_contrato_5_1: '5.1. The Plans are described in the Plans section of the site and the Form of Payment is made through a recurring payment by credit card.'
+  msg_contrato_5_2: '5.2. The Free Plan allows the use of all system features limiting only the number of pigeons to be registered. COLUMBA MASTER reserves the right to establish and change the number of pigeons in the Free Plan at any time.'
+  msg_contrato_5_3: '5.3. For the Plans Paid, the Subscriber authorizes COLUMBA MASTER to effect the collections in the chosen form and means, being COLUMBA MASTER and / or eventual authorized company of the debit exempt from any responsibility by virtue of such collection. The name shown on the credit card billing invoice is ADERMAN JOSE DE ARAUJO * and will be charged in Brazilian currency'
+  msg_contrato_5_4: '5.4. If there are any impediments to the payment of the subscription due to the responsibility of the Subscriber, COLUMBA MASTER reserves the right to suspend for an indefinite period the services provided in this Agreement, which may notify the Subscriber so that the latter may proceed with the regularization of the pending, suspension until the payment is settled.'
+  
+  
+  msg_contrato_6: '6. THE PROMOTION OF THE 1ST FREE MONTH'
+  msg_contrato_6_1: '6.1. The Subscriber is aware that it will only be possible to participate once in the promotion. In view of this, if there is a new hiring after the use of the free days, the Subscriber will not be entitled to a new period of 30 (thirty) days free of charge.'
+  msg_contrato_6_2: '6.2. Upon acceptance of this Agreement, the Subscriber will be entitled to a promotional period of 30 (thirty) days free of charge.'
+  msg_contrato_6_3: '6.3. The 30-day free promotional period shall begin on the day on which the Subscriber enters into this Agreement, counting the 30 calendar days following the date of acceptance of the Contract.'
+  msg_contrato_6_4: '6.4. At the end of the free period, a charge will be generated on the credit card in the amount contracted for the plan chosen by the subscriber.'
+  msg_contrato_6_5: '6.5. If, however, the Subscriber chooses to remain hired, not expressing his / her option for termination of the contract until the thirtieth day after hiring, COLUMBA MASTER will block access to the System.'
+  
+  msg_contrato_7: '7. CANCELLATION'
+  msg_contrato_7_1: '7.1. Unsubscription will occur through the option available under PROFILE \ Plan Data \ Cancel Signature.'
+  msg_contrato_7_2: '7.2. The Subscriber acknowledges and accepts that, by canceling the subscription, he will lose access to the system and consequently to the information previously registered.'
+  msg_contrato_7_3: '7.3. Under no circumstances will COLUMBA MASTER refund the payment made, since investments have been made since the creation of the account so that access is available throughout the contracted period.'
+  
+  msg_contrato_8: '8. READJUST OF THE PRICE'
+  msg_contrato_8_1: '8.1 The stipulated price of the subscription of the plan may be readjusted for each period of one year, counted from the effective date, after prior notice to the Subscriber.'
+  
