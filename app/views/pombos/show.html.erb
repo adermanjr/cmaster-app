@@ -8,9 +8,11 @@
     <br /><br />
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-1 fundo_logo" ></div>
-      <div class="col-sm-11">
+    <div class="row g-2">
+      <div class="col-sm-1">
+        <%= image_tag('cm_logo_circular_perfil.png', size: 75) %>
+      </div>
+      <div class="col-sm-6">
         <h5><strong><%= "#{t :label_pedigree}: #{@pombo.anilha} #{@pombo.nome}" %></strong></h5>
         <h5><%= @pombo.usuario.nome_time.upcase if !@pombo.usuario.nome_time.blank? %></h5>
         <h5><%= @pombo.usuario.nome.upcase if !@pombo.usuario.nome.blank? %></h5>
@@ -88,7 +90,7 @@
     <% end %>
 
     <button class="<%= botao_link %>" onclick="window.print();return false;" >
-      <span class="fa fa-file-pdf-o"></span> <%= t(:label_export_pdf) %>
+      <span class="fa fa-file-pdf"></span> <%= t(:label_export_pdf) %>
     </button>
   <% end %>
 </div>
