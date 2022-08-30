@@ -1,24 +1,10 @@
-# README
+# App to control racing pigeon loft and make pigeon pedigree
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    Updated to RoR 7 using Bootstrap 5.2, FontAwesome 5.7, JQuery, Google Maps API, Paypal and postgree
+    
+Published now on heroky
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## url on heroku
+    -> [columbamaster.herokuapp.com](https://columbamaster.herokuapp.com)
+        -> [pedigree](https://columbamaster.herokuapp.com/pombos/893)
+        -> [top racers](https://columbamaster.herokuapp.com/competicaos/2/esquadrao?usr=6)
