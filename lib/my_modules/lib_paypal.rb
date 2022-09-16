@@ -5,7 +5,7 @@ require 'json'
 module MyModules
   module LibPaypal
     def paypal_read_keys
-      return ENV['RAILS_ENV'] == 'production' ? ENV['PAYPAL_JSON'] : JSON.load(File.read('config/secrets/paypal_data.json'))
+      return ENV['RAILS_ENV'] == 'production' ? JSON.load(ENV['PAYPAL_JSON']) : JSON.load(File.read('config/secrets/paypal_data.json'))
     end
 
     def cancel_subscription(env, subscriptionId)
@@ -124,8 +124,13 @@ module MyModules
     def get_token(url_base, clientId, secret)
       #https://ruby-doc.org/stdlib-2.6.5/libdoc/net/http/rdoc/Net/HTTP.html
       #https://stackoverflow.com/questions/35823368/ruby-nethttp-post-parameters-strip-error
-      
+      puts '*********************'
+      puts url_base
+      puts clienteID
+      puts secret
       uri = URI.parse("#{url_base}/v1/oauth2/token")
+      puts uri
+      puts '*********************'
       
       # Set up Net::HTTP to use SSL
       http = Net::HTTP.new uri.host, uri.port
