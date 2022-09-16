@@ -124,14 +124,9 @@ module MyModules
     def get_token(url_base, clientId, secret)
       #https://ruby-doc.org/stdlib-2.6.5/libdoc/net/http/rdoc/Net/HTTP.html
       #https://stackoverflow.com/questions/35823368/ruby-nethttp-post-parameters-strip-error
-      puts '*********************'
-      puts url_base
-      puts clienteID
-      puts secret
-      uri = URI.parse("#{url_base}/v1/oauth2/token")
-      puts uri
-      puts '*********************'
       
+      uri = URI.parse("#{url_base}/v1/oauth2/token")
+            
       # Set up Net::HTTP to use SSL
       http = Net::HTTP.new uri.host, uri.port
       http.use_ssl = true
