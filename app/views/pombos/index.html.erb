@@ -39,7 +39,11 @@
       </div>
       <div class="col-3">
         <div class="form-group mt-3">
-          <%= submit_tag t(:label_filtrar), class: botao_estilo, id: "btn_filtro" %>
+          <button type="button"
+                  onclick="submit_modal({anilha_filter: $('#anilha_filter').val(), pai_filter: $('#pai_filter').val(), mae_filter: $('#mae_filter').val()},'/filter_by')"
+                  class="<%= botao_estilo %>">
+            <%= t(:label_filtrar) %>
+          </button>
         </div>
       </div>
     </div>

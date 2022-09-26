@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/logout',               to: 'sessions#destroy'
   get    '/faleconosco',          to: 'mensagens#new'
   post   '/faleconosco',          to: 'mensagens#create',       as: 'create_message'
-  get    '/filter_by',            to: 'pombos#filter_by',       as: 'filter_by'
+  post   '/filter_by',            to: 'pombos#filter_by',       as: 'filter_by'
   get    '/familia',              to: 'pombos#familia'
   post   '/familia',              to: 'pombos#familia_create',  as: 'familia_create'
   
@@ -90,7 +90,7 @@ Rails.application.routes.draw do
       get :recupera_desc
     end
     member do
-      get  :filter_by
+      post  :filter_by
       get  :modal_nao_chegaram
       get  :preparar_importacao
       post  :importados
