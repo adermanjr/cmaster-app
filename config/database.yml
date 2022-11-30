@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: cmaster_app_production
+  database: <%= ENV["CM_PG_DB"] %>
   username: cmaster_app
-  password: <%= ENV["CMASTER_APP_DATABASE_PASSWORD"] %>
+  password: <%= ENV["CM_PG_PASS"] %>
+  host: <%= ENV["CM_PG_HOST"] %>
