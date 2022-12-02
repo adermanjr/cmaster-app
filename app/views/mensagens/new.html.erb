@@ -11,7 +11,7 @@
   };
   var correctCaptcha = function(response) {
     document.querySelector('[type=submit]').disabled = false;
-    createHidden("recaptcha_validation", <%= DateTime.now.strftime('%Q') %>, ".new_mensagem");
+    createHidden("recaptcha_validation", new Date().getTime(), ".new_mensagem");
   };
 </script>
   
