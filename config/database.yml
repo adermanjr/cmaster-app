@@ -87,3 +87,4 @@ production:
   username: cmaster_app
   password: <%= ENV["CM_PG_PASS"] %>
   host: <%= ENV["CM_PG_HOST"] %>
+  port: <%= ENV["CM_PG_PORT"] %>
