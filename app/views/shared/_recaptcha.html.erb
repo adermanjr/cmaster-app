@@ -1,0 +1,12 @@
+<script type="text/javascript">
+  var onloadCallback = function() {
+    grecaptcha.render('recaptcha_div', {
+      'sitekey' : '<%= API_KEY_RECAPTCHA_V2 %>',
+      'callback': correctCaptcha
+    });
+  };
+  var correctCaptcha = function(response) {
+    document.querySelector('[type=submit]').disabled = false;
+    createHidden("recaptcha_validation", new Date().getTime(), ".new_mensagem");
+  };
+</script>

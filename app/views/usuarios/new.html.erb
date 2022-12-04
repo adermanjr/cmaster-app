@@ -1,17 +1,6 @@
 <% provide(:title, t(:label_signup)) %>
 
-<script type="text/javascript">
-  var onloadCallback = function() {
-    grecaptcha.render('recaptcha_div', {
-      'sitekey' : '<%= API_KEY_RECAPTCHA_V2 %>',
-      'callback': correctCaptcha
-    });
-  };
-  var correctCaptcha = function(response) {
-    document.querySelector('[type=submit]').disabled = false;
-    createHidden("recaptcha_validation", new Date().getTime(), ".new_mensagem");
-  };
-</script>
+<%= render 'recaptcha' %>
 
 <div class="mt-3">
   <span class="d-flex flex-row-reverse  text-muted" ><small>

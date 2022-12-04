@@ -1,0 +1,46 @@
+ <div class="form-group mt-3 mb-3">
+  <%= frm.label t(:label_lingua) %>
+  <%= frm.select(:lingua, locale, {include_blank: true} , {class: 'form-select', required: true, autofocus: true }) %>
+</div>
+
+<div class="form-group mb-3">
+  <%= frm.label t(:label_nome_completo) %>
+  <%= frm.text_field :nome, class: 'form-control', autofocus: true, required: true %>
+</div>
+
+<div class="form-group mb-3">
+  <%= frm.label t(:label_email) %>
+  <%= frm.email_field :email, class: 'form-control', required: true %>
+</div>
+
+<div class="form-group mb-3">
+  <%= frm.label t(:label_senha) %>
+  <%= frm.password_field :password, class: 'form-control' %>
+</div>
+
+<div class="form-group mb-3">
+  <%= frm.label t(:label_confirme_a_senha) %>
+  <%= frm.password_field :password_confirmation, class: 'form-control' %>
+</div>
+
+<div class="row g-2 mb-3">
+  <div class="form-group col-sm-6">
+    <%= frm.label "#{t :label_telefone } 1" %>
+    <%= frm.phone_field :tel1, class: 'form-control', required: true, size: 15 %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= frm.label "#{t :label_telefone } 2" %>
+    <%= frm.phone_field :tel2, class: 'form-control validar', size: 15 %><!--  #'data-inputmask': mask_tel -->
+  </div>
+</div>
+
+<div class="form-group mb-3">
+  <%= frm.label t(:label_nome_competicao) %>
+  <%= frm.text_field :nome_time, class: 'form-control', autofocus: true, required: true, placeholder: (t :msg_info_nome_time)  %>
+</div>
+
+<div class="form-group mb-3">
+  <%= frm.label t(:label_fuso) %>
+  <%= frm.select :fuso, timezone_for_select, {include_blank: true}, {class: 'form-select', required: true} %>
+</div>

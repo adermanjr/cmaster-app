@@ -2,18 +2,7 @@
 
 <h4 class="mt-3"><strong><%= t :label_fale_conosco %></strong></h4>
 
-<script type="text/javascript">
-  var onloadCallback = function() {
-    grecaptcha.render('recaptcha_div', {
-      'sitekey' : '<%= API_KEY_RECAPTCHA_V2 %>',
-      'callback': correctCaptcha
-    });
-  };
-  var correctCaptcha = function(response) {
-    document.querySelector('[type=submit]').disabled = false;
-    createHidden("recaptcha_validation", new Date().getTime(), ".new_mensagem");
-  };
-</script>
+<%= render 'recaptcha' %>
   
 <div class="row justify-content-md-center">
   <div class="col-md-6 ml-md-auto mr-md-auto">
