@@ -71,7 +71,7 @@ Rails.application.configure do
 
   # ******* !!!!!!!!!! *******
   config.action_mailer.delivery_method = :smtp
-  host = 'https://columbamaster.herokuapp.com/'
+  host = 'https://columbamaster.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :user_name      => 'apikey',

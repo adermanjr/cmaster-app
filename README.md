@@ -5,8 +5,8 @@
 ##### Inspired by [Michael Hartl](https://github.com/mhartl), of the [Ruby on Rails Tutorial](https://www.railstutorial.org/)
 
 ## urls on heroku
-[Home page](https://columbamaster.herokuapp.com)
+[Home page](https://columbamaster.com)
 
-[Pedigree](https://columbamaster.herokuapp.com/pombos/893)
+[Pedigree](https://columbamaster.com/pombos/893)
 
-[Top racers](https://columbamaster.herokuapp.com/competicaos/2/esquadrao?usr=6)
+[Top racers](https://columbamaster.com/competicaos/2/esquadrao?usr=6)
