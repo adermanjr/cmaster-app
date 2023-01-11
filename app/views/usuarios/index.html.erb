@@ -48,7 +48,7 @@
                   onclick="exec_ajax_with_parms({id: '<%= u.id %>', acao: '<%= MODAL_USU_PAGTO %>'},'/usuarios/show_modal')" 
                   class="<%= botao_link %>"
                   title="<%= t :label_financeiro %>">
-            <span class="fa fa-usd"></span>
+            <span class="fa fa-dollar-sign"></span>
           </button>
           <%= link_to reenviar_email_ativacao_usuario_path(u),  class: botao_link, method: :post, :title => t(:msg_info_email_ativacao), :rel => 'tooltip', "data-placement" => "bottom" do %>
             <span class="fa fa-envelope"></span>
